@@ -13,5 +13,6 @@ public:
 	~Shader();
 
 	GLuint getProgram();
-	void useShader();
+	void link();
+	void unLink();
 };

@@ -1,6 +1,6 @@
-#include "FileReader.h"
+#include "FileUtils.h"
 
-string FileReader::GetFileContents(const char* filePath) {
+string FileUtils::GetFileContents(const char* filePath) {
 	ifstream fileStream(filePath, ios::in);
 	string content = "";
 	if (fileStream.is_open()) {

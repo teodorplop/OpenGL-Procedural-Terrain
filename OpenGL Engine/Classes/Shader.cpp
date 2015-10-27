@@ -1,5 +1,5 @@
 #include "Shader.h"
-#include "Utils/FileReader.h"
+#include "Utils/FileUtils.h"
 
 GLuint Shader::compile(GLuint type, const char* source) {
 	GLuint shader = glCreateShader(type);
@@ -31,8 +31,8 @@ void Shader::compileShaders(const char* vertexSource, const char* fragmentSource
 }
 
 Shader::Shader(const char* vertexFile, const char* fragmentFile) {
-	string vertexCode = FileReader::GetFileContents(vertexFile);
-	string fragmentCode = FileReader::GetFileContents(fragmentFile);
+	string vertexCode = FileUtils::GetFileContents(vertexFile);
+	string fragmentCode = FileUtils::GetFileContents(fragmentFile);
 	const char* vertexSource = vertexCode.c_str();
 	const char* fragmentSource = fragmentCode.c_str();
 
@@ -52,6 +52,9 @@ GLuint Shader::getProgram() {
 	return prog;
 }
 
-void Shader::useShader() {
+void Shader::link() {
 	glUseProgram(prog);
+}
+void Shader::unLink() {
+	glUseProgram(0);
 }

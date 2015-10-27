@@ -124,12 +124,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\Utils\FileReader.cpp" />
+    <ClCompile Include="Classes\OpenGL.cpp" />
+    <ClCompile Include="Classes\Utils\FileUtils.cpp" />
     <ClCompile Include="Classes\Shader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\Utils\FileReader.h" />
+    <ClInclude Include="Classes\OpenGL.h" />
+    <ClInclude Include="Classes\Utils\FileUtils.h" />
     <ClInclude Include="Classes\Shader.h" />
   </ItemGroup>
   <ItemGroup>

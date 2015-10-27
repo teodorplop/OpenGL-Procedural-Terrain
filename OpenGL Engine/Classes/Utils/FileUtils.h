@@ -3,7 +3,7 @@
 #include<fstream>
 using namespace std;
 
-class FileReader {
+class FileUtils {
 public:
 	static string GetFileContents(const char* filePath);
 };
