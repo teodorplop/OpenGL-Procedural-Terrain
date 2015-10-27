@@ -1,6 +1,8 @@
 #include "OpenGL.h"
 #include "Shader.h"
 
+#include <cstdio>
+
 OpenGL* OpenGL::instance = nullptr;
 
 void OpenGL::Initialize(int argc, char** argv) {
@@ -13,6 +15,8 @@ void OpenGL::Initialize(int argc, char** argv) {
 }
 
 OpenGL::OpenGL(int argc, char** argv) {
+	lastUpdate = 0;
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
@@ -22,11 +26,16 @@ OpenGL::OpenGL(int argc, char** argv) {
 	glewInit();
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glutDisplayFunc(renderFunction);
+	glutIdleFunc(idleFunction);
 	glutCloseFunc(cleanUpFunction);
 }
 
 void OpenGL::renderFunction() {
 	instance->render();
+}
+
+void OpenGL::idleFunction() {
+	instance->idle();
 }
 
 void OpenGL::cleanUpFunction() {
@@ -43,14 +52,27 @@ void OpenGL::render() {
 	glFlush();
 }
 
+void OpenGL::idle() {
+	double now = glutGet(GLUT_ELAPSED_TIME);
+	double timeElapsed = (now - lastUpdate) * 1000 / 60;
+
+	while (timeElapsed >= 1000 / 60) {
+		glutPostRedisplay();
+		timeElapsed -= 1000 / 60;
+	}
+
+	lastUpdate = now;
+}
+
 void OpenGL::cleanUp() {
 	destroyVBO();
 	destroyShaders();
 }
 
 void OpenGL::createVBO() {
+	float rnd = (float)(rand() % 5) / 10.0f;
 	GLfloat Vertices[] = {
-		0.0f, 0.5f, 0.0f, 1.0f,
+		0.0f, rnd, 0.0f, 1.0f,
 		-0.5f, -0.5f, 0.0f, 1.0f,
 		0.5f, -0.5f, 0.0f, 1.0f
 	};
