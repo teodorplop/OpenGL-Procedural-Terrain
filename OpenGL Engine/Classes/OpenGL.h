@@ -6,15 +6,13 @@ class OpenGL {
 private:
 	static OpenGL* instance;
 	static void renderFunction();
-	static void idleFunction();
 	static void cleanUpFunction();
+	static float scale;
 
-	double lastUpdate;
 	GLuint VaoId, VboId, ColorBufferId;
 
 	OpenGL(int argc, char** argv);
 	void render();
-	void idle();
 	void cleanUp();
 
 	void createVBO();

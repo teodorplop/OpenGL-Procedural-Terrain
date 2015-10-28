@@ -4,7 +4,7 @@
 
 class Shader {
 private:
-	GLuint vertexShader, fragmentShader, prog;
+	GLuint vertexShader, fragmentShader, shaderProgram;
 	void compileShaders(const char* vertexSource, const char* fragmentSource);
 	GLuint compile(GLuint type, const char* source);
 
@@ -13,6 +13,5 @@ public:
 	~Shader();
 
 	GLuint getProgram();
-	void link();
-	void unLink();
+	void use();
 };
