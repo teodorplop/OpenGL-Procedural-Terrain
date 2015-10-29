@@ -132,6 +132,7 @@
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
     <ClCompile Include="Classes\TimeFrame.cpp" />
     <ClCompile Include="Classes\Object.cpp" />
+    <ClCompile Include="Classes\ObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Engine.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Classes\Utils\Math\Vector3.h" />
     <ClInclude Include="Classes\TimeFrame.h" />
     <ClInclude Include="Classes\Object.h" />
+    <ClInclude Include="Classes\ObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

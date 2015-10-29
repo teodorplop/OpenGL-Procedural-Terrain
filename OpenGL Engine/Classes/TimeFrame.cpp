@@ -25,8 +25,10 @@ void TimeFrame::IdleFunction() {
 	float timeElapsed = DELAY * (now - lastUpdate);
 
 	while (timeElapsed >= DELAY) {
-		Engine::Update();
 		timeElapsed -= DELAY;
+
+		Engine::Update();
+		glutPostRedisplay();
 	}
 
 	lastUpdate = now;

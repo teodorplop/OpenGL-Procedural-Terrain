@@ -1,7 +1,6 @@
 #include "Engine.h"
 
 #include <cstdio>
-#include <cassert>
 
 #include "Utils/Math/math_3d.h"
 #include "Shader.h"
@@ -33,11 +32,11 @@ Engine::Engine(int argc, char** argv) {
 	glutDisplayFunc(renderFunction);
 	glutCloseFunc(cleanUpFunction);
 
+	//ObjectManager::Initialize();
 	TimeFrame::Start();
 }
 
 void Engine::Update() {
-	glutPostRedisplay();
 }
 
 void Engine::renderFunction() {
