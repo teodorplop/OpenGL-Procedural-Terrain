@@ -128,11 +128,16 @@
     <ClCompile Include="Classes\Utils\FileUtils.cpp" />
     <ClCompile Include="Classes\Shader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
+    <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\OpenGL.h" />
     <ClInclude Include="Classes\Utils\FileUtils.h" />
     <ClInclude Include="Classes\Shader.h" />
+    <ClInclude Include="Classes\Utils\Math\math_3d.h" />
+    <ClInclude Include="Classes\Utils\Math\Matrix4.h" />
+    <ClInclude Include="Classes\Utils\Math\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

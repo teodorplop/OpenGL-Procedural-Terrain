@@ -3,7 +3,7 @@
 
 #include <cstdio>
 #include <cassert>
-#include <cmath>
+#include "Utils/Math/math_3d.h"
 
 OpenGL* OpenGL::instance = nullptr;
 float OpenGL::scale = 0;
@@ -88,11 +88,12 @@ void OpenGL::createShaders() {
 	Shader* myShader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 	myShader->use();
 
-	GLint gScale = glGetUniformLocation(myShader->getProgram(), "gScale");
-	assert(gScale != -1);
-
 	scale += 0.001f;
-	glUniform1f(gScale, sin(scale));
+	Matrix4 matrix = Matrix4::Scale(Vector3(sin(scale), sin(scale), sin(scale)));
+
+	GLint gWorld = glGetUniformLocation(myShader->getProgram(), "gWorld");
+
+	glUniformMatrix4fv(gWorld, 1, GL_TRUE, &matrix.elements[0][0]);
 
 	delete myShader;
 }
