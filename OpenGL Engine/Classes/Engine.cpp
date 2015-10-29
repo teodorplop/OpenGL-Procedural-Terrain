@@ -1,45 +1,54 @@
-#include "OpenGL.h"
-#include "Shader.h"
+#include "Engine.h"
 
 #include <cstdio>
 #include <cassert>
+
 #include "Utils/Math/math_3d.h"
+#include "Shader.h"
+#include "TimeFrame.h"
 
-OpenGL* OpenGL::instance = nullptr;
-float OpenGL::scale = 0;
+Engine* Engine::instance = nullptr;
+float Engine::scale = 0;
 
-void OpenGL::Initialize(int argc, char** argv) {
-	if (instance != nullptr) {
-		return;
+void Engine::Initialize(int argc, char** argv) {
+	if (instance == nullptr) {
+		instance = new Engine(argc, argv);
+		glutMainLoop();
 	}
-
-	instance = new OpenGL(argc, argv);
-	glutMainLoop();
 }
 
-OpenGL::OpenGL(int argc, char** argv) {
+Engine::Engine(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(1024, 768);
 	glutCreateWindow("Tutorial");
 
-	glewInit();
+	GLenum error = glewInit();
+	if (error != GLEW_OK) {
+		fprintf(stderr, "Failed to initialize glew: %s\n", glewGetErrorString(error));
+	}
+
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glutDisplayFunc(renderFunction);
-	glutIdleFunc(renderFunction);
 	glutCloseFunc(cleanUpFunction);
+
+	TimeFrame::Start();
 }
 
-void OpenGL::renderFunction() {
+void Engine::Update() {
+	glutPostRedisplay();
+}
+
+void Engine::renderFunction() {
 	instance->render();
 }
 
-void OpenGL::cleanUpFunction() {
+void Engine::cleanUpFunction() {
 	instance->cleanUp();
 }
 
-void OpenGL::render() {
+void Engine::render() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	createVBO();
 	createShaders();
@@ -49,12 +58,12 @@ void OpenGL::render() {
 	glFlush();
 }
 
-void OpenGL::cleanUp() {
+void Engine::cleanUp() {
 	destroyVBO();
 	destroyShaders();
 }
 
-void OpenGL::createVBO() {
+void Engine::createVBO() {
 	GLfloat Vertices[] = {
 		-1.0f, -1.0f, 0.0f, 1.0f,
 		1.0f, -1.0f, 0.0f, 1.0f,
@@ -72,7 +81,7 @@ void OpenGL::createVBO() {
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
 }
-void OpenGL::destroyVBO() {
+void Engine::destroyVBO() {
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 
@@ -84,12 +93,12 @@ void OpenGL::destroyVBO() {
 	glDeleteVertexArrays(1, &VaoId);
 }
 
-void OpenGL::createShaders() {
+void Engine::createShaders() {
 	Shader* myShader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 	myShader->use();
 
 	scale += 0.001f;
-	Matrix4 matrix = Matrix4::Scale(Vector3(sin(scale), sin(scale), sin(scale)));
+	Matrix4 matrix = Matrix4::Rotation(scale, 'X');
 
 	GLint gWorld = glGetUniformLocation(myShader->getProgram(), "gWorld");
 
@@ -97,5 +106,5 @@ void OpenGL::createShaders() {
 
 	delete myShader;
 }
-void OpenGL::destroyShaders() {
+void Engine::destroyShaders() {
 }

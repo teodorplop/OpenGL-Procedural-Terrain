@@ -2,8 +2,8 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-#include "Classes/OpenGL.h"
+#include "Classes/Engine.h"
 
 int main(int argc, char** argv) {
-	OpenGL::Initialize(argc, argv);
+	Engine::Initialize(argc, argv);
 }

@@ -2,16 +2,19 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-class OpenGL {
+class Engine {
+	friend class TimeFrame;
+
 private:
-	static OpenGL* instance;
+	static Engine* instance;
+	static void Update();
 	static void renderFunction();
 	static void cleanUpFunction();
 	static float scale;
 
 	GLuint VaoId, VboId, ColorBufferId;
 
-	OpenGL(int argc, char** argv);
+	Engine(int argc, char** argv);
 	void render();
 	void cleanUp();
 

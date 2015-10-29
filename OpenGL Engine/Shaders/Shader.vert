@@ -4,9 +4,11 @@
 
 uniform float gScale;
 uniform mat4 gWorld;
+
 layout (location = 0) in vec3 inPosition;
+out vec4 color;
 
 void main() {
   gl_Position = gWorld * vec4(inPosition, 1.0);
-  //gl_Position = vec4(gScale * inPosition.x, gScale * inPosition.y, inPosition.z, 1.0);
+  color = vec4(clamp(inPosition, 0.0, 1.0), 1.0);
 }
