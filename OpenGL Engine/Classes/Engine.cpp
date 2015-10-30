@@ -5,6 +5,7 @@
 #include "Utils/Math/math_3d.h"
 #include "Shader.h"
 #include "TimeFrame.h"
+#include "ObjectManager.h"
 
 Engine* Engine::instance = nullptr;
 float Engine::scale = 0;
@@ -32,11 +33,12 @@ Engine::Engine(int argc, char** argv) {
 	glutDisplayFunc(renderFunction);
 	glutCloseFunc(cleanUpFunction);
 
-	//ObjectManager::Initialize();
+	ObjectManager::Initialize();
 	TimeFrame::Start();
 }
 
 void Engine::Update() {
+	ObjectManager::Update();
 }
 
 void Engine::renderFunction() {
@@ -96,8 +98,8 @@ void Engine::createShaders() {
 	Shader* myShader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 	myShader->use();
 
-	scale += 0.001f;
-	Matrix4 matrix = Matrix4::Rotation(scale, 'X');
+	scale += 0.01f;
+	Matrix4 matrix = Matrix4::Rotation(scale, 'Z');
 
 	GLint gWorld = glGetUniformLocation(myShader->getProgram(), "gWorld");
 

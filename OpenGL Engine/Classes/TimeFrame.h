@@ -1,6 +1,3 @@
-#include "Object.h"
-#include <vector>
-
 class TimeFrame {
 private:
 	static bool running;

@@ -22,14 +22,16 @@ void TimeFrame::Stop() {
 
 void TimeFrame::IdleFunction() {
 	int now = glutGet(GLUT_ELAPSED_TIME);
-	float timeElapsed = DELAY * (now - lastUpdate);
+	float timeElapsed = (float)now - lastUpdate;
 
-	while (timeElapsed >= DELAY) {
-		timeElapsed -= DELAY;
+	if (timeElapsed >= DELAY) {
+		while (timeElapsed >= DELAY) {
+			timeElapsed -= DELAY;
 
-		Engine::Update();
-		glutPostRedisplay();
+			Engine::Update();
+			glutPostRedisplay();
+		}
+
+		lastUpdate = now;
 	}
-
-	lastUpdate = now;
 }

@@ -8,6 +8,14 @@ void ObjectManager::Initialize() {
 	}
 }
 
-void ObjectManager::Register(Object* obj) {
-	objects.push_back(obj);
+void ObjectManager::RegisterObject(Object* obj) {
+	instance->objects.push_back(obj);
+}
+void ObjectManager::UnregisterObject(Object* obj) {
+
+}
+void ObjectManager::Update() {
+	for (int i = 0; i < (int)instance->objects.size(); ++i) {
+		instance->objects[i]->Update();
+	}
 }

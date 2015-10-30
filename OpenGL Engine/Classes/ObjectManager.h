@@ -7,5 +7,7 @@ private:
 	std::vector<Object*> objects;
 public:
 	static void Initialize();
-	void Register(Object* obj);
+	static void RegisterObject(Object* obj);
+	static void UnregisterObject(Object* obj);
+	static void Update();
 };
