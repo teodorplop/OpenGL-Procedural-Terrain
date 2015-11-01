@@ -1,7 +1,7 @@
 class TimeFrame {
 private:
 	static bool running;
-	static int lastUpdate;
+	static float lastUpdate;
 	static void IdleFunction();
 
 public:

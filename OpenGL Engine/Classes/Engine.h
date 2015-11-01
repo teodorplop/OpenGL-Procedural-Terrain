@@ -25,5 +25,5 @@ private:
 	void destroyShaders();
 
 public:
-	static void Initialize(int argc, char** argv);
+	static void Start(int argc, char** argv);
 };

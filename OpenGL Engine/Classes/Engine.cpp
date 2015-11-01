@@ -10,7 +10,7 @@
 Engine* Engine::instance = nullptr;
 float Engine::scale = 0;
 
-void Engine::Initialize(int argc, char** argv) {
+void Engine::Start(int argc, char** argv) {
 	if (instance == nullptr) {
 		instance = new Engine(argc, argv);
 		glutMainLoop();
@@ -33,12 +33,14 @@ Engine::Engine(int argc, char** argv) {
 	glutDisplayFunc(renderFunction);
 	glutCloseFunc(cleanUpFunction);
 
-	ObjectManager::Initialize();
+	ObjectManager::Start();
 	TimeFrame::Start();
 }
 
 void Engine::Update() {
 	ObjectManager::Update();
+
+	glutPostRedisplay();
 }
 
 void Engine::renderFunction() {

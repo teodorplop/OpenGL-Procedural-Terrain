@@ -5,7 +5,7 @@
 #define DELAY 16.666666f
 
 bool TimeFrame::running = false;
-int TimeFrame::lastUpdate = 0;
+float TimeFrame::lastUpdate = 0.0f;
 
 void TimeFrame::Start() {
 	if (!running) {
@@ -21,17 +21,12 @@ void TimeFrame::Stop() {
 }
 
 void TimeFrame::IdleFunction() {
-	int now = glutGet(GLUT_ELAPSED_TIME);
-	float timeElapsed = (float)now - lastUpdate;
+	float now = (float)glutGet(GLUT_ELAPSED_TIME);
 
-	if (timeElapsed >= DELAY) {
-		while (timeElapsed >= DELAY) {
-			timeElapsed -= DELAY;
-
+	if (now - lastUpdate >= DELAY) {
+		while (now - lastUpdate >= DELAY) {
+			lastUpdate += DELAY;
 			Engine::Update();
-			glutPostRedisplay();
 		}
-
-		lastUpdate = now;
 	}
 }

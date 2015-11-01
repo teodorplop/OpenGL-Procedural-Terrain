@@ -5,5 +5,5 @@
 #include "Classes/Engine.h"
 
 int main(int argc, char** argv) {
-	Engine::Initialize(argc, argv);
+	Engine::Start(argc, argv);
 }
