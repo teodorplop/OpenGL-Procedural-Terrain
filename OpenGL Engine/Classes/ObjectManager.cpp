@@ -24,5 +24,6 @@ void ObjectManager::UnregisterObject(Object* obj) {
 void ObjectManager::Update() {
 	for (int i = 0; i < (int)instance->objects.size(); ++i) {
 		instance->objects[i]->Update();
+		instance->objects[i]->Draw();
 	}
 }

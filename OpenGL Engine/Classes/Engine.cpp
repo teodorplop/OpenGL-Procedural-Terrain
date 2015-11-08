@@ -3,9 +3,9 @@
 #include <cstdio>
 
 #include "Utils/Math/math_3d.h"
-#include "Shader.h"
 #include "TimeFrame.h"
 #include "ObjectManager.h"
+#include "Scene.h"
 
 Engine* Engine::instance = nullptr;
 float Engine::scale = 0;
@@ -35,6 +35,8 @@ Engine::Engine(int argc, char** argv) {
 
 	ObjectManager::Start();
 	TimeFrame::Start();
+
+	Scene* scene = new Scene();
 }
 
 void Engine::Update() {
@@ -53,11 +55,13 @@ void Engine::cleanUpFunction() {
 
 void Engine::render() {
 	glClear(GL_COLOR_BUFFER_BIT);
-	createVBO();
-	createShaders();
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	//createVBO();
+	//createShaders();
 
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	printf("f");
 	glFlush();
 }
 
