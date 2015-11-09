@@ -12,7 +12,7 @@ private:
 	static void cleanUpFunction();
 	static float scale;
 
-	GLuint VaoId, VboId, ColorBufferId;
+	GLuint VboId, ColorBufferId;
 
 	Engine(int argc, char** argv);
 	void render();

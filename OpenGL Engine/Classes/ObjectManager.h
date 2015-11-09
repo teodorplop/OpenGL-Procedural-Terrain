@@ -9,5 +9,7 @@ public:
 	static void Start();
 	static void RegisterObject(Object* obj);
 	static void UnregisterObject(Object* obj);
+
 	static void Update();
+	static void Draw();
 };

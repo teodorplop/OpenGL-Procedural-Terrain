@@ -1,7 +1,7 @@
 #include "Shader.h"
 #include "Utils/FileUtils.h"
 
-GLuint Shader::compile(GLuint type, const char* source) {
+GLuint Shader::Compile(GLuint type, const char* source) {
 	GLuint shader = glCreateShader(type);
 	glShaderSource(shader, 1, &source, NULL);
 	glCompileShader(shader);
@@ -17,9 +17,9 @@ GLuint Shader::compile(GLuint type, const char* source) {
 	return shader;
 }
 
-void Shader::compileShaders(const char* vertexSource, const char* fragmentSource) {
-	vertexShader = compile(GL_VERTEX_SHADER, vertexSource);
-	fragmentShader = compile(GL_FRAGMENT_SHADER, fragmentSource);
+void Shader::CompileShaders(const char* vertexSource, const char* fragmentSource) {
+	vertexShader = Compile(GL_VERTEX_SHADER, vertexSource);
+	fragmentShader = Compile(GL_FRAGMENT_SHADER, fragmentSource);
 
 	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
@@ -47,17 +47,20 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 	const char* vertexSource = vertexCode.c_str();
 	const char* fragmentSource = fragmentCode.c_str();
 
-	compileShaders(vertexSource, fragmentSource);
+	CompileShaders(vertexSource, fragmentSource);
 }
 
 Shader::~Shader() {
 	glDeleteProgram(shaderProgram);
 }
 
-GLuint Shader::getProgram() {
+GLuint Shader::GetProgram() {
 	return shaderProgram;
 }
 
-void Shader::use() {
+void Shader::Bind() {
 	glUseProgram(shaderProgram);
+}
+void Shader::Unbind() {
+	glUseProgram(0);
 }

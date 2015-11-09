@@ -56,12 +56,12 @@ void Engine::cleanUpFunction() {
 void Engine::render() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	ObjectManager::Draw();
+
 	//createVBO();
 	//createShaders();
-
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
 
-	printf("f");
 	glFlush();
 }
 
@@ -95,19 +95,16 @@ void Engine::destroyVBO() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glDeleteBuffers(1, &ColorBufferId);
 	glDeleteBuffers(1, &VboId);
-
-	glBindVertexArray(0);
-	glDeleteVertexArrays(1, &VaoId);
 }
 
 void Engine::createShaders() {
 	Shader* myShader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-	myShader->use();
+	myShader->Bind();
 
 	scale += 0.01f;
 	Matrix4 matrix = Matrix4::Rotation(scale, 'Z');
 
-	GLint gWorld = glGetUniformLocation(myShader->getProgram(), "gWorld");
+	GLint gWorld = glGetUniformLocation(myShader->GetProgram(), "gWorld");
 
 	glUniformMatrix4fv(gWorld, 1, GL_TRUE, &matrix.elements[0][0]);
 
