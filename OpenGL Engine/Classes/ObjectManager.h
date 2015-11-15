@@ -12,4 +12,5 @@ public:
 
 	static void Update();
 	static void Draw();
+	static void CleanUp();
 };

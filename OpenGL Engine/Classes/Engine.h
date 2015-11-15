@@ -8,21 +8,14 @@ class Engine {
 private:
 	static Engine* instance;
 	static void Update();
-	static void renderFunction();
-	static void cleanUpFunction();
-	static float scale;
+	static void RenderFunction();
+	static void CleanUpFunction();
 
-	GLuint VboId, ColorBufferId;
+	GLuint vboId, ColorBufferId;
 
 	Engine(int argc, char** argv);
-	void render();
-	void cleanUp();
-
-	void createVBO();
-	void destroyVBO();
-
-	void createShaders();
-	void destroyShaders();
+	void Render();
+	void CleanUp();
 
 public:
 	static void Start(int argc, char** argv);

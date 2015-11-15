@@ -1,14 +1,11 @@
 #include "Engine.h"
 
-#include <cstdio>
-
 #include "Utils/Math/math_3d.h"
 #include "TimeFrame.h"
 #include "ObjectManager.h"
 #include "Scene.h"
 
 Engine* Engine::instance = nullptr;
-float Engine::scale = 0;
 
 void Engine::Start(int argc, char** argv) {
 	if (instance == nullptr) {
@@ -30,8 +27,8 @@ Engine::Engine(int argc, char** argv) {
 	}
 
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-	glutDisplayFunc(renderFunction);
-	glutCloseFunc(cleanUpFunction);
+	glutDisplayFunc(RenderFunction);
+	glutCloseFunc(CleanUpFunction);
 
 	ObjectManager::Start();
 	TimeFrame::Start();
@@ -45,33 +42,28 @@ void Engine::Update() {
 	glutPostRedisplay();
 }
 
-void Engine::renderFunction() {
-	instance->render();
+void Engine::RenderFunction() {
+	instance->Render();
 }
 
-void Engine::cleanUpFunction() {
-	instance->cleanUp();
+void Engine::CleanUpFunction() {
+	instance->CleanUp();
 }
 
-void Engine::render() {
+void Engine::Render() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	ObjectManager::Draw();
-
-	//createVBO();
-	//createShaders();
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glutSwapBuffers();
 	glFlush();
 }
 
-void Engine::cleanUp() {
-	destroyVBO();
-	destroyShaders();
+void Engine::CleanUp() {
+	ObjectManager::CleanUp();
 }
 
-void Engine::createVBO() {
+/*void Engine::createVBO() {
 	GLfloat vertices[] = {
 		-1.0f, -1.0f, 0.0f, 1.0f,
 		1.0f, -1.0f, 0.0f, 1.0f,
@@ -79,9 +71,9 @@ void Engine::createVBO() {
 	};
 
 	// se creeaza un buffer nou
-	glGenBuffers(1, &VboId);
+	glGenBuffers(1, &vboId);
 	// este setat ca buffer curent
-	glBindBuffer(GL_ARRAY_BUFFER, VboId);
+	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 	// punctele sunt "copiate" in bufferul curent
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -95,7 +87,7 @@ void Engine::destroyVBO() {
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glDeleteBuffers(1, &ColorBufferId);
-	glDeleteBuffers(1, &VboId);
+	glDeleteBuffers(1, &vboId);
 }
 
 void Engine::createShaders() {
@@ -112,4 +104,4 @@ void Engine::createShaders() {
 	delete myShader;
 }
 void Engine::destroyShaders() {
-}
+}*/

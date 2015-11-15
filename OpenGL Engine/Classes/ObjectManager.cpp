@@ -31,3 +31,8 @@ void ObjectManager::Draw() {
 		instance->objects[i]->Draw();
 	}
 }
+void ObjectManager::CleanUp() {
+	for (int i = 0; i < (int)instance->objects.size(); ++i) {
+		delete instance->objects[i];
+	}
+}
