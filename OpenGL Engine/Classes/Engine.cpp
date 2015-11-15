@@ -19,7 +19,7 @@ void Engine::Start(int argc, char** argv) {
 
 Engine::Engine(int argc, char** argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(1024, 768);
 	glutCreateWindow("Tutorial");
@@ -62,6 +62,7 @@ void Engine::render() {
 	//createShaders();
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
 
+	glutSwapBuffers();
 	glFlush();
 }
 
@@ -71,7 +72,7 @@ void Engine::cleanUp() {
 }
 
 void Engine::createVBO() {
-	GLfloat Vertices[] = {
+	GLfloat vertices[] = {
 		-1.0f, -1.0f, 0.0f, 1.0f,
 		1.0f, -1.0f, 0.0f, 1.0f,
 		0.0f, 1.0f, 0.0f, 1.0f
@@ -82,7 +83,7 @@ void Engine::createVBO() {
 	// este setat ca buffer curent
 	glBindBuffer(GL_ARRAY_BUFFER, VboId);
 	// punctele sunt "copiate" in bufferul curent
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// se activeaza lucrul cu atribute; atributul 0 = pozitie
 	glEnableVertexAttribArray(0);

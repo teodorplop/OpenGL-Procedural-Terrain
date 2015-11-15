@@ -6,7 +6,7 @@ Segment::Segment() {}
 Segment::Segment(Vector2 point1, Vector2 point2) {
 	this->point1 = point1, this->point2 = point2;
 
-	GLfloat Vertices[] = {
+	GLfloat vertices[] = {
 		this->point1.x, this->point1.y, 0.0f, 1.0f,
 		this->point2.x, this->point2.y, 0.0f, 1.0f,
 		-0.5f, -0.5f, 0.0f, 1.0f
@@ -17,7 +17,7 @@ Segment::Segment(Vector2 point1, Vector2 point2) {
 	// este setat ca buffer curent
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 	// punctele sunt "copiate" in bufferul curent
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	// este scos din buffer curent
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
