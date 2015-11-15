@@ -51,6 +51,12 @@
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Homework\Polygon2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Homework\Segment2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Shader.h">
@@ -89,9 +95,23 @@
     <ClInclude Include="Classes\Utils\Math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Classes\Homework\Polygon2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Homework\Segment2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Utils\Math\math_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
+    <None Include="Shaders\Shader2.vert" />
+    <None Include="Shaders\Shader2.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="polygon.txt" />
   </ItemGroup>
 </Project>

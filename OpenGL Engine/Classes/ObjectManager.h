@@ -1,3 +1,6 @@
+#ifndef __OBJECT_MANAGER_H__
+#define __OBJECT_MANAGER_H__
+
 #include <vector>
 #include "Object.h"
 
@@ -14,3 +17,5 @@ public:
 	static void Draw();
 	static void CleanUp();
 };
+
+#endif//__OBJECT_MANAGER_H__

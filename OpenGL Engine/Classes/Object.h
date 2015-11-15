@@ -1,3 +1,6 @@
+#ifndef __OBJECT_H__
+#define __OBJECT_H__
+
 #include "Shader.h"
 class Object {
 	friend class ObjectManager;
@@ -14,3 +17,5 @@ public:
 	~Object();
 	void SetShader(Shader* shader);
 };
+
+#endif//__OBJECT_H__

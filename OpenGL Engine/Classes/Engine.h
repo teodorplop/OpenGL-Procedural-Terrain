@@ -1,3 +1,6 @@
+#ifndef __ENGINE_H__
+#define __ENGINE_H__
+
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
@@ -20,3 +23,5 @@ private:
 public:
 	static void Start(int argc, char** argv);
 };
+
+#endif//__ENGINE_H__

@@ -1,3 +1,6 @@
+#ifndef __SHADER_H__
+#define __SHADER_H__
+
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
@@ -16,3 +19,5 @@ public:
 	void Bind();
 	void Unbind();
 };
+
+#endif //__SHADER_H__

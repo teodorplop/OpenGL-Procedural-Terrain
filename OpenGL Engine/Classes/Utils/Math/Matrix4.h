@@ -1,3 +1,6 @@
+#ifndef __MATRIX_4_H__
+#define __MATRIX_4_H__
+
 #include "Vector3.h"
 
 struct Matrix4 {
@@ -11,3 +14,4 @@ struct Matrix4 {
 	static Matrix4 Rotation(float angle, char axis);
 };
 
+#endif // __MATRIX_4_H__

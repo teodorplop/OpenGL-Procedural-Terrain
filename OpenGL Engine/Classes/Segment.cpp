@@ -3,7 +3,7 @@
 #include <iostream>
 
 Segment::Segment() {}
-Segment::Segment(Vector2 point1, Vector2 point2) {
+Segment::Segment(Vector2 point1, Vector2 point2, Shader* shader) {
 	this->point1 = point1, this->point2 = point2;
 
 	GLfloat vertices[] = {
@@ -19,6 +19,8 @@ Segment::Segment(Vector2 point1, Vector2 point2) {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	// este scos din buffer curent
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	SetShader(shader);
 }
 
 Segment::~Segment() {

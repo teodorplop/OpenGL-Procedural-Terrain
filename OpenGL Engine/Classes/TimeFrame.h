@@ -1,3 +1,6 @@
+#ifndef __TIME_FRAME_H__
+#define __TIME_FRAME_H__
+
 class TimeFrame {
 private:
 	static bool running;
@@ -8,3 +11,5 @@ public:
 	static void Start();
 	static void Stop();
 };
+
+#endif//__TIME_FRAME_H__

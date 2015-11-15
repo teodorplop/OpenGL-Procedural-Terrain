@@ -89,6 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -136,11 +137,14 @@
     <ClCompile Include="Classes\Segment.cpp" />
     <ClCompile Include="Classes\Scene.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
+    <ClCompile Include="Classes\Homework\Polygon2D.cpp" />
+    <ClCompile Include="Classes\Homework\Segment2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Engine.h" />
     <ClInclude Include="Classes\Utils\FileUtils.h" />
     <ClInclude Include="Classes\Shader.h" />
+    <ClInclude Include="Classes\Utils\Math\math_2d.h" />
     <ClInclude Include="Classes\Utils\Math\math_3d.h" />
     <ClInclude Include="Classes\Utils\Math\Matrix4.h" />
     <ClInclude Include="Classes\Utils\Math\Vector3.h" />
@@ -150,10 +154,17 @@
     <ClInclude Include="Classes\Segment.h" />
     <ClInclude Include="Classes\Scene.h" />
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
+    <ClInclude Include="Classes\Homework\Polygon2D.h" />
+    <ClInclude Include="Classes\Homework\Segment2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
+    <None Include="Shaders\Shader2.frag" />
+    <None Include="Shaders\Shader2.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="polygon.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
