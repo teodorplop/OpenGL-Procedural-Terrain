@@ -71,7 +71,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\bin\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\bin\$(Configuration)\Intermediate\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\lib\x64;$(LibraryPath)</LibraryPath>
     <IncludePath>$(SolutionDir)Dependencies\include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
