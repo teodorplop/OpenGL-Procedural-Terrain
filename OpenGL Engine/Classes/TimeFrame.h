@@ -10,6 +10,7 @@ private:
 public:
 	static void Start();
 	static void Stop();
+	static float DeltaTime();
 };
 
 #endif//__TIME_FRAME_H__

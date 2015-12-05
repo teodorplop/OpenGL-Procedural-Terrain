@@ -12,12 +12,14 @@ private:
 	static Engine* instance;
 	static void Update();
 	static void RenderFunction();
+	static void MouseFunction(int button, int state, int x, int y);
 	static void CleanUpFunction();
 
 	GLuint vboId, ColorBufferId;
 
 	Engine(int argc, char** argv);
 	void Render();
+	void Mouse(int button, int state, int x, int y);
 	void CleanUp();
 
 public:

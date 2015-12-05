@@ -1,8 +1,9 @@
 #include "Scene.h"
 #include "Homework\Polygon2D.h"
+#include "Homework\Triangle.h"
 
 Scene::Scene() {
-	Polygon2D* polygon = Polygon2D::ReadFromFile("polygon.txt");
+	Triangle* triangle = new Triangle("triangle.txt");
 }
 
 Scene::~Scene() {

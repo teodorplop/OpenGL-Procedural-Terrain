@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include <GL/freeglut.h>
 
-#define DELAY 16.666666f
+#define DELTA_TIME 16.666666f
 
 bool TimeFrame::running = false;
 float TimeFrame::lastUpdate = 0.0f;
@@ -19,13 +19,16 @@ void TimeFrame::Stop() {
 		glutIdleFunc(NULL);
 	}
 }
+float TimeFrame::DeltaTime() {
+	return DELTA_TIME;
+}
 
 void TimeFrame::IdleFunction() {
 	float now = (float)glutGet(GLUT_ELAPSED_TIME);
 
-	if (now - lastUpdate >= DELAY) {
-		while (now - lastUpdate >= DELAY) {
-			lastUpdate += DELAY;
+	if (now - lastUpdate >= DELTA_TIME) {
+		while (now - lastUpdate >= DELTA_TIME) {
+			lastUpdate += DELTA_TIME;
 			Engine::Update();
 		}
 	}

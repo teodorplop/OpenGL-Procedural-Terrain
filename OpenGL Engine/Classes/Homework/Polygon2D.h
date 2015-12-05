@@ -1,4 +1,4 @@
-#include "../Segment.h"
+#include "Segment.h"
 #include "Segment2D.h"
 #include <vector>
 

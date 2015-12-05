@@ -1,5 +1,5 @@
 #include "Matrix4.h"
-#include <cmath>
+#include "math_3d.h"
 #include <cstdio>
 
 Matrix4::Matrix4() {
@@ -38,6 +38,8 @@ Matrix4 Matrix4::Scale(const Vector3& scale) {
 
 Matrix4 Matrix4::Rotation(float angle, char axis = 'Z') {
 	Matrix4 result(1.0f);
+	angle = ToRadians(angle);
+
 	float c = cos(angle);
 	float s = sin(angle);
 

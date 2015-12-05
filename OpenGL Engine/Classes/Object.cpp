@@ -6,7 +6,6 @@ Object::Object() {
 }
 Object::~Object() {
 	ObjectManager::UnregisterObject(this);
-	glDeleteBuffers(1, &vboID);
 }
 void Object::SetShader(Shader* shader) {
 	this->shader = shader;

@@ -2,11 +2,13 @@
 #define __OBJECT_H__
 
 #include "Shader.h"
+#include "Buffer.h"
+
 class Object {
 	friend class ObjectManager;
 
 protected:
-	GLuint vboID;
+	Buffer* buffer;
 	Shader* shader;
 
 protected:
