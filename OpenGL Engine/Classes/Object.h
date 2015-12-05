@@ -3,12 +3,15 @@
 
 #include "Shader.h"
 #include "Buffer.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
 
 class Object {
 	friend class ObjectManager;
 
 protected:
-	Buffer* buffer;
+	VertexArray* vertexArray;
+	IndexBuffer* indexBuffer;
 	Shader* shader;
 
 protected:

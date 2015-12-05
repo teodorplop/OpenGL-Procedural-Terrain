@@ -6,6 +6,8 @@ Object::Object() {
 }
 Object::~Object() {
 	ObjectManager::UnregisterObject(this);
+	delete vertexArray;
+	delete indexBuffer;
 }
 void Object::SetShader(Shader* shader) {
 	this->shader = shader;

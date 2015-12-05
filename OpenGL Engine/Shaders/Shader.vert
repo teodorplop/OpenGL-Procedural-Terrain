@@ -4,9 +4,12 @@
 
 uniform mat4 gWorld;
 
-in vec3 inPosition;
+layout (location = 0) in vec4 inPosition;
+layout (location = 1) in vec4 inColor;
+
+out vec4 outColor;
 
 void main() {
-  gl_Position = gWorld * vec4(inPosition, 1.0);
-  //gl_Position = vec4(inPosition, 1.0);
+  gl_Position = gWorld * inPosition;
+	outColor = inColor;
 }

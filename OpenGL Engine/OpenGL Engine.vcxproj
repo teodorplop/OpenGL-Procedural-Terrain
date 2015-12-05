@@ -141,6 +141,7 @@
     <ClCompile Include="Classes\InputManager.cpp" />
     <ClCompile Include="Classes\Utils\FileUtils.cpp" />
     <ClCompile Include="Classes\Shader.cpp" />
+    <ClCompile Include="Classes\IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
     <ClCompile Include="Classes\Homework\Polygon2D.cpp" />
     <ClCompile Include="Classes\Homework\Segment2D.cpp" />
+    <ClCompile Include="Classes\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Buffer.h" />
@@ -172,6 +174,8 @@
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
     <ClInclude Include="Classes\Homework\Polygon2D.h" />
     <ClInclude Include="Classes\Homework\Segment2D.h" />
+    <ClInclude Include="Classes\IndexBuffer.h" />
+    <ClInclude Include="Classes\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
@@ -181,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="polygon.txt" />
+    <Text Include="triangle.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

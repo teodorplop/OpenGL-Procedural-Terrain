@@ -1,6 +1,7 @@
 #ifndef __SHADER_H__
 #define __SHADER_H__
 
+#include "Utils/Math/Matrix4.h"
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
@@ -15,9 +16,9 @@ public:
 	Shader(const char* vertexFile, const char* fragmentFile);
 	~Shader();
 
-	GLuint GetProgram();
 	void Bind();
 	void Unbind();
+	void SetUniformMatrix4fv(const char* name, Matrix4 matrix);
 };
 
 #endif //__SHADER_H__

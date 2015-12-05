@@ -54,13 +54,14 @@ Shader::~Shader() {
 	glDeleteProgram(shaderProgram);
 }
 
-GLuint Shader::GetProgram() {
-	return shaderProgram;
-}
-
 void Shader::Bind() {
 	glUseProgram(shaderProgram);
 }
 void Shader::Unbind() {
 	glUseProgram(0);
+}
+
+void Shader::SetUniformMatrix4fv(const char* name, Matrix4 matrix) {
+	GLint matrixID = glGetUniformLocation(shaderProgram, name);
+	glUniformMatrix4fv(matrixID, 1, GL_TRUE, &matrix.elements[0][0]);
 }

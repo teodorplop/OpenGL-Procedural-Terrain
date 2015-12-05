@@ -20,4 +20,4 @@ public:
 	~Segment();
 };
 
-#endif//__SEGMENT_H__
+#endif //__SEGMENT_H__
