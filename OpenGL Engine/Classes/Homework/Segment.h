@@ -4,6 +4,7 @@
 #include "../Object.h"
 #include "../Utils/Math/Vector2.h"
 #include "../Utils/Math/Matrix4.h"
+#include "../Color.h"
 
 class Segment : public Object {
 private:
@@ -16,7 +17,7 @@ protected:
 	void Update();
 public:
 	Segment();
-	Segment(Vector2 x, Vector2 y, Shader* shader, Matrix4 worldMatrix = Matrix4(1.0f));
+	Segment(Vector2 x, Vector2 y, Shader* shader, Color color, Matrix4 worldMatrix = Matrix4(1.0f));
 	~Segment();
 };
 

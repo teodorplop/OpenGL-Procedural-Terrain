@@ -1,5 +1,6 @@
 #include "Polygon2D.h"
 #include <cstdio>
+#include "../Color.h"
 
 Polygon2D::Polygon2D() {
 }
@@ -40,9 +41,8 @@ Polygon2D* Polygon2D::ReadFromFile(const char* fileName) {
 
 	Polygon2D* polygon = new Polygon2D();
 	Shader* shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-	Shader* shader2 = new Shader("Shaders/Shader2.vert", "Shaders/Shader2.frag");
 	for (int i = 0; i < n; ++i) {
-		Segment* segment = new Segment(segments[i].a, segments[i].b, segments[i].intersects ? shader2 : shader);
+		Segment* segment = new Segment(segments[i].a, segments[i].b, shader, segments[i].intersects ? Color::blue : Color::red);
 		polygon->segments.push_back(segment);
 	}
 

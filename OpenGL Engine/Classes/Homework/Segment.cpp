@@ -2,7 +2,7 @@
 #include <cstdio>
 
 Segment::Segment() {}
-Segment::Segment(Vector2 point1, Vector2 point2, Shader* shader, Matrix4 worldMatrix) {
+Segment::Segment(Vector2 point1, Vector2 point2, Shader* shader, Color color, Matrix4 worldMatrix) {
 	this->point1 = point1, this->point2 = point2;
 	this->worldMatrix = worldMatrix;
 	timePassed = 0.0f;
@@ -12,8 +12,8 @@ Segment::Segment(Vector2 point1, Vector2 point2, Shader* shader, Matrix4 worldMa
 		this->point2.x, this->point2.y, 0.0f, 1.0f
 	};
 	GLfloat colors[] = {
-		1.0f, 0.0f, 0.0f, 1.0f,
-		1.0f, 0.0f, 0.0f, 1.0f
+		color.r, color.g, color.b, color.a,
+		color.r, color.g, color.b, color.a
 	};
 	GLuint indices[] = {
 		0, 1

@@ -3,6 +3,7 @@
 #include<vector>
 #include "../Shader.h"
 #include "Segment.h"
+#include "../Color.h"
 
 Triangle::Triangle(const char* fileName) {
 	FILE* file = fopen(fileName, "r");
@@ -15,14 +16,13 @@ Triangle::Triangle(const char* fileName) {
 		}
 
 		Shader* shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-		Shader* shader2 = new Shader("Shaders/Shader2.vert", "Shaders/Shader2.frag");
 		for (int i = 0; i < 3; ++i) {
 			Matrix4 world(1.0f);
-			Segment* segment = new Segment(points[i], points[(i + 1) % 3], shader, world);
+			Segment* segment = new Segment(points[i], points[(i + 1) % 3], shader, Color::red, world);
 		}
 		for (int i = 0; i < 3; ++i) {
 			Matrix4 world = Matrix4::Rotation(180.0f, 'Z');
-			Segment* segment = new Segment(points[i], points[(i + 1) % 3], shader2, world);
+			Segment* segment = new Segment(points[i], points[(i + 1) % 3], shader, Color::blue, world);
 		}
 	}
 }

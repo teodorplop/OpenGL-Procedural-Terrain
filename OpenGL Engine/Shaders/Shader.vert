@@ -7,9 +7,11 @@ uniform mat4 gWorld;
 layout (location = 0) in vec4 inPosition;
 layout (location = 1) in vec4 inColor;
 
-out vec4 outColor;
+out DATA {
+	vec4 color;
+} Out;
 
 void main() {
   gl_Position = gWorld * inPosition;
-	outColor = inColor;
+	Out.color = inColor;
 }

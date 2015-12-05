@@ -2,10 +2,12 @@
 
 #version 430
 
-in vec4 inColor;
+in DATA {
+	vec4 color;
+} In;
+
 out vec4 outColor;
 
 void main() {
-  //outColor = vec4(1.0, 0.0, 0.0, 1.0);
-	outColor = inColor;
+	outColor = In.color;
 }
