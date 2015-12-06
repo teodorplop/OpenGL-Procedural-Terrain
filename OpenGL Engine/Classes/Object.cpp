@@ -3,6 +3,7 @@
 
 Object::Object() {
 	ObjectManager::RegisterObject(this);
+	translationMatrix = rotationMatrix = scaleMatrix = Matrix4(1.0f);
 }
 Object::~Object() {
 	ObjectManager::UnregisterObject(this);
@@ -16,4 +17,30 @@ void Object::SetShader(Shader* shader) {
 void Object::Update() {
 }
 void Object::Draw() {
+}
+
+void Object::SetPosition(Vector3 position) {
+	this->position = position;
+	this->translationMatrix = Matrix4::Translation(position);
+}
+Vector3 Object::GetPosition() {
+	return position;
+}
+void Object::SetRotation(float angle, Vector3 axis) {
+	this->rotation = Vector3(axis.x * angle, axis.y * angle, axis.z * angle);
+	this->rotationMatrix = Matrix4::Rotation(angle, axis);
+}
+Vector3 Object::GetRotation() {
+	return rotation;
+}
+void Object::SetScale(Vector3 scale) {
+	this->scale = scale;
+	this->scaleMatrix = Matrix4::Scale(scale);
+}
+Vector3 Object::GetScale() {
+	return scale;
+}
+
+Matrix4 Object::WorldMatrix() {
+	return translationMatrix * rotationMatrix * scaleMatrix;
 }

@@ -36,31 +36,27 @@ Matrix4 Matrix4::Scale(const Vector3& scale) {
 	return result;
 }
 
-Matrix4 Matrix4::Rotation(float angle, char axis = 'Z') {
+Matrix4 Matrix4::Rotation(float angle, Vector3 axis) {
 	Matrix4 result(1.0f);
 	angle = ToRadians(angle);
 
 	float c = cos(angle);
 	float s = sin(angle);
+	float omc = 1.0f - c;
 
-	if (axis == 'z' || axis == 'Z') {
-		result.elements[0][0] = c;
-		result.elements[0][1] = -s;
-		result.elements[1][0] = s;
-		result.elements[1][1] = c;
-	} else if (axis == 'y' || axis == 'Y') {
-		result.elements[0][0] = c;
-		result.elements[0][2] = -s;
-		result.elements[2][0] = s;
-		result.elements[2][2] = c;
-	}	else if (axis == 'x' || axis == 'X') {
-		result.elements[1][1] = c;
-		result.elements[1][2] = -s;
-		result.elements[2][1] = s;
-		result.elements[2][2] = c;
-	}	else {
-		fprintf(stderr, "Invalid axis rotation.");
-	}
+	float x = axis.x, y = axis.y, z = axis.z;
+
+	result.elements[0][0] = x * omc + c;
+	result.elements[0][1] = y * x * omc + z * s;
+	result.elements[0][2] = x * z * omc - y * s;
+
+	result.elements[1][0] = x * y * omc - z * s;
+	result.elements[1][1] = y * omc + c;
+	result.elements[1][2] = y * z * omc + x * s;
+
+	result.elements[2][0] = x * z * omc + y * s;
+	result.elements[2][1] = y * z * omc - x * s;
+	result.elements[2][2] = z * omc + c;
 
 	return result;
 }
