@@ -7,6 +7,7 @@
 Scene::Scene() {
 	//Triangle* triangle = new Triangle("triangle.txt");
 	//Polygon2D* polygon = Polygon2D::ReadFromFile("polygon.txt");
+
 	//TestObject* testObject = new TestObject();
 	Circle* circle = new Circle(Vector3(0.0, 0.5, 0.0), 0.3);
 	//Triangle* triangle = new Triangle("triangle.txt");
