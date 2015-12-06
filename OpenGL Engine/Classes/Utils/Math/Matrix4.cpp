@@ -64,3 +64,33 @@ Matrix4 Matrix4::Rotation(float angle, char axis = 'Z') {
 
 	return result;
 }
+
+Matrix4& Matrix4::Multiply(const Matrix4& other) {
+	float data[4][4];
+	for (int j = 0; j < 4; ++j) {
+		for (int i = 0; i < 4; ++i) {
+			float sum = 0.0f;
+			for (int k = 0; k < 4; ++k) {
+				sum += elements[i][k] * other.elements[k][j];
+			}
+
+			data[i][j] = sum;
+		}
+	}
+
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < 4; ++j) {
+			elements[i][j] = data[i][j];
+		}
+	}
+
+	return *this;
+}
+
+Matrix4 operator*(Matrix4 left, const Matrix4& right) {
+	return left.Multiply(right);
+}
+
+Matrix4& Matrix4::operator*=(const Matrix4& other) {
+	return Multiply(other);
+}

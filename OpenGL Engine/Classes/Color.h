@@ -7,6 +7,8 @@ public:
 	Color(float r, float g, float b, float a);
 
 	const static Color red, blue;
+
+	bool operator==(const Color& other);
 };
 
 #endif //__COLOR_H__
