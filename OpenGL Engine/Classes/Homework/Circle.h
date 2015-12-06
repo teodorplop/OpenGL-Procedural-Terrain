@@ -5,6 +5,7 @@
 #include<vector>
 #include <GL/glew.h>
 #include "../Object.h"
+#include "../Color.h"
 
 class Circle : public Object
 {
@@ -13,10 +14,9 @@ class Circle : public Object
 	static int nrPct;
 public:
 	Circle();
-	Circle(Vector3 _center, float _radius);
+	Circle(Vector3 _center, float _radius, Color color);
 	~Circle();
 	void Draw();
 	std::vector<Vector3> Circumference();
-
 };
 

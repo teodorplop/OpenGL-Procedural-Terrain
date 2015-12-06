@@ -22,6 +22,7 @@ public:
 	Object();
 	~Object();
 	void SetShader(Shader* shader);
+	Shader* GetShader();
 
 private:
 	Matrix4 translationMatrix;
@@ -33,7 +34,7 @@ private:
 
 	void UpdateWorldMatrix();
 
-protected:
+public:
 	Matrix4 worldMatrix;
 
 public:

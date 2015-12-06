@@ -11,7 +11,7 @@ Circle::Circle()
 	radius = 0.0;
 }
 
-Circle::Circle(Vector3 _center, float _radius)
+Circle::Circle(Vector3 _center, float _radius, Color color)
 {
 	center = _center;
 	radius = _radius;
@@ -22,7 +22,7 @@ Circle::Circle(Vector3 _center, float _radius)
 
 	int crt = 4;
 	vertices[0] = center.x; vertices[1] = center.y; vertices[2] = center.z; vertices[3] = 1.0f;
-	colors[0] = 0.0f; colors[1] = 1.0f; colors[2] = 1.0f; colors[3] = 1.0f;
+	colors[0] = color.r; colors[1] = color.g; colors[2] = color.b; colors[3] = color.a;
 
 	for (int i = 0; i < NrPCT; ++i) {
 		vertices[crt++] = points[i].x;
@@ -39,10 +39,10 @@ Circle::Circle(Vector3 _center, float _radius)
 
 	crt = 4;
 	for (int i = 0; i <= NrPCT; ++i) {
-		colors[crt++] = 0.0f;
-		colors[crt++] = 1.0f;
-		colors[crt++] = 1.0f;
-		colors[crt++] = 1.0f;
+		colors[crt++] = color.r;
+		colors[crt++] = color.g;
+		colors[crt++] = color.b;
+		colors[crt++] = color.a;
 	}
 
 	GLuint  indices[2 * NrPCT];
@@ -69,8 +69,7 @@ void Circle::Draw() {
 	indexBuffer->Bind();
 
 	shader->SetUniformMatrix4fv("gWorld", worldMatrix);
-		glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
-	//glDrawArrays(GL_TRIANGLE_FAN, 0, NrPCT + 2);B
+	glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();
 	vertexArray->Unbind();
@@ -96,10 +95,7 @@ std::vector<Vector3> Circle::Circumference()
 		circlePoints.push_back(point);
 	}
 
-	printf("%d", circlePoints.size());
 	return circlePoints;
-
-
 }
 
 Circle::~Circle()

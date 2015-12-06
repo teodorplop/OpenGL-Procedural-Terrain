@@ -6,7 +6,7 @@ public:
 	float r, g, b, a;
 	Color(float r, float g, float b, float a);
 
-	const static Color red, blue;
+	const static Color red, blue, green, yellow;
 
 	bool operator==(const Color& other);
 };

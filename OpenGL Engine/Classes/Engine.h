@@ -5,10 +5,14 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#include "Scene.h"
+
 class Engine {
 	friend class TimeFrame;
 
 private:
+	Scene* scene;
+
 	static Engine* instance;
 	static void Update();
 	static void RenderFunction();

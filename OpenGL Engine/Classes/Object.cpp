@@ -13,6 +13,9 @@ Object::~Object() {
 void Object::SetShader(Shader* shader) {
 	this->shader = shader;
 }
+Shader* Object::GetShader() {
+	return shader;
+}
 
 void Object::Update() {
 }
