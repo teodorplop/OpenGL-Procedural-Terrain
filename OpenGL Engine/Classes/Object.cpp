@@ -22,6 +22,8 @@ void Object::Draw() {
 void Object::SetPosition(Vector3 position) {
 	this->position = position;
 	this->translationMatrix = Matrix4::Translation(position);
+
+	UpdateWorldMatrix();
 }
 Vector3 Object::GetPosition() {
 	return position;
@@ -29,6 +31,8 @@ Vector3 Object::GetPosition() {
 void Object::SetRotation(float angle, Vector3 axis) {
 	this->rotation = Vector3(axis.x * angle, axis.y * angle, axis.z * angle);
 	this->rotationMatrix = Matrix4::Rotation(angle, axis);
+
+	UpdateWorldMatrix();
 }
 Vector3 Object::GetRotation() {
 	return rotation;
@@ -36,11 +40,13 @@ Vector3 Object::GetRotation() {
 void Object::SetScale(Vector3 scale) {
 	this->scale = scale;
 	this->scaleMatrix = Matrix4::Scale(scale);
+
+	UpdateWorldMatrix();
 }
 Vector3 Object::GetScale() {
 	return scale;
 }
 
-Matrix4 Object::WorldMatrix() {
-	return translationMatrix * rotationMatrix * scaleMatrix;
+void Object::UpdateWorldMatrix() {
+	worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
 }

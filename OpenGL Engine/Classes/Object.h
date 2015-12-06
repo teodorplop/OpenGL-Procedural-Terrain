@@ -31,8 +31,10 @@ private:
 	Vector3 rotation;
 	Vector3 scale;
 
+	void UpdateWorldMatrix();
+
 protected:
-	Matrix4 WorldMatrix();
+	Matrix4 worldMatrix;
 
 public:
 	void SetPosition(Vector3 position);
