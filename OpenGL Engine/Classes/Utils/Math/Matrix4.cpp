@@ -18,6 +18,16 @@ Matrix4::Matrix4(float diagonal) {
 	}
 }
 
+void Matrix4::ApplyTranslation(Matrix4& matrix, const Vector3& translation) {
+	matrix = matrix.Multiply(Matrix4::Translation(translation));
+}
+void Matrix4::ApplyScaling(Matrix4& matrix, const Vector3& scaling) {
+	matrix = matrix.Multiply(Matrix4::Scaling(scaling));
+}
+void Matrix4::ApplyRotation(Matrix4& matrix, float angle, const Vector3& axis) {
+	matrix = matrix.Multiply(Matrix4::Rotation(angle, axis));
+}
+
 Matrix4 Matrix4::Translation(const Vector3& translation) {
 	Matrix4 result(1.0f);
 	result.elements[0][3] = translation.x;
@@ -27,7 +37,7 @@ Matrix4 Matrix4::Translation(const Vector3& translation) {
 	return result;
 }
 
-Matrix4 Matrix4::Scale(const Vector3& scale) {
+Matrix4 Matrix4::Scaling(const Vector3& scale) {
 	Matrix4 result(1.0f);
 	result.elements[0][0] = scale.x;
 	result.elements[1][1] = scale.y;

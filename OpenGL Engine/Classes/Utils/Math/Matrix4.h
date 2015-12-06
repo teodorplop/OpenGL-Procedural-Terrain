@@ -9,8 +9,12 @@ struct Matrix4 {
 	Matrix4();
 	Matrix4(float diagonal);
 
+	static void ApplyTranslation(Matrix4& matrix, const Vector3& translation);
+	static void ApplyScaling(Matrix4& matrix, const Vector3& scaling);
+	static void ApplyRotation(Matrix4& matrix, float angle, const Vector3& axis);
+
 	static Matrix4 Translation(const Vector3& translation);
-	static Matrix4 Scale(const Vector3& scale);
+	static Matrix4 Scaling(const Vector3& scale);
 	static Matrix4 Rotation(float angle, Vector3 axis);
 
 	Matrix4& Multiply(const Matrix4& other);

@@ -58,9 +58,8 @@ Circle::Circle(Vector3 _center, float _radius, Color color)
 	vertexArray->AddBuffer(positionBuffer, 0);
 	vertexArray->AddBuffer(colorBuffer, 1);
 
-	worldMatrix = Matrix4(1.0f);
+	//worldMatrix = Matrix4(1.0f);
 	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-
 }
 
 void Circle::Draw() {
@@ -68,7 +67,8 @@ void Circle::Draw() {
 	vertexArray->Bind();
 	indexBuffer->Bind();
 
-	shader->SetUniformMatrix4fv("gWorld", worldMatrix);
+	//shader->SetUniformMatrix4fv("gWorld", worldMatrix);
+	shader->SetUniformMatrix4fv("gWorld", transform->matrix);
 	glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();

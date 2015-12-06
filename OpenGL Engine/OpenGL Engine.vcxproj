@@ -157,6 +157,7 @@
     <ClCompile Include="Classes\Homework\Segment2D.cpp" />
     <ClCompile Include="Classes\Buffers\VertexArray.cpp" />
     <ClCompile Include="Classes\TestObject.cpp" />
+    <ClCompile Include="Classes\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Homework\Circle.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Classes\Buffers\VertexArray.h" />
     <ClInclude Include="Classes\TestObject.h" />
     <ClInclude Include="Classes\Color.h" />
+    <ClInclude Include="Classes\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
