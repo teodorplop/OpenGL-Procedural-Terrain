@@ -10,7 +10,7 @@ class Object {
 	friend class ObjectManager;
 
 protected:
-	Matrix4* worldMatrix;
+	Matrix4 worldMatrix;
 	VertexArray* vertexArray;
 	IndexBuffer* indexBuffer;
 	Shader* shader;
