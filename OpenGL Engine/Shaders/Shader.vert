@@ -1,6 +1,6 @@
 // Vertex Shader
 
-#version 430
+#version 400
 
 uniform mat4 gWorld;
 

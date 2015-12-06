@@ -1,6 +1,6 @@
 // Fragment Shader 
 
-#version 430
+#version 400
 
 in DATA {
 	vec4 color;
