@@ -23,7 +23,7 @@ TestObject::TestObject() {
 	vertexArray->AddBuffer(positionBuffer, 0);
 	vertexArray->AddBuffer(colorBuffer, 1);
 
-	worldMatrix = new Matrix4(1.0f);
+	worldMatrix = Matrix4(1.0f);
 	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 }
 
@@ -35,7 +35,7 @@ void TestObject::Draw() {
 	vertexArray->Bind();
 	indexBuffer->Bind();
 
-	shader->SetUniformMatrix4fv("gWorld", *worldMatrix);
+	shader->SetUniformMatrix4fv("gWorld", worldMatrix);
 	glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();
