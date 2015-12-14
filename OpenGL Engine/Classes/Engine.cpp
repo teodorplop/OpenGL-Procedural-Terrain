@@ -18,15 +18,15 @@ Engine::Engine(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(800, 800);
-	glutCreateWindow("Tutorial");
+	glutInitWindowSize(700, 700);
+	glutCreateWindow("Sistem solar");
 
 	GLenum error = glewInit();
 	if (error != GLEW_OK) {
 		fprintf(stderr, "Failed to initialize glew: %s\n", glewGetErrorString(error));
 	}
 
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glutDisplayFunc(RenderFunction);
 	glutMouseFunc(MouseFunction);
 	glutCloseFunc(CleanUpFunction);
