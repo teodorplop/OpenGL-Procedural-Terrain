@@ -18,6 +18,7 @@ protected:
 	Transform* transform;
 
 private:
+	int ID;
 	void Draw();
 	virtual void Update();
 	

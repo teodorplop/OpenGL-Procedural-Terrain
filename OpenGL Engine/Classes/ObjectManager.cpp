@@ -9,30 +9,25 @@ void ObjectManager::Start() {
 }
 
 void ObjectManager::RegisterObject(Object* obj) {
-	instance->objects.push_back(obj);
+	instance->objects.insert(obj);
 }
 void ObjectManager::UnregisterObject(Object* obj) {
-	int position = -1;
-	for (int i = 0; i < (int)instance->objects.size(); ++i) {
-		if (instance->objects[i] == obj) {
-			position = i;
-		}
-	}
-
-	instance->objects.erase(instance->objects.begin() + position);
+	instance->objects.erase(obj);
 }
 void ObjectManager::Update() {
-	for (int i = 0; i < (int)instance->objects.size(); ++i) {
-		instance->objects[i]->Update();
+	for (auto obj : instance->objects) {
+		obj->Update();
 	}
 }
 void ObjectManager::Draw() {
-	for (int i = 0; i < (int)instance->objects.size(); ++i) {
-		instance->objects[i]->Draw();
+	for (auto obj : instance->objects) {
+		obj->Draw();
 	}
 }
 void ObjectManager::CleanUp() {
-	for (int i = 0; i < (int)instance->objects.size(); ++i) {
-		delete instance->objects[i];
+	// TODO: This one is ugly.
+	std::unordered_set<Object*> aux = instance->objects;
+	for (auto obj : aux) {
+		delete obj;
 	}
 }

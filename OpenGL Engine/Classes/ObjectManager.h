@@ -2,12 +2,14 @@
 #define __OBJECT_MANAGER_H__
 
 #include <vector>
+#include <unordered_set>
 #include "Object.h"
 
 class ObjectManager {
 private:
 	static ObjectManager* instance;
-	std::vector<Object*> objects;
+
+	std::unordered_set<Object*> objects;
 public:
 	static void Start();
 	static void RegisterObject(Object* obj);

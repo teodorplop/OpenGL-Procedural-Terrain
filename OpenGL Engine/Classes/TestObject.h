@@ -2,15 +2,13 @@
 #define __TEST_OBJECT_H__
 
 #include "Object.h"
+#include "Color.h"
 #include <GL/glew.h>
 
 class TestObject : public Object {
 public:
-	TestObject();
+	TestObject(Color color = Color::blue);
 	~TestObject();
-protected:
-	void Draw();
-	void Update();
 };
 
 #endif //__TEST_OBJECT_H__

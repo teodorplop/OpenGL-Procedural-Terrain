@@ -1,6 +1,6 @@
 #include "TestObject.h"
 
-TestObject::TestObject() {
+TestObject::TestObject(Color color) {
 	GLfloat vertices[] = {
 		-0.5f, -0.5f, 0.0f, 1.0f,
 		0.5f, -0.5f, 0.0f, 1.0f,
@@ -8,10 +8,10 @@ TestObject::TestObject() {
 		-0.5f, 0.5f, 0.0f, 1.0f
 	};
 	GLfloat colors[] = {
-		0.0f, 0.0f, 1.0f, 1.0f,
-		0.0f, 0.0f, 1.0f, 1.0f,
-		0.0f, 0.0f, 1.0f, 1.0f,
-		0.0f, 0.0f, 1.0f, 1.0f
+		color.r, color.g, color.b, color.a,
+		color.r, color.g, color.b, color.a,
+		color.r, color.g, color.b, color.a,
+		color.r, color.g, color.b, color.a
 	};
 	GLuint indices[] = {
 		0, 1, 2,
@@ -30,22 +30,4 @@ TestObject::TestObject() {
 }
 
 TestObject::~TestObject() {
-}
-
-void TestObject::Draw() {
-	shader->Bind();
-	vertexArray->Bind();
-	indexBuffer->Bind();
-
-	shader->SetUniformMatrix4fv("gWorld", transform->GetMatrix());
-	glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
-
-	indexBuffer->Unbind();
-	vertexArray->Unbind();
-	shader->Unbind();
-}
-
-void TestObject::Update() {
-	//Vector3 rotation = GetRotation();
-	//SetRotation(rotation.z + 1.0f, Vector3(0.0f, 0.0f, 1.0f));
 }

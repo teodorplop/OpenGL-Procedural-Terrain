@@ -17,8 +17,6 @@ private:
 	static void MouseFunction(int button, int state, int x, int y);
 	static void CleanUpFunction();
 
-	GLuint vboId, ColorBufferId;
-
 	Engine(int argc, char** argv);
 	void Render();
 	void Mouse(int button, int state, int x, int y);
