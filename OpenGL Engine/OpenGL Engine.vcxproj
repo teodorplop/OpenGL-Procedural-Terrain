@@ -134,18 +134,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\Homework\Circle.cpp" />
     <ClCompile Include="Classes\Buffers\Buffer.cpp" />
     <ClCompile Include="Classes\Engine.cpp" />
-    <ClCompile Include="Classes\Homework\Segment.cpp" />
-    <ClCompile Include="Classes\Homework\Triangle.cpp" />
     <ClCompile Include="Classes\InputManager.cpp" />
     <ClCompile Include="Classes\Utils\FileUtils.cpp" />
     <ClCompile Include="Classes\Shader.cpp" />
     <ClCompile Include="Classes\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="Classes\Color.cpp" />
     <ClCompile Include="Classes\Utils\Math\math_h.cpp" />
-    <ClCompile Include="Classes\Homework\Comet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -154,19 +150,13 @@
     <ClCompile Include="Classes\ObjectManager.cpp" />
     <ClCompile Include="Classes\Scene.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
-    <ClCompile Include="Classes\Homework\Polygon2D.cpp" />
-    <ClCompile Include="Classes\Homework\Segment2D.cpp" />
     <ClCompile Include="Classes\Buffers\VertexArray.cpp" />
     <ClCompile Include="Classes\TestObject.cpp" />
     <ClCompile Include="Classes\Transform.cpp" />
-    <ClCompile Include="Classes\Homework\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\Homework\Circle.h" />
     <ClInclude Include="Classes\Buffers\Buffer.h" />
     <ClInclude Include="Classes\Engine.h" />
-    <ClInclude Include="Classes\Homework\Segment.h" />
-    <ClInclude Include="Classes\Homework\Triangle.h" />
     <ClInclude Include="Classes\Includes.h" />
     <ClInclude Include="Classes\InputManager.h" />
     <ClInclude Include="Classes\Utils\FileUtils.h" />
@@ -181,15 +171,11 @@
     <ClInclude Include="Classes\ObjectManager.h" />
     <ClInclude Include="Classes\Scene.h" />
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
-    <ClInclude Include="Classes\Homework\Polygon2D.h" />
-    <ClInclude Include="Classes\Homework\Segment2D.h" />
     <ClInclude Include="Classes\Buffers\IndexBuffer.h" />
     <ClInclude Include="Classes\Buffers\VertexArray.h" />
     <ClInclude Include="Classes\TestObject.h" />
     <ClInclude Include="Classes\Color.h" />
     <ClInclude Include="Classes\Transform.h" />
-    <ClInclude Include="Classes\Homework\Star.h" />
-    <ClInclude Include="Classes\Homework\Comet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

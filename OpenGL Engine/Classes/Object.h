@@ -17,9 +17,10 @@ protected:
 	Shader* shader;
 	Transform* transform;
 
-protected:
+private:
+	void Draw();
 	virtual void Update();
-	virtual void Draw();
+	
 public:
 	Object();
 	~Object();

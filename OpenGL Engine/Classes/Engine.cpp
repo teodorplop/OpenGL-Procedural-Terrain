@@ -35,12 +35,11 @@ Engine::Engine(int argc, char** argv) {
 	TimeFrame::Start();
 	InputManager::Start();
 
-	scene = new Scene();
+	Scene* scene = new Scene();
 }
 
 void Engine::Update() {
 	ObjectManager::Update();
-	instance->scene->Update();
 
 	glutPostRedisplay();
 }

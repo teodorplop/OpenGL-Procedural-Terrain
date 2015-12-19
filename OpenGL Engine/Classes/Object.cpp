@@ -24,4 +24,14 @@ Transform* Object::GetTransform() {
 void Object::Update() {
 }
 void Object::Draw() {
+	shader->Bind();
+	vertexArray->Bind();
+	indexBuffer->Bind();
+
+	shader->SetUniformMatrix4fv("gWorld", transform->GetMatrix());
+	glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
+
+	indexBuffer->Unbind();
+	vertexArray->Unbind();
+	shader->Unbind();
 }

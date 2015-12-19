@@ -37,8 +37,7 @@ void TestObject::Draw() {
 	vertexArray->Bind();
 	indexBuffer->Bind();
 
-	//shader->SetUniformMatrix4fv("gWorld", worldMatrix);
-	shader->SetUniformMatrix4fv("gWorld", transform->matrix);
+	shader->SetUniformMatrix4fv("gWorld", transform->GetMatrix());
 	glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();

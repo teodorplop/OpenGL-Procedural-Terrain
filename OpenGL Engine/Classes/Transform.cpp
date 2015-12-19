@@ -9,6 +9,19 @@ Transform::Transform() {
 Transform::~Transform() {
 }
 
+Vector3 Transform::GetPosition() {
+	return position;
+}
+Vector3 Transform::GetRotation() {
+	return rotation;
+}
+Vector3 Transform::GetScale() {
+	return scale;
+}
+Matrix4 Transform::GetMatrix() {
+	return matrix;
+}
+
 void Transform::TranslateTo(const Vector3& position) {
 	TranslateBy(position - this->position);
 }
