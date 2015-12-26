@@ -18,7 +18,7 @@ Engine::Engine(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(700, 700);
+	glutInitWindowSize(900, 600);
 	glutCreateWindow("Sistem solar");
 
 	GLenum error = glewInit();
@@ -29,6 +29,7 @@ Engine::Engine(int argc, char** argv) {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glutDisplayFunc(RenderFunction);
 	glutMouseFunc(MouseFunction);
+	glutKeyboardFunc(KeyboardFunction);
 	glutCloseFunc(CleanUpFunction);
 
 	ObjectManager::Start();
@@ -49,7 +50,10 @@ void Engine::RenderFunction() {
 }
 
 void Engine::MouseFunction(int button, int state, int x, int y) {
-	instance->Mouse(button, state, x, y);
+	InputManager::HandleMouse(button, state, x, y);
+}
+void Engine::KeyboardFunction(unsigned char key, int x, int y) {
+	InputManager::HandleKeyboard(key, x, y);
 }
 
 void Engine::CleanUpFunction() {
@@ -63,10 +67,6 @@ void Engine::Render() {
 
 	glutSwapBuffers();
 	glFlush();
-}
-
-void Engine::Mouse(int button, int state, int x, int y) {
-	InputManager::HandleMouse(button, state, x, y);
 }
 
 void Engine::CleanUp() {

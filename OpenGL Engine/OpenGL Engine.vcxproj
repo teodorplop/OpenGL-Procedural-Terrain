@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes\Camera.cpp" />
     <ClCompile Include="Classes\Buffers\Buffer.cpp" />
     <ClCompile Include="Classes\Engine.cpp" />
     <ClCompile Include="Classes\InputManager.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="Classes\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Classes\Camera.h" />
     <ClInclude Include="Classes\Buffers\Buffer.h" />
     <ClInclude Include="Classes\Engine.h" />
     <ClInclude Include="Classes\Includes.h" />

@@ -1,7 +1,10 @@
 #include "Scene.h"
 #include "TestObject.h"
+#include "Camera.h"
 
 Scene::Scene() {
+	Camera* camera = new Camera();
+
 	TestObject* obj1 = new TestObject(Color::red);
 	TestObject* obj2 = new TestObject(Color::blue);
 	obj1->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));

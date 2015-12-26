@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "ObjectManager.h"
+#include "Camera.h"
 
 Object::Object() {
 	ObjectManager::RegisterObject(this);
@@ -28,6 +29,10 @@ void Object::Draw() {
 	vertexArray->Bind();
 	indexBuffer->Bind();
 
+	shader->SetUniformMatrix4fv("gProj", Camera::GetMainCamera()->GetProjectionMatrix());
+	Matrix4 camera = Camera::GetMainCamera()->GetTransform()->GetMatrix();
+	camera.Invert();
+	shader->SetUniformMatrix4fv("gCamera", camera);
 	shader->SetUniformMatrix4fv("gWorld", transform->GetMatrix());
 	glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 

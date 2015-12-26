@@ -2,10 +2,10 @@
 
 TestObject::TestObject(Color color) {
 	GLfloat vertices[] = {
-		-0.5f, -0.5f, 0.0f, 1.0f,
-		0.5f, -0.5f, 0.0f, 1.0f,
-		0.5f, 0.5f, 0.0f, 1.0f,
-		-0.5f, 0.5f, 0.0f, 1.0f
+		-0.5f, -0.5f, 10.0f, 1.0f,
+		0.5f, -0.5f, 10.0f, 1.0f,
+		0.5f, 0.5f, 10.0f, 1.0f,
+		-0.5f, 0.5f, 10.0f, 1.0f
 	};
 	GLfloat colors[] = {
 		color.r, color.g, color.b, color.a,
