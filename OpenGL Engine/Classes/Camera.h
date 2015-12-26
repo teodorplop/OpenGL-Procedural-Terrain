@@ -9,11 +9,11 @@ class Camera {
 private:
 	static Camera* mainCamera;
 
-	float nearClip, farClip;
+	float aspectRatio, nearClip, farClip;
 	// orthographic
-	float left, right, bottom, top;
+	float orthographicSize;
 	// perspective
-	float fieldOfView, aspectRatio;
+	float fieldOfView;
 
 	Projection projectionType;
 	Matrix4 projectionMatrix;
@@ -24,7 +24,7 @@ private:
 public:
 	static Camera* GetMainCamera();
 
-	Camera();
+	Camera(Projection projection, float size, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
 	~Camera();
 	Projection GetProjectionType();
 	Matrix4 GetProjectionMatrix();
@@ -32,4 +32,7 @@ public:
 
 	void ZoomIn();
 	void ZoomOut();
+
+	void SetOrthographic(float size, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
+	void SetPerspective(float fieldOfView, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
 };

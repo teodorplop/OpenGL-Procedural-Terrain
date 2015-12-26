@@ -17,8 +17,8 @@ struct Matrix4 {
 	static Matrix4 Scaling(const Vector3& scale);
 	static Matrix4 Rotation(float angle, Vector3 axis);
 
-	static Matrix4 Orthographic(float left, float right, float bottom, float top, float near, float far);
-	static Matrix4 Perspective(float fieldOfView, float aspectRatio, float near, float far);
+	static Matrix4 Orthographic(float left, float right, float bottom, float top, float nearClip, float farClip);
+	static Matrix4 Perspective(float fieldOfView, float aspectRatio, float nearClip, float farClip);
 
 	Matrix4& Invert();
 	Matrix4& Multiply(const Matrix4& other);

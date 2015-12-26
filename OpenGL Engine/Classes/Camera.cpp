@@ -7,30 +7,20 @@ Camera* Camera::GetMainCamera() {
 	return mainCamera;
 }
 
-Camera::Camera() {
+Camera::Camera(Projection projection, float size, float aspect, float nearClip, float farClip) {
 	if (mainCamera == NULL) {
 		mainCamera = this;
 	}
 
-	projectionType = Projection::Perspective;
-	fieldOfView = 30.0f;
-	aspectRatio = 1.5f;
-	nearClip = 1.0f;
-	farClip = 100.0f;
-	projectionMatrix = Matrix4::Perspective(fieldOfView, aspectRatio, nearClip, farClip);
-
-	/*projectionType = Projection::Orthographic;
-	left = -1.0f;
-	right = 1.0f;
-	bottom = -1.0f;
-	top = 1.0f;
-	nearClip = 1.0f;
-	farClip = 100.0f;
-	projectionMatrix = Matrix4::Orthographic(left, right, bottom, top, nearClip, farClip);*/
+	projectionType = projection;
+	if (projectionType == Projection::Orthographic) {
+		SetOrthographic(size, aspect, nearClip, farClip);
+	} else {
+		SetPerspective(size, aspect, nearClip, farClip);
+	}
 
 	transform = new Transform();
 }
-
 Camera::~Camera() {
 }
 
@@ -44,19 +34,45 @@ Transform* Camera::GetTransform() {
 	return transform;
 }
 
+void Camera::SetOrthographic(float orthographicSize, float aspectRatio, float nearClip, float farClip) {
+	this->projectionType = Projection::Orthographic;
+	this->orthographicSize = orthographicSize;
+	this->aspectRatio = aspectRatio;
+	this->nearClip = nearClip;
+	this->farClip = farClip;
+	
+	float left, right, bottom, top;
+	left = -orthographicSize * aspectRatio;
+	right = orthographicSize * aspectRatio;
+	bottom = -orthographicSize;
+	top = orthographicSize;
+
+	projectionMatrix = Matrix4::Orthographic(left, right, bottom, top, nearClip, farClip);
+}
+void Camera::SetPerspective(float fieldOfView, float aspectRatio, float nearClip, float farClip) {
+	this->projectionType = Projection::Perspective;
+	this->fieldOfView = fieldOfView;
+	this->aspectRatio = aspectRatio;
+	this->nearClip = nearClip;
+	this->farClip = farClip;
+
+	projectionMatrix = Matrix4::Perspective(fieldOfView, aspectRatio, nearClip, farClip);
+}
+
 void Camera::Zoom(float value) {
 	if (projectionType == Projection::Perspective) {
 		fieldOfView += value;
-		fieldOfView = Clamp(fieldOfView, 5.0f, 180.0f);
-
-		projectionMatrix = Matrix4::Perspective(fieldOfView, aspectRatio, nearClip, farClip);
+		fieldOfView = Clamp(fieldOfView, 5.0f, 75.0f);
+		SetPerspective(fieldOfView, aspectRatio, nearClip, farClip);
 	} else {
-
+		orthographicSize += value / 10.0f;
+		orthographicSize = Clamp(orthographicSize, 0.005f, 5.0f);
+		SetOrthographic(orthographicSize, aspectRatio, nearClip, farClip);
 	}
 }
 void Camera::ZoomIn() {
-	Zoom(-1.0f);
+	Zoom(-2.0f);
 }
 void Camera::ZoomOut() {
-	Zoom(1.0f);
+	Zoom(2.0f);
 }

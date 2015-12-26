@@ -29,11 +29,17 @@ void Object::Draw() {
 	vertexArray->Bind();
 	indexBuffer->Bind();
 
+	// Projection matrix
 	shader->SetUniformMatrix4fv("gProj", Camera::GetMainCamera()->GetProjectionMatrix());
+
+	// Camera matrix
 	Matrix4 camera = Camera::GetMainCamera()->GetTransform()->GetMatrix();
 	camera.Invert();
 	shader->SetUniformMatrix4fv("gCamera", camera);
+
+	// World matrix
 	shader->SetUniformMatrix4fv("gWorld", transform->GetMatrix());
+
 	glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();

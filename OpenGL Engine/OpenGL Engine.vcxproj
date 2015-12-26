@@ -137,7 +137,7 @@
     <ClCompile Include="Classes\Camera.cpp" />
     <ClCompile Include="Classes\Buffers\Buffer.cpp" />
     <ClCompile Include="Classes\Engine.cpp" />
-    <ClCompile Include="Classes\InputManager.cpp" />
+    <ClCompile Include="Classes\Input.cpp" />
     <ClCompile Include="Classes\Utils\FileUtils.cpp" />
     <ClCompile Include="Classes\Shader.cpp" />
     <ClCompile Include="Classes\Buffers\IndexBuffer.cpp" />
@@ -150,7 +150,6 @@
     <ClCompile Include="Classes\Object.cpp" />
     <ClCompile Include="Classes\ObjectManager.cpp" />
     <ClCompile Include="Classes\Scene.cpp" />
-    <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
     <ClCompile Include="Classes\Buffers\VertexArray.cpp" />
     <ClCompile Include="Classes\TestObject.cpp" />
     <ClCompile Include="Classes\Transform.cpp" />
@@ -160,10 +159,9 @@
     <ClInclude Include="Classes\Buffers\Buffer.h" />
     <ClInclude Include="Classes\Engine.h" />
     <ClInclude Include="Classes\Includes.h" />
-    <ClInclude Include="Classes\InputManager.h" />
+    <ClInclude Include="Classes\Input.h" />
     <ClInclude Include="Classes\Utils\FileUtils.h" />
     <ClInclude Include="Classes\Shader.h" />
-    <ClInclude Include="Classes\Utils\Math\math_2d.h" />
     <ClInclude Include="Classes\Utils\Math\math_3d.h" />
     <ClInclude Include="Classes\Utils\Math\math_h.h" />
     <ClInclude Include="Classes\Utils\Math\Matrix4.h" />
@@ -172,7 +170,6 @@
     <ClInclude Include="Classes\Object.h" />
     <ClInclude Include="Classes\ObjectManager.h" />
     <ClInclude Include="Classes\Scene.h" />
-    <ClInclude Include="Classes\Utils\Math\Vector2.h" />
     <ClInclude Include="Classes\Buffers\IndexBuffer.h" />
     <ClInclude Include="Classes\Buffers\VertexArray.h" />
     <ClInclude Include="Classes\TestObject.h" />
