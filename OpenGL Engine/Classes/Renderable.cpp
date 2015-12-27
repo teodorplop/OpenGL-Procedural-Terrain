@@ -20,12 +20,8 @@ void Renderable::Draw() {
 
 	// Projection matrix
 	shader->SetUniformMatrix4fv("gProj", Camera::GetMainCamera()->GetProjectionMatrix());
-
 	// Camera matrix
-	Matrix4 camera = Camera::GetMainCamera()->GetGameObject()->GetTransform()->GetMatrix();
-	camera.Invert();
-	shader->SetUniformMatrix4fv("gCamera", camera);
-
+	shader->SetUniformMatrix4fv("gCamera", Camera::GetMainCamera()->GetGameObject()->GetTransform()->GetMatrix());
 	// World matrix
 	shader->SetUniformMatrix4fv("gWorld", this->gameObject->GetTransform()->GetMatrix());
 

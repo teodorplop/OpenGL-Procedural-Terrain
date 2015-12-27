@@ -14,6 +14,6 @@ out DATA {
 } Out;
 
 void main() {
-  gl_Position = gProj * gCamera * gWorld * inPosition;
+  gl_Position = gProj * inverse(gCamera) * gWorld * inPosition;
 	Out.color = inColor;
 }

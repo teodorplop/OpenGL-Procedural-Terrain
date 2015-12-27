@@ -15,6 +15,8 @@ Scene::Scene() {
 	GameObject* obj = new GameObject();
 	TestObject* obj1 = new TestObject();
 	obj->AddComponent(obj1);
+
+	cameraObject->GetTransform()->TranslateBy(Vector3(0.5f, 0.0f, 0.0f));
 }
 
 Scene::~Scene() {
