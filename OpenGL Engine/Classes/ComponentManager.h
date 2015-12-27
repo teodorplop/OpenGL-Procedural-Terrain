@@ -3,20 +3,19 @@
 
 #include <vector>
 #include <unordered_set>
-#include "Object.h"
+#include "GameObject.h"
 
-class ObjectManager {
+class ComponentManager {
 private:
-	static ObjectManager* instance;
+	static ComponentManager* instance;
 
-	std::unordered_set<Object*> objects;
+	std::unordered_set<Component*> objects;
 public:
 	static void Start();
-	static void RegisterObject(Object* obj);
-	static void UnregisterObject(Object* obj);
+	static void RegisterObject(Component* obj);
+	static void UnregisterObject(Component* obj);
 
 	static void Update();
-	static void Draw();
 	static void CleanUp();
 };
 

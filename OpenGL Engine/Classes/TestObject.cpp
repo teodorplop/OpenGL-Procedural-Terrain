@@ -1,6 +1,6 @@
 #include "TestObject.h"
 
-TestObject::TestObject(Color color) {
+TestObject::TestObject() {
 	GLfloat vertices[] = {
 		-0.5f, -0.5f, 10.0f, 1.0f,
 		0.0f, -0.5f, 15.0f, 1.0f,

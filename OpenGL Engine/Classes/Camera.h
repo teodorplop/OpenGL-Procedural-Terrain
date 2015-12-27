@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Utils/Math/Matrix4.h"
-#include "Transform.h"
+#include "Component.h"
 
 enum Projection {Orthographic, Perspective};
 
-class Camera {
+class Camera : public Component {
 private:
 	static Camera* mainCamera;
 
@@ -17,7 +17,6 @@ private:
 
 	Projection projectionType;
 	Matrix4 projectionMatrix;
-	Transform* transform;
 
 	void Zoom(float value);
 
@@ -28,7 +27,6 @@ public:
 	~Camera();
 	Projection GetProjectionType();
 	Matrix4 GetProjectionMatrix();
-	Transform* GetTransform();
 
 	void ZoomIn();
 	void ZoomOut();

@@ -1,7 +1,8 @@
 #include "Engine.h"
 
 #include "TimeFrame.h"
-#include "ObjectManager.h"
+#include "ComponentManager.h"
+#include "Renderer.h"
 #include "Input.h"
 #include "Scene.h"
 
@@ -30,7 +31,8 @@ Engine::Engine(int argc, char** argv) {
 	glutDisplayFunc(RenderFunction);
 	glutCloseFunc(CleanUpFunction);
 
-	ObjectManager::Start();
+	ComponentManager::Start();
+	Renderer::Start();
 	TimeFrame::Start();
 	Input::Start();
 
@@ -43,7 +45,7 @@ Engine::~Engine() {
 
 void Engine::Update() {
 	Input::Update();
-	ObjectManager::Update();
+	ComponentManager::Update();
 
 	glutPostRedisplay();
 }
@@ -59,12 +61,12 @@ void Engine::CleanUpFunction() {
 void Engine::Render() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	ObjectManager::Draw();
+	Renderer::Draw();
 
 	glutSwapBuffers();
 	glFlush();
 }
 
 void Engine::CleanUp() {
-	ObjectManager::CleanUp();
+	ComponentManager::CleanUp();
 }

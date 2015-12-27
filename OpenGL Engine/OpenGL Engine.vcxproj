@@ -143,16 +143,19 @@
     <ClCompile Include="Classes\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="Classes\Color.cpp" />
     <ClCompile Include="Classes\Utils\Math\math_h.cpp" />
+    <ClCompile Include="Classes\Component.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
     <ClCompile Include="Classes\TimeFrame.cpp" />
-    <ClCompile Include="Classes\Object.cpp" />
-    <ClCompile Include="Classes\ObjectManager.cpp" />
+    <ClCompile Include="Classes\GameObject.cpp" />
+    <ClCompile Include="Classes\ComponentManager.cpp" />
     <ClCompile Include="Classes\Scene.cpp" />
     <ClCompile Include="Classes\Buffers\VertexArray.cpp" />
     <ClCompile Include="Classes\TestObject.cpp" />
     <ClCompile Include="Classes\Transform.cpp" />
+    <ClCompile Include="Classes\Renderable.cpp" />
+    <ClCompile Include="Classes\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Camera.h" />
@@ -167,14 +170,17 @@
     <ClInclude Include="Classes\Utils\Math\Matrix4.h" />
     <ClInclude Include="Classes\Utils\Math\Vector3.h" />
     <ClInclude Include="Classes\TimeFrame.h" />
-    <ClInclude Include="Classes\Object.h" />
-    <ClInclude Include="Classes\ObjectManager.h" />
+    <ClInclude Include="Classes\GameObject.h" />
+    <ClInclude Include="Classes\ComponentManager.h" />
     <ClInclude Include="Classes\Scene.h" />
     <ClInclude Include="Classes\Buffers\IndexBuffer.h" />
     <ClInclude Include="Classes\Buffers\VertexArray.h" />
     <ClInclude Include="Classes\TestObject.h" />
     <ClInclude Include="Classes\Color.h" />
     <ClInclude Include="Classes\Transform.h" />
+    <ClInclude Include="Classes\Component.h" />
+    <ClInclude Include="Classes\Renderable.h" />
+    <ClInclude Include="Classes\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

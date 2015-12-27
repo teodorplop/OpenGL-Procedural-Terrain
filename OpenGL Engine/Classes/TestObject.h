@@ -1,13 +1,13 @@
 #ifndef __TEST_OBJECT_H__
 #define __TEST_OBJECT_H__
 
-#include "Object.h"
+#include "Renderable.h"
 #include "Color.h"
 #include <GL/glew.h>
 
-class TestObject : public Object {
+class TestObject : public Renderable {
 public:
-	TestObject(Color color = Color::blue);
+	TestObject();
 	~TestObject();
 };
 

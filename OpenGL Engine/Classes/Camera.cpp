@@ -18,8 +18,6 @@ Camera::Camera(Projection projection, float size, float aspect, float nearClip, 
 	} else {
 		SetPerspective(size, aspect, nearClip, farClip);
 	}
-
-	transform = new Transform();
 }
 Camera::~Camera() {
 }
@@ -29,9 +27,6 @@ Projection Camera::GetProjectionType() {
 }
 Matrix4 Camera::GetProjectionMatrix() {
 	return projectionMatrix;
-}
-Transform* Camera::GetTransform() {
-	return transform;
 }
 
 void Camera::SetOrthographic(float orthographicSize, float aspectRatio, float nearClip, float farClip) {
