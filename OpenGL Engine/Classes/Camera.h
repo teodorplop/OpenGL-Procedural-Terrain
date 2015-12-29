@@ -18,8 +18,6 @@ private:
 	Projection projectionType;
 	Matrix4 projectionMatrix;
 
-	void Zoom(float value);
-
 public:
 	static Camera* GetMainCamera();
 
@@ -27,9 +25,6 @@ public:
 	~Camera();
 	Projection GetProjectionType();
 	Matrix4 GetProjectionMatrix();
-
-	void ZoomIn();
-	void ZoomOut();
 
 	void SetOrthographic(float size, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
 	void SetPerspective(float fieldOfView, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);

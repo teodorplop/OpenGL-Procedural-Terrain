@@ -25,7 +25,7 @@ void Renderable::Draw() {
 	// World matrix
 	shader->SetUniformMatrix4fv("gWorld", this->gameObject->GetTransform()->GetMatrix());
 
-	glDrawElements(GL_TRIANGLE_FAN, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();
 	vertexArray->Unbind();

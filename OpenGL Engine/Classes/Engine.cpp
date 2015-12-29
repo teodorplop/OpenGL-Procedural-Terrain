@@ -27,7 +27,9 @@ Engine::Engine(int argc, char** argv) {
 		fprintf(stderr, "Failed to initialize glew: %s\n", glewGetErrorString(error));
 	}
 
+	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
 	glutDisplayFunc(RenderFunction);
 	glutCloseFunc(CleanUpFunction);
 
@@ -59,7 +61,7 @@ void Engine::CleanUpFunction() {
 }
 
 void Engine::Render() {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	Renderer::Draw();
 

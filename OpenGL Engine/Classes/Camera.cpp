@@ -53,21 +53,3 @@ void Camera::SetPerspective(float fieldOfView, float aspectRatio, float nearClip
 
 	projectionMatrix = Matrix4::Perspective(fieldOfView, aspectRatio, nearClip, farClip);
 }
-
-void Camera::Zoom(float value) {
-	if (projectionType == Projection::Perspective) {
-		fieldOfView += value;
-		fieldOfView = Clamp(fieldOfView, 5.0f, 75.0f);
-		SetPerspective(fieldOfView, aspectRatio, nearClip, farClip);
-	} else {
-		orthographicSize += value / 10.0f;
-		orthographicSize = Clamp(orthographicSize, 0.005f, 5.0f);
-		SetOrthographic(orthographicSize, aspectRatio, nearClip, farClip);
-	}
-}
-void Camera::ZoomIn() {
-	Zoom(-2.0f);
-}
-void Camera::ZoomOut() {
-	Zoom(2.0f);
-}
