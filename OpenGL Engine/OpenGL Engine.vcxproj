@@ -71,8 +71,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\bin\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\bin\$(Configuration)\Intermediate\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\lib\x64;$(SolutionDir)Dependencies\FreeImage\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)Dependencies\include;$(SolutionDir)Dependencies\FreeImage\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLEW\lib\x64;$(SolutionDir)Dependencies\FreeImage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\FreeImage\include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
