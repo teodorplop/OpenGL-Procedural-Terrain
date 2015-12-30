@@ -4,15 +4,15 @@
 
 TestComponent::TestComponent() {
 	GLfloat vertices[] = {
-		-0.5f, 0.5f, 5.0f, 1.0f,
-		0.5f, 0.5f, 5.0f, 1.0f,
-		0.5f, -0.5f, 5.0f, 1.0f,
-		-0.5f, -0.5f, 5.0f, 1.0f,
+		-0.5f, 0.5f, -0.5f, 1.0f,
+		0.5f, 0.5f, -0.5f, 1.0f,
+		0.5f, -0.5f, -0.5f, 1.0f,
+		-0.5f, -0.5f, -0.5f, 1.0f,
 
-		-0.5f, 0.5f, 6.0f, 1.0f,
-		0.5f, 0.5f, 6.0f, 1.0f,
-		0.5f, -0.5f, 6.0f, 1.0f,
-		-0.5f, -0.5f, 6.0f, 1.0f
+		-0.5f, 0.5f, 0.5f, 1.0f,
+		0.5f, 0.5f, 0.5f, 1.0f,
+		0.5f, -0.5f, 0.5f, 1.0f,
+		-0.5f, -0.5f, 0.5f, 1.0f
 	};
 	GLfloat colors[] = {
 		// front colors
@@ -67,5 +67,7 @@ TestComponent::~TestComponent() {
 }
 
 void TestComponent::Update() {
-	//gameObject->GetTransform()->RotateBy(0.05f, Vector3(0.0f, 1.0f, 0.0f));
+	gameObject->GetTransform()->RotateBy(1.0f, Vector3(1.0f, 0.0f, 0.0f));
+	gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 1.0f, 0.0f));
+	gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 0.0f, 1.0f));
 }

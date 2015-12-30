@@ -11,6 +11,9 @@ GameObject::~GameObject() {
 }
 
 Component* GameObject::GetComponent(std::string name) {
+	if (name.find("class") == -1) {
+		name = "class " + name;
+	}
 	return components[name];
 }
 void GameObject::AddComponent(Component* component) {

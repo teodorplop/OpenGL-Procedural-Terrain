@@ -46,8 +46,8 @@ Engine::~Engine() {
 }
 
 void Engine::Update() {
-	Input::Update();
 	ComponentManager::Update();
+	Input::Update();
 
 	glutPostRedisplay();
 }

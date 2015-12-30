@@ -7,6 +7,8 @@ Input* Input::instance = nullptr;
 
 Input::Input() {
 	glutMouseFunc(HandleMouse);
+	glutMouseWheelFunc(HandleMouseWheel);
+
 	glutMotionFunc(HandleMotion);
 	glutPassiveMotionFunc(HandlePassiveMotion);
 
@@ -32,6 +34,8 @@ void Input::UpdateHandler() {
 	mouseButtonIsUp.clear();
 	keyIsDown.clear();
 	keyIsUp.clear();
+
+	mouseWheelDirection = 0;
 }
 
 void Input::HandleMotion(int x, int y) {
@@ -42,6 +46,9 @@ void Input::HandlePassiveMotion(int x, int y) {
 }
 void Input::HandleMouse(int button, int state, int x, int y) {
 	instance->MouseHandler(button, state, x, y);
+}
+void Input::HandleMouseWheel(int wheel, int direction, int x, int y) {
+	instance->MouseWheelHandler(wheel, direction, x, y);
 }
 void Input::HandleKeyboard(unsigned char key, int x, int y) {
 	instance->KeyboardHandler(key, x, y);
@@ -63,6 +70,9 @@ void Input::MouseHandler(int button, int state, int x, int y) {
 		mouseButtonIs[button] = false;
 		mouseButtonIsUp[button] = true;
 	}
+}
+void Input::MouseWheelHandler(int wheel, int direction, int x, int y) {
+	mouseWheelDirection = direction;
 }
 void Input::KeyboardHandler(unsigned char key, int x, int y) {
 	if (!keyIs[key]) {
@@ -92,6 +102,9 @@ bool Input::GetMouseButtonDown(int button) {
 }
 bool Input::GetMouseButtonUp(int button) {
 	return instance->mouseButtonIsUp[button];
+}
+int Input::GetMouseWheel() {
+	return instance->mouseWheelDirection;
 }
 Vector3 Input::GetMousePosition() {
 	return instance->mousePosition;

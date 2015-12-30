@@ -53,3 +53,16 @@ void Camera::SetPerspective(float fieldOfView, float aspectRatio, float nearClip
 
 	projectionMatrix = Matrix4::Perspective(fieldOfView, aspectRatio, nearClip, farClip);
 }
+
+float Camera::GetOrthographicSize() {
+	return this->orthographicSize;
+}
+void Camera::SetOrthographicSize(float size) {
+	SetOrthographic(size, this->aspectRatio, this->nearClip, this->farClip);
+}
+float Camera::GetFieldOfView() {
+	return this->fieldOfView;
+}
+void Camera::SetFieldOfView(float fieldOfView) {
+	SetPerspective(fieldOfView, this->aspectRatio, this->nearClip, this->farClip);
+}

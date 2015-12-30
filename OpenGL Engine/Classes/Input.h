@@ -14,6 +14,7 @@ public:
 	static bool GetMouseButtonDown(int button);
 	static bool GetMouseButton(int button);
 	static bool GetMouseButtonUp(int button);
+	static int GetMouseWheel();
 	static Vector3 GetMousePosition();
 
 private:
@@ -32,16 +33,20 @@ private:
 	std::unordered_map<int, bool> mouseButtonIs;
 	std::unordered_map<int, bool> mouseButtonIsUp;
 
+	int mouseWheelDirection;
+
 	void UpdateHandler();
 	void MotionHandler(int x, int y);
 	void PassiveMotionHandler(int x, int y);
 	void MouseHandler(int button, int state, int x, int y);
+	void MouseWheelHandler(int wheel, int direction, int x, int y);
 	void KeyboardHandler(unsigned char key, int x, int y);
 	void KeyboardUpHandler(unsigned char key, int x, int y);
 
 	static void HandleMotion(int x, int y);
 	static void HandlePassiveMotion(int x, int y);
 	static void HandleMouse(int button, int state, int x, int y);
+	static void HandleMouseWheel(int wheel, int direction, int x, int y);
 	static void HandleKeyboard(unsigned char key, int x, int y);
 	static void HandleKeyboardUp(unsigned char key, int x, int y);
 };

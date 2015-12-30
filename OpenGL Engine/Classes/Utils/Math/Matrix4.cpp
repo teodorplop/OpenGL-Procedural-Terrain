@@ -56,17 +56,17 @@ Matrix4 Matrix4::Rotation(float angle, Vector3 axis) {
 
 	float x = axis.x, y = axis.y, z = axis.z;
 
-	result.elements[0][0] = x * omc + c;
-	result.elements[0][1] = y * x * omc + z * s;
-	result.elements[0][2] = x * z * omc - y * s;
+	result.elements[0][0] = c + x * x * omc;
+	result.elements[0][1] = x * y * omc - z * s;
+	result.elements[0][2] = x * z * omc + y * s;
 
-	result.elements[1][0] = x * y * omc - z * s;
-	result.elements[1][1] = y * omc + c;
-	result.elements[1][2] = y * z * omc + x * s;
+	result.elements[1][0] = x * y * omc + z * s;
+	result.elements[1][1] = c + y * y * omc;
+	result.elements[1][2] = y * z * omc - x * s;
 
-	result.elements[2][0] = x * z * omc + y * s;
-	result.elements[2][1] = y * z * omc - x * s;
-	result.elements[2][2] = z * omc + c;
+	result.elements[2][0] = x * z * omc - y * s;
+	result.elements[2][1] = y * z * omc + x * s;
+	result.elements[2][2] = c + z * z * omc;
 
 	return result;
 }

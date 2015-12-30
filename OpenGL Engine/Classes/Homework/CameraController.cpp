@@ -1,4 +1,6 @@
 #include "CameraController.h"
+
+#include "../Camera.h"
 #include "../GameObject.h"
 #include "../Input.h"
 
@@ -24,4 +26,8 @@ void CameraController::Update() {
 	}
 
 	gameObject->GetTransform()->TranslateBy(translation);
+
+	int mouseWheel = Input::GetMouseWheel();
+	Camera* camera = (Camera*)gameObject->GetComponent("Camera");
+	camera->SetFieldOfView(camera->GetFieldOfView() + mouseWheel);
 }

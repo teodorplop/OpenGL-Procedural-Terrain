@@ -15,6 +15,7 @@ Scene::Scene() {
 	cameraObject->AddComponent(new CameraController());
 
 	GameObject* obj = new GameObject();
+	obj->GetTransform()->TranslateTo(Vector3(0.0f, 0.0f, 5.0f));
 	TestComponent* comp = new TestComponent();
 	obj->AddComponent(comp);
 }
