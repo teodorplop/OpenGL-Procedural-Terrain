@@ -29,5 +29,6 @@ void CameraController::Update() {
 
 	int mouseWheel = Input::GetMouseWheel();
 	Camera* camera = (Camera*)gameObject->GetComponent("Camera");
-	camera->SetFieldOfView(camera->GetFieldOfView() + mouseWheel);
+	float fieldOfView = Clamp(camera->GetFieldOfView() + mouseWheel, 1.0f, 90.0f);
+	camera->SetFieldOfView(fieldOfView);
 }

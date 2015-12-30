@@ -84,6 +84,9 @@
     <ClCompile Include="Classes\Homework\TestComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Utils\ImageUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Shader.h">
@@ -155,6 +158,9 @@
     <ClInclude Include="Classes\Homework\TestComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Classes\Utils\ImageUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
@@ -163,5 +169,10 @@
   <ItemGroup>
     <Text Include="polygon.txt" />
     <Text Include="triangle.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="test.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
