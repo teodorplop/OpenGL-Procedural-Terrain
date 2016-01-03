@@ -1,6 +1,7 @@
 #include "ImageUtils.h"
+#include <FreeImage.h>
 
-BYTE* ImageUtils::Load_Image(const char* filename, int* width, int* height) {
+BYTE* ImageUtils::Load_Image(const char* filename, GLsizei* width, GLsizei* height) {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 	FIBITMAP *dib = NULL;
 

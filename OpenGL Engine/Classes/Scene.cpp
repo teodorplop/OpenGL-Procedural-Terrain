@@ -6,6 +6,8 @@
 #include "Homework\TestComponent.h"
 #include "Homework\CameraController.h"
 
+#include "Texture.h"
+
 Scene::Scene() {
 	int width = glutGet(GLUT_WINDOW_WIDTH), height = glutGet(GLUT_WINDOW_HEIGHT);
 	float aspectRatio = (float)width / height;

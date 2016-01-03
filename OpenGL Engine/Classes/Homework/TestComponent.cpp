@@ -26,6 +26,17 @@ TestComponent::TestComponent() {
 		0.0f, 0.0f, 1.0f, 1.0f,
 		1.0f, 1.0f, 1.0f, 1.0f
 	};
+	GLfloat uvs[] = {
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f,
+
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f
+	};
 	GLuint indices[] = {
 		// front
 		3, 2, 1,
@@ -55,12 +66,15 @@ TestComponent::TestComponent() {
 	vertexArray = new VertexArray();
 	Buffer* positionBuffer = new Buffer(vertices, 8 * 4, 4);
 	Buffer* colorBuffer = new Buffer(colors, 8 * 4, 4);
+	Buffer* uvBuffer = new Buffer(uvs, 8 * 2, 2);
 	indexBuffer = new IndexBuffer(indices, 36);
 
 	vertexArray->AddBuffer(positionBuffer, 0);
 	vertexArray->AddBuffer(colorBuffer, 1);
+	vertexArray->AddBuffer(uvBuffer, 2);
 
-	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
+	shader = new Shader("Shaders/TextureShader.vert", "Shaders/TextureShader.frag");
+	texture = new Texture("test.jpg");
 }
 
 TestComponent::~TestComponent() {

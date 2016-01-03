@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "GameObject.h"
 #include "Renderer.h"
+#include "Texture.h"
 
 Renderable::Renderable() {
 	Renderer::RegisterObject(this);
@@ -15,6 +16,9 @@ Renderable::~Renderable() {
 
 void Renderable::Draw() {
 	shader->Bind();
+	if (texture != NULL) {
+		texture->Bind();
+	}
 	vertexArray->Bind();
 	indexBuffer->Bind();
 
@@ -29,5 +33,8 @@ void Renderable::Draw() {
 
 	indexBuffer->Unbind();
 	vertexArray->Unbind();
+	if (texture != NULL) {
+		texture->Unbind();
+	}
 	shader->Unbind();
 }
