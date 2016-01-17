@@ -9,7 +9,7 @@ TestClass::TestClass() {
 	std::vector<Vector3> normals;
 	std::vector<Vector2> uvs;
 	std::vector<unsigned int> indices;
-	bool success = ObjLoader::LoadObj("Obj/stall.obj", vertices, uvs, normals, indices);
+	bool success = ObjLoader::LoadObj("Obj/suzanne.obj", vertices, uvs, normals, indices);
 	if (success) {
 		vertexArray = new VertexArray();
 		Buffer* positionBuffer = new Buffer(vertices);

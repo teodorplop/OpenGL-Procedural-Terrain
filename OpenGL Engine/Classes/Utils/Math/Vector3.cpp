@@ -13,6 +13,16 @@ std::ostream& operator<<(std::ostream& out, const Vector3& data) {
 	return out;
 }
 
+float Vector3::Length() {
+	return sqrt(x * x + y * y + z * z);
+}
+
+Vector3& Vector3::Normalize() {
+	float length = Length();
+	x /= length, y /= length, z /= length;
+	return *this;
+}
+
 Vector3& Vector3::Add(const Vector3& other) {
 	x += other.x, y += other.y, z += other.z;
 	return *this;

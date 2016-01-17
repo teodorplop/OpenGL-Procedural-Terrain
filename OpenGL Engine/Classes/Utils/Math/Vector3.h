@@ -10,6 +10,9 @@ struct Vector3 {
 
 	friend std::ostream& operator<<(std::ostream& out, const Vector3& data);
 
+	float Length();
+	Vector3& Normalize();
+
 	Vector3& Add(const Vector3& other);
 	Vector3& Subtract(const Vector3& other);
 	Vector3& Multiply(const Vector3& other);

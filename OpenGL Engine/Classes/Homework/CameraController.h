@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Component.h"
+#include "../Utils/Math/Vector3.h"
 
 class CameraController : public Component {
 public:
@@ -8,5 +9,6 @@ public:
 	~CameraController();
 
 private:
+	Vector3 mousePosition;
 	void Update();
 };

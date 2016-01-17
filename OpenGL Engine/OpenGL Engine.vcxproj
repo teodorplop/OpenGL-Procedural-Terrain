@@ -163,6 +163,7 @@
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector4.cpp" />
     <ClCompile Include="Classes\Homework\TestClass.cpp" />
+    <ClCompile Include="Classes\Shaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Homework\CameraController.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Classes\Utils\Math\Vector4.h" />
     <ClInclude Include="Classes\Homework\TestClass.h" />
     <ClInclude Include="Classes\Lights\DirectionalLight.h" />
+    <ClInclude Include="Classes\Shaders.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

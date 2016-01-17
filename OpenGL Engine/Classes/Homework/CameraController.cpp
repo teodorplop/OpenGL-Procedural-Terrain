@@ -26,8 +26,17 @@ void CameraController::Update() {
 	}
 	gameObject->GetTransform()->TranslateBy(translation);
 
-	int mouseWheel = Input::GetMouseWheel();
-	Camera* camera = (Camera*)gameObject->GetComponent("Camera");
-	float fieldOfView = Clamp(camera->GetFieldOfView() + mouseWheel, 1.0f, 90.0f);
-	camera->SetFieldOfView(fieldOfView);
+	if (Input::GetMouseButtonDown(0)) {
+		mousePosition = Input::GetMousePosition();
+	} else if (Input::GetMouseButton(0)) {
+		Vector3 newMousePosition = Input::GetMousePosition();
+		Vector3 direction = newMousePosition - mousePosition;
+
+		if (direction != Vector3()) {
+			direction.Normalize();
+
+			gameObject->GetTransform()->RotateBy(0.5f * direction.x, Vector3(0.0f, 1.0f, 0.0f));
+			gameObject->GetTransform()->RotateBy(0.5f * direction.y, Vector3(1.0f, 0.0f, 0.0f));
+		}
+	}
 }
