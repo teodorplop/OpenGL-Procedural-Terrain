@@ -10,7 +10,7 @@ TestClass::TestClass() {
 	std::vector<Vector3> normals;
 	std::vector<Vector2> uvs;
 	std::vector<unsigned int> indices;
-	bool success = ObjLoader::LoadObj("Obj/suzanne.obj", vertices, uvs, normals, indices);
+	bool success = ObjLoader::LoadObj("Obj/sphere.obj", vertices, uvs, normals, indices);
 	if (success) {
 		vertexArray = new VertexArray();
 		Buffer* positionBuffer = new Buffer(vertices);
@@ -21,7 +21,7 @@ TestClass::TestClass() {
 		vertexArray->AddBuffer(uvBuffer, 1);
 		vertexArray->AddBuffer(normalBuffer, 2);
 
-		texture = new Texture("test3.jpg");
+		texture = new Texture("test.jpg");
 		shader = Shaders::GetInstance()->GetShader("Shader");
 	} else {
 		SetActive(false);
@@ -32,7 +32,7 @@ TestClass::~TestClass() {
 }
 
 void TestClass::Update() {
-	gameObject->GetTransform()->RotateBy(1.0f, Vector3(1.0f, 0.0f, 0.0f));
-	gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 1.0f, 0.0f));
-	gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 0.0f, 1.0f));
+	//gameObject->GetTransform()->RotateBy(1.0f, Vector3(1.0f, 0.0f, 0.0f));
+	//gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 1.0f, 0.0f));
+	//gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 0.0f, 1.0f));
 }

@@ -20,7 +20,7 @@ Engine::Engine(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(1024, 768);
-	glutCreateWindow("Sistem solar");
+	glutCreateWindow("OpenGL Engine");
 
 	GLenum error = glewInit();
 	if (error != GLEW_OK) {

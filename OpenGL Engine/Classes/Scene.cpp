@@ -19,15 +19,15 @@ Scene::Scene() {
 
 	GameObject* obj = new GameObject();
 	obj->GetTransform()->TranslateTo(Vector3(0.0f, 0.0f, 10.0f));
-	obj->GetTransform()->RotateBy(180.0f, Vector3(0.0f, 1.0f, 0.0f));
+	obj->GetTransform()->RotateBy(0.0f, Vector3(0.0f, 1.0f, 0.0f));
 	TestClass* comp = new TestClass();
 	obj->AddComponent(comp);
 
-	GameObject* obj2 = new GameObject();
+	/*GameObject* obj2 = new GameObject();
 	obj2->GetTransform()->TranslateTo(Vector3(0.0f, 5.0f, 10.0f));
 	obj2->GetTransform()->RotateBy(180.0f, Vector3(0.0f, 1.0f, 0.0f));
 	TestClass* comp2 = new TestClass();
-	obj2->AddComponent(comp2);
+	obj2->AddComponent(comp2);*/
 }
 
 Scene::~Scene() {
