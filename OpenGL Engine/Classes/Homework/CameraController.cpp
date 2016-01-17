@@ -24,6 +24,7 @@ void CameraController::Update() {
 	if (Input::GetKey('d')) {
 		translation += Vector3(0.05f, 0.0f, 0.0f);
 	}
+	translation += Vector3(0.0f, 0.0f, Input::GetMouseWheel() * 1.0f);
 	gameObject->GetTransform()->TranslateBy(translation);
 
 	if (Input::GetMouseButtonDown(0)) {

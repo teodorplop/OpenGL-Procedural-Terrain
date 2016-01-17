@@ -5,6 +5,7 @@
 #include "Texture.h"
 
 #include "Shaders.h"
+#include "Lights\Lights.h"
 
 Renderable::Renderable() {
 	Renderer::RegisterObject(this);
@@ -26,13 +27,13 @@ void Renderable::Draw() {
 
 	// Projection matrix
 	
-	Shaders::GetInstance()->shader->SetUniformMatrix4fv("gProj", Camera::GetMainCamera()->GetProjectionMatrix());
+	shader->SetUniformMatrix4fv("gProj", Camera::GetMainCamera()->GetProjectionMatrix());
 	// Camera matrix
-	Shaders::GetInstance()->shader->SetUniformMatrix4fv("gCamera", Camera::GetMainCamera()->GetGameObject()->GetTransform()->GetMatrix());
+	shader->SetUniformMatrix4fv("gCamera", Camera::GetMainCamera()->GetGameObject()->GetTransform()->GetMatrix());
 	// World matrix
-	Shaders::GetInstance()->shader->SetUniformMatrix4fv("gWorld", this->gameObject->GetTransform()->GetMatrix());
-
-	Shaders::GetInstance()->shader->SetUniformDirectionalLight("directionalLight", DirectionalLight(Color::red, 0.5f, Vector3(-1.0f, -1.0f, 0.0f), 0.75f));
+	shader->SetUniformMatrix4fv("gWorld", this->gameObject->GetTransform()->GetMatrix());
+	// Lights
+	shader->SetUniformDirectionalLight("directionalLight", Lights::GetDirectionalLight());
 
 	glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 

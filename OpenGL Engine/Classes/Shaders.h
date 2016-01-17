@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Shader.h"
+#include <unordered_map>
 
 class Shaders {
 private:
@@ -8,9 +9,9 @@ private:
 	Shaders();
 	~Shaders();
 
+	std::unordered_map<std::string, Shader*> shaders;
+
 public:
-	Shader* shader;
-	static void Init();
+	Shader* GetShader(std::string name);
 	static Shaders* GetInstance();
 };
-

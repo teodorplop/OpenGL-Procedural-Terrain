@@ -147,6 +147,7 @@
     <ClCompile Include="Classes\Component.cpp" />
     <ClCompile Include="Classes\Utils\ImageUtils.cpp" />
     <ClCompile Include="Classes\Lights\DirectionalLight.cpp" />
+    <ClCompile Include="Classes\Lights\Lights.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Classes\Homework\TestClass.h" />
     <ClInclude Include="Classes\Lights\DirectionalLight.h" />
     <ClInclude Include="Classes\Shaders.h" />
+    <ClInclude Include="Classes\Lights\Lights.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

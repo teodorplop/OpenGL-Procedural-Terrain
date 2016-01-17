@@ -3,6 +3,7 @@
 #include "../Utils/Math/math_3d.h"
 #include "../GameObject.h"
 #include <vector>
+#include "../Shaders.h"
 
 TestClass::TestClass() {
 	std::vector<Vector4> vertices;
@@ -21,7 +22,7 @@ TestClass::TestClass() {
 		vertexArray->AddBuffer(normalBuffer, 2);
 
 		texture = new Texture("test3.jpg");
-		shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
+		shader = Shaders::GetInstance()->GetShader("Shader");
 	} else {
 		SetActive(false);
 	}

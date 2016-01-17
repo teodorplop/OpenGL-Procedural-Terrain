@@ -66,7 +66,7 @@ void Shader::SetUniformMatrix4fv(const char* name, Matrix4 matrix) {
 	glUniformMatrix4fv(matrixID, 1, GL_TRUE, &matrix.elements[0][0]);
 }
 
-void Shader::SetUniformDirectionalLight(const char* name, DirectionalLight light) {
+void Shader::SetUniformDirectionalLight(const char* name, const DirectionalLight& light) {
 	string baseName = name;
 	GLint colorID = glGetUniformLocation(shaderProgram, (baseName + ".color").c_str());
 	GLint ambientIntensityID = glGetUniformLocation(shaderProgram, (baseName + ".ambientIntensity").c_str());
