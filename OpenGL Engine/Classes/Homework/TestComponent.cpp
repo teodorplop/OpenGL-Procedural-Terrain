@@ -73,8 +73,8 @@ TestComponent::TestComponent() {
 	vertexArray->AddBuffer(colorBuffer, 1);
 	vertexArray->AddBuffer(uvBuffer, 2);
 
-	shader = new Shader("Shaders/TextureShader.vert", "Shaders/TextureShader.frag");
-	texture = new Texture("test.jpg");
+	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
+	//texture = new Texture("test.jpg");
 }
 
 TestComponent::~TestComponent() {

@@ -14,7 +14,7 @@ private:
 
 public:
 	Shader(const char* vertexFile, const char* fragmentFile);
-	~Shader();
+	virtual ~Shader();
 
 	void Bind();
 	void Unbind();

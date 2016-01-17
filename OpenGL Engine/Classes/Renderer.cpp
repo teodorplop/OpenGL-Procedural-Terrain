@@ -18,6 +18,8 @@ void Renderer::Start() {
 
 void Renderer::Draw() {
 	for (auto obj : instance->objects) {
-		obj->Draw();
+		if (obj->IsActive()) {
+			obj->Draw();
+		}
 	}
 }

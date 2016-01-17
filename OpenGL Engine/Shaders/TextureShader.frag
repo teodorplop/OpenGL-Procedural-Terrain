@@ -3,15 +3,14 @@
 #version 400
 
 in DATA {
-	vec4 color;
 	vec2 textureCoord;
+	vec3 normal;
 } In;
 
-uniform sampler2D gSampler;
+uniform sampler2D textureSampler;
 
 out vec4 outColor;
 
 void main() {
-	//outColor = In.color;
-	outColor = texture2D(gSampler, In.textureCoord.st) * In.color;
+	outColor = texture(textureSampler, In.textureCoord).rgba;
 }

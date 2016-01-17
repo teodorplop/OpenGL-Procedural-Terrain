@@ -5,8 +5,7 @@
 #include "Camera.h"
 #include "Homework\TestComponent.h"
 #include "Homework\CameraController.h"
-
-#include "Texture.h"
+#include "Homework\TestClass.h"
 
 Scene::Scene() {
 	int width = glutGet(GLUT_WINDOW_WIDTH), height = glutGet(GLUT_WINDOW_HEIGHT);
@@ -18,8 +17,11 @@ Scene::Scene() {
 
 	GameObject* obj = new GameObject();
 	obj->GetTransform()->TranslateTo(Vector3(0.0f, 0.0f, 5.0f));
-	TestComponent* comp = new TestComponent();
+	obj->GetTransform()->RotateBy(180.0f, Vector3(0.0f, 1.0f, 0.0f));
+	TestClass* comp = new TestClass();
 	obj->AddComponent(comp);
+	//TestComponent* comp = new TestComponent();
+	//obj->AddComponent(comp);
 }
 
 Scene::~Scene() {

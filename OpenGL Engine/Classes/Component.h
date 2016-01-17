@@ -6,10 +6,14 @@ class GameObject;
 class Component {
 	friend class ComponentManager;
 	friend class GameObject;
+private:
+	bool isActive;
 public:
 	Component();
 	virtual ~Component();
 	GameObject* GetGameObject();
+	bool IsActive();
+	void SetActive(bool isActive);
 protected:
 	GameObject* gameObject;
 	virtual void Update();
