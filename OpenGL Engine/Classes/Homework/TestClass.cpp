@@ -1,6 +1,7 @@
 #include "TestClass.h"
 #include "../Utils/ObjLoader.h"
 #include "../Utils/Math/math_3d.h"
+#include "../GameObject.h"
 #include <vector>
 
 TestClass::TestClass() {
@@ -18,8 +19,8 @@ TestClass::TestClass() {
 		vertexArray->AddBuffer(positionBuffer, 0);
 		vertexArray->AddBuffer(uvBuffer, 1);
 		vertexArray->AddBuffer(normalBuffer, 2);
-		
-		texture = new Texture("test.jpg");
+
+		texture = new Texture("test3.jpg");
 		shader = new Shader("Shaders/TextureShader.vert", "Shaders/TextureShader.frag");
 	} else {
 		SetActive(false);
@@ -27,4 +28,10 @@ TestClass::TestClass() {
 }
 
 TestClass::~TestClass() {
+}
+
+void TestClass::Update() {
+	gameObject->GetTransform()->RotateBy(1.0f, Vector3(1.0f, 0.0f, 0.0f));
+	gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 1.0f, 0.0f));
+	gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 0.0f, 1.0f));
 }

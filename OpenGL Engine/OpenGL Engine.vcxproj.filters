@@ -81,9 +81,6 @@
     <ClCompile Include="Classes\Homework\CameraController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Homework\TestComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Utils\ImageUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,6 +97,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Homework\TestClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Lights\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,9 +170,6 @@
     <ClInclude Include="Classes\Homework\CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Homework\TestComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Utils\ImageUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -191,6 +188,9 @@
     <ClInclude Include="Classes\Homework\TestClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Classes\Lights\DirectionalLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
@@ -204,6 +204,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="test.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="test2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="test3.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

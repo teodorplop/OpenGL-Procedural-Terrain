@@ -3,7 +3,6 @@
 #include <GL\freeglut.h>
 
 #include "Camera.h"
-#include "Homework\TestComponent.h"
 #include "Homework\CameraController.h"
 #include "Homework\TestClass.h"
 
@@ -16,12 +15,10 @@ Scene::Scene() {
 	cameraObject->AddComponent(new CameraController());
 
 	GameObject* obj = new GameObject();
-	obj->GetTransform()->TranslateTo(Vector3(0.0f, 0.0f, 5.0f));
+	obj->GetTransform()->TranslateTo(Vector3(0.0f, 0.0f, 10.0f));
 	obj->GetTransform()->RotateBy(180.0f, Vector3(0.0f, 1.0f, 0.0f));
 	TestClass* comp = new TestClass();
 	obj->AddComponent(comp);
-	//TestComponent* comp = new TestComponent();
-	//obj->AddComponent(comp);
 }
 
 Scene::~Scene() {

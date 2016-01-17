@@ -146,6 +146,7 @@
     <ClCompile Include="Classes\Utils\Math\math_h.cpp" />
     <ClCompile Include="Classes\Component.cpp" />
     <ClCompile Include="Classes\Utils\ImageUtils.cpp" />
+    <ClCompile Include="Classes\Lights\DirectionalLight.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -154,7 +155,6 @@
     <ClCompile Include="Classes\ComponentManager.cpp" />
     <ClCompile Include="Classes\Scene.cpp" />
     <ClCompile Include="Classes\Buffers\VertexArray.cpp" />
-    <ClCompile Include="Classes\Homework\TestComponent.cpp" />
     <ClCompile Include="Classes\Transform.cpp" />
     <ClCompile Include="Classes\Renderable.cpp" />
     <ClCompile Include="Classes\Renderer.cpp" />
@@ -182,7 +182,6 @@
     <ClInclude Include="Classes\Scene.h" />
     <ClInclude Include="Classes\Buffers\IndexBuffer.h" />
     <ClInclude Include="Classes\Buffers\VertexArray.h" />
-    <ClInclude Include="Classes\Homework\TestComponent.h" />
     <ClInclude Include="Classes\Color.h" />
     <ClInclude Include="Classes\Transform.h" />
     <ClInclude Include="Classes\Component.h" />
@@ -194,6 +193,7 @@
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
     <ClInclude Include="Classes\Utils\Math\Vector4.h" />
     <ClInclude Include="Classes\Homework\TestClass.h" />
+    <ClInclude Include="Classes\Lights\DirectionalLight.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
@@ -207,6 +207,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="test.jpg" />
+    <Image Include="test2.jpg" />
+    <Image Include="test3.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

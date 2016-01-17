@@ -4,6 +4,11 @@ const Color Color::red = Color(1.0f, 0.0f, 0.0f, 1.0f);
 const Color Color::blue = Color(0.0f, 0.0f, 1.0f, 1.0f);
 const Color Color::green = Color(0.0f, 1.0f, 0.0f, 1.0f);
 const Color Color::yellow = Color(1.0f, 1.0f, 0.0f, 1.0f);
+const Color Color::white = Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+Color::Color() {
+	this->r = this->g = this->b = this->a = 1.0f;
+}
 
 Color::Color(float r, float g, float b, float a = 1.0f) {
 	this->r = r, this->g = g, this->b = b, this->a = a;

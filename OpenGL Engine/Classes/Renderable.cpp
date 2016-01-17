@@ -29,6 +29,8 @@ void Renderable::Draw() {
 	// World matrix
 	shader->SetUniformMatrix4fv("gWorld", this->gameObject->GetTransform()->GetMatrix());
 
+	shader->SetUniformDirectionalLight("directionalLight", DirectionalLight(Color::red, 0.5f, Vector3(-1.0f, -1.0f, 0.0f), 0.75f));
+
 	glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 
 	indexBuffer->Unbind();

@@ -19,5 +19,5 @@ void main() {
   gl_Position = gProj * inverse(gCamera) * gWorld * inPosition;
 
 	Out.textureCoord = inTextureCoord;
-	Out.normal = inNormal;
+	Out.normal = (gWorld * vec4(inNormal, 0.0f)).xyz;
 }

@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
+#include "Lights\DirectionalLight.h"
 
 class Shader {
 private:
@@ -19,6 +20,7 @@ public:
 	void Bind();
 	void Unbind();
 	void SetUniformMatrix4fv(const char* name, Matrix4 matrix);
+	void SetUniformDirectionalLight(const char* name, DirectionalLight light);
 };
 
 #endif //__SHADER_H__
