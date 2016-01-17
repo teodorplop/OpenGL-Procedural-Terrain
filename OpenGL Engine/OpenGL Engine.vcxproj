@@ -198,8 +198,6 @@
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
-    <None Include="Shaders\TextureShader.frag" />
-    <None Include="Shaders\TextureShader.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="polygon.txt" />

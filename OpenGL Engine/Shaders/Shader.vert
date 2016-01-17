@@ -7,14 +7,17 @@ uniform mat4 gProj;
 uniform mat4 gCamera;
 
 layout (location = 0) in vec4 inPosition;
-layout (location = 1) in vec4 inColor;
+layout (location = 1) in vec2 inTextureCoord;
+layout (location = 2) in vec3 inNormal;
 
 out DATA {
-	vec4 color;
+	vec2 textureCoord;
+	vec3 normal;
 } Out;
 
 void main() {
   gl_Position = gProj * inverse(gCamera) * gWorld * inPosition;
 
-	Out.color = inColor;
+	Out.textureCoord = inTextureCoord;
+	Out.normal = (gWorld * vec4(inNormal, 0.0f)).xyz;
 }
