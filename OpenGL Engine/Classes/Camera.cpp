@@ -1,25 +1,14 @@
 #include "Camera.h"
 #include "Utils/Math/math_h.h"
 
-Camera* Camera::mainCamera = NULL;
-
-Camera* Camera::GetMainCamera() {
-	return mainCamera;
-}
-
 Camera::Camera(Projection projection, float size, float aspect, float nearClip, float farClip) {
-	if (mainCamera != NULL) {
-		fprintf(stderr, "The engine does not support 2 cameras.");
-		return;
-	}
-	mainCamera = this;
-
 	projectionType = projection;
 	if (projectionType == Projection::Orthographic) {
 		SetOrthographic(size, aspect, nearClip, farClip);
 	} else {
 		SetPerspective(size, aspect, nearClip, farClip);
 	}
+	transform = new Transform();
 }
 Camera::~Camera() {
 }
@@ -29,6 +18,9 @@ Projection Camera::GetProjectionType() {
 }
 Matrix4 Camera::GetProjectionMatrix() {
 	return projectionMatrix;
+}
+Transform* Camera::GetTransform() {
+	return transform;
 }
 
 void Camera::SetOrthographic(float orthographicSize, float aspectRatio, float nearClip, float farClip) {

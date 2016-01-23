@@ -99,10 +99,16 @@
     <ClCompile Include="Classes\Stuff\CameraController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Stuff\TestClass.cpp">
+    <ClCompile Include="Classes\Materials\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Materials\Material.cpp">
+    <ClCompile Include="Classes\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Utils\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Core\TimeFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,10 +197,16 @@
     <ClInclude Include="Classes\Stuff\CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Stuff\TestClass.h">
+    <ClInclude Include="Classes\Materials\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Materials\Material.h">
+    <ClInclude Include="Classes\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Utils\Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Core\TimeFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

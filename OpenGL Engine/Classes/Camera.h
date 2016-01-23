@@ -1,14 +1,12 @@
 #pragma once
 
-#include "Object.h"
+#include "Transform.h"
 #include "Utils/Math/Matrix4.h"
 
 enum Projection {Orthographic, Perspective};
 
 class Camera {
 private:
-	static Camera* mainCamera;
-
 	float aspectRatio, nearClip, farClip;
 	// orthographic
 	float orthographicSize;
@@ -17,14 +15,14 @@ private:
 
 	Projection projectionType;
 	Matrix4 projectionMatrix;
+	Transform* transform;
 
 public:
-	static Camera* GetMainCamera();
-
 	Camera(Projection projection, float size, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
 	~Camera();
 	Projection GetProjectionType();
 	Matrix4 GetProjectionMatrix();
+	Transform* GetTransform();
 
 	void SetOrthographic(float size, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
 	void SetPerspective(float fieldOfView, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);

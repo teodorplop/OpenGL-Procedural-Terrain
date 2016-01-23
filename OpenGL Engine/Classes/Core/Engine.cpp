@@ -1,5 +1,6 @@
 #include "Engine.h"
 
+#include "TimeFrame.h"
 #include "ObjectManager.h"
 #include "Input.h"
 
@@ -30,6 +31,8 @@ Engine::Engine(int argc, char** argv) {
 		ObjectManager::GetInstance()->Update();
 		// draws the models
 		currentScene->Draw();
+
+		TimeFrame::Update((float)glfwGetTime());
 
 		currentWindow->Update();
 	}

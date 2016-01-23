@@ -5,7 +5,8 @@
 #include "../Camera.h"
 #include "../Core/Input.h"
 
-CameraController::CameraController() {
+CameraController::CameraController(Camera* target) {
+	this->target = target;
 }
 
 CameraController::~CameraController() {
@@ -25,5 +26,5 @@ void CameraController::Update() {
 	if (Input::GetKey(GLFW_KEY_D)) {
 		translation += Vector3(0.01f, 0.0f, 0.0f);
 	}
-	GetTransform()->TranslateBy(translation);
+	target->GetTransform()->TranslateBy(translation);
 }

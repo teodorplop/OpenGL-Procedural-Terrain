@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include "GameObject.h"
+
 #include "Camera.h"
 #include "Stuff/CameraController.h"
 #include "RawModel.h"
@@ -15,14 +18,16 @@ private:
 
 	RawModel* model;
 	TexturedModel* texturedModel;
-	Texture* texture;
-	Shader* shader;
 
 	RawModel* objModel;
 	TexturedModel* texturedObjModel;
 
+	Texture* texture;
+	Shader* shader;
 	DirectionalLight* directionalLight;
 	Material* material;
+
+	std::vector<GameObject*> objects;
 
 public:
 	Scene();
