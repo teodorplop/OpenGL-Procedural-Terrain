@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "../Renderable.h"
 
@@ -9,3 +9,4 @@ public:
 protected:
 	void Update();
 };
+*/

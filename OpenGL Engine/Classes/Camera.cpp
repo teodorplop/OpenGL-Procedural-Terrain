@@ -8,9 +8,11 @@ Camera* Camera::GetMainCamera() {
 }
 
 Camera::Camera(Projection projection, float size, float aspect, float nearClip, float farClip) {
-	if (mainCamera == NULL) {
-		mainCamera = this;
+	if (mainCamera != NULL) {
+		fprintf(stderr, "The engine does not support 2 cameras.");
+		return;
 	}
+	mainCamera = this;
 
 	projectionType = projection;
 	if (projectionType == Projection::Orthographic) {

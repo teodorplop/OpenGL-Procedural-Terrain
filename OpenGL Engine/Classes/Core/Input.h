@@ -1,8 +1,7 @@
-#ifndef __INPUT_H__
-#define __INPUT_H__
+#pragma once
 
 #include <unordered_map>
-#include "Utils/Math/Vector3.h"
+#include "../Utils/Math/Vector3.h"
 
 class Input {
 public:
@@ -50,5 +49,3 @@ private:
 	static void HandleKeyboard(unsigned char key, int x, int y);
 	static void HandleKeyboardUp(unsigned char key, int x, int y);
 };
-
-#endif // __INPUT_H__

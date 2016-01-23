@@ -1,4 +1,4 @@
-#include "CameraController.h"
+/*#include "CameraController.h"
 
 #include "../Camera.h"
 #include "../GameObject.h"
@@ -41,3 +41,4 @@ void CameraController::Update() {
 		}
 	}
 }
+*/

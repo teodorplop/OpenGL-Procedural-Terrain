@@ -1,5 +1,4 @@
 #include "Lights.h"
-#include "..\Shaders.h"
 
 DirectionalLight Lights::directionalLight;
 

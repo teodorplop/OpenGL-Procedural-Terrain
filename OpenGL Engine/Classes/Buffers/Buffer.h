@@ -1,5 +1,4 @@
-#ifndef __BUFFER_H__
-#define __BUFFER_H__
+#pragma once
 
 #include <GL/glew.h>
 #include "../Utils/Math/math_3d.h"
@@ -21,5 +20,3 @@ public:
 
 	GLsizei GetComponentCount();
 };
-
-#endif // __BUFFER_H__

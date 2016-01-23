@@ -1,11 +1,11 @@
-#ifndef __ENGINE_H__
-#define __ENGINE_H__
+#pragma once
 
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-#include "Scene.h"
+#include "../Scene.h"
+#include "../Window.h"
 
 class Engine {
 	friend class TimeFrame;
@@ -16,6 +16,8 @@ private:
 	static void RenderFunction();
 	static void CleanUpFunction();
 
+	Window* currentWindow;
+	Scene* currentScene;
 	Engine(int argc, char** argv);
 	~Engine();
 	void Render();
@@ -24,5 +26,3 @@ private:
 public:
 	static void Start(int argc, char** argv);
 };
-
-#endif//__ENGINE_H__

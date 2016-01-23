@@ -1,11 +1,11 @@
 #pragma once
 
+#include "Object.h"
 #include "Utils/Math/Matrix4.h"
-#include "Component.h"
 
 enum Projection {Orthographic, Perspective};
 
-class Camera : public Component {
+class Camera : public Object {
 private:
 	static Camera* mainCamera;
 

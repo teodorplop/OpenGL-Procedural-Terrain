@@ -1,5 +1,4 @@
-#ifndef __VECTOR_3_H__
-#define __VECTOR_3_H__
+#pragma once
 
 #include<iostream>
 
@@ -38,5 +37,3 @@ struct Vector3 {
 	bool operator==(const Vector3& other) const;
 	bool operator!=(const Vector3& other) const;
 };
-
-#endif //__VECTOR_3_H__

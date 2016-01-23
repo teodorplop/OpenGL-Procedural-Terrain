@@ -1,5 +1,4 @@
-#ifndef __SHADER_H__
-#define __SHADER_H__
+#pragma once
 
 #include "Utils/Math/Matrix4.h"
 #include <windows.h>
@@ -22,5 +21,3 @@ public:
 	void SetUniformMatrix4fv(const char* name, Matrix4 matrix);
 	void SetUniformDirectionalLight(const char* name, const DirectionalLight& light);
 };
-
-#endif //__SHADER_H__

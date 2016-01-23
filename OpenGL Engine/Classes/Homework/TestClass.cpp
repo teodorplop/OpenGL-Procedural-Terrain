@@ -1,4 +1,4 @@
-#include "TestClass.h"
+/*#include "TestClass.h"
 #include "../Utils/ObjLoader.h"
 #include "../Utils/Math/math_3d.h"
 #include "../GameObject.h"
@@ -23,8 +23,6 @@ TestClass::TestClass() {
 
 		texture = new Texture("test.jpg");
 		shader = Shaders::GetInstance()->GetShader("Shader");
-	} else {
-		SetActive(false);
 	}
 }
 
@@ -35,4 +33,4 @@ void TestClass::Update() {
 	//gameObject->GetTransform()->RotateBy(1.0f, Vector3(1.0f, 0.0f, 0.0f));
 	//gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 1.0f, 0.0f));
 	//gameObject->GetTransform()->RotateBy(1.0f, Vector3(0.0f, 0.0f, 1.0f));
-}
+}*/

@@ -1,5 +1,4 @@
-#ifndef __FILE_UTILS_H__
-#define __FILE_UTILS_H__
+#pragma once
 
 #include<string>
 #include<iostream>
@@ -10,5 +9,3 @@ class FileUtils {
 public:
 	static string GetFileContents(const char* filePath);
 };
-
-#endif //__FILE_UTILS_H__

@@ -1,5 +1,4 @@
-#ifndef __INDEX_BUFFER_H__
-#define __INDEX_BUFFER_H__
+#pragma once
 
 #include<GL/glew.h>
 #include <vector>
@@ -16,5 +15,3 @@ public:
 	void Unbind();
 	GLsizei GetCount();
 };
-
-#endif //__INDEX_BUFFER_H__

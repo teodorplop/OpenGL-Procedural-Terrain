@@ -1,5 +1,4 @@
-#ifndef __VERTEX_ARRAY_H__
-#define __VERTEX_ARRAY_H__
+#pragma once
 
 #include <GL/glew.h>
 #include <vector>
@@ -17,5 +16,3 @@ public:
 	void Bind();
 	void Unbind();
 };
-
-#endif //__VERTEX_ARRAY_H__

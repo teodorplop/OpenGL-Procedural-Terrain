@@ -1,5 +1,4 @@
-#ifndef __MATRIX_4_H__
-#define __MATRIX_4_H__
+#pragma once
 
 #include "Vector3.h"
 
@@ -25,5 +24,3 @@ struct Matrix4 {
 	friend Matrix4 operator*(Matrix4 left, const Matrix4& right);
 	Matrix4& operator*=(const Matrix4& other);
 };
-
-#endif // __MATRIX_4_H__

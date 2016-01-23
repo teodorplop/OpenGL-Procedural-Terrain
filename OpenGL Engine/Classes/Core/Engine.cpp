@@ -1,10 +1,9 @@
 #include "Engine.h"
 
 #include "TimeFrame.h"
-#include "ComponentManager.h"
+#include "ObjectManager.h"
 #include "Renderer.h"
 #include "Input.h"
-#include "Scene.h"
 
 Engine* Engine::instance = nullptr;
 
@@ -17,10 +16,7 @@ void Engine::Start(int argc, char** argv) {
 
 Engine::Engine(int argc, char** argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(1024, 768);
-	glutCreateWindow("OpenGL Engine");
+	currentWindow = new Window();
 
 	GLenum error = glewInit();
 	if (error != GLEW_OK) {
@@ -33,12 +29,10 @@ Engine::Engine(int argc, char** argv) {
 	glutDisplayFunc(RenderFunction);
 	glutCloseFunc(CleanUpFunction);
 
-	ComponentManager::Start();
-	Renderer::Start();
 	TimeFrame::Start();
 	Input::Start();
 
-	Scene* scene = new Scene();
+	currentScene = new Scene();
 }
 Engine::~Engine() {
 	glutDisplayFunc(NULL);
@@ -46,7 +40,7 @@ Engine::~Engine() {
 }
 
 void Engine::Update() {
-	ComponentManager::Update();
+	ObjectManager::GetInstance()->Update();
 	Input::Update();
 
 	glutPostRedisplay();
@@ -63,12 +57,12 @@ void Engine::CleanUpFunction() {
 void Engine::Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	Renderer::Draw();
+	Renderer::GetInstance()->Draw();
 
 	glutSwapBuffers();
 	glFlush();
 }
 
 void Engine::CleanUp() {
-	ComponentManager::CleanUp();
+	ObjectManager::GetInstance()->CleanUp();
 }

@@ -1,10 +1,7 @@
-#ifndef __SCENE_H__
-#define __SCENE_H__
+#pragma once
 
 class Scene {
 public:
 	Scene();
 	~Scene();
 };
-
-#endif//__SCENE_H__

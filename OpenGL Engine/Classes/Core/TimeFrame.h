@@ -1,5 +1,4 @@
-#ifndef __TIME_FRAME_H__
-#define __TIME_FRAME_H__
+#pragma once
 
 class TimeFrame {
 private:
@@ -12,5 +11,3 @@ public:
 	static void Stop();
 	static float DeltaTime();
 };
-
-#endif//__TIME_FRAME_H__

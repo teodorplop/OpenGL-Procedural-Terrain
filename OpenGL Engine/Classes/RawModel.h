@@ -1,24 +1,24 @@
 #pragma once
 
-#include "Component.h"
+#include "Object.h"
 #include "Shader.h"
-#include "Texture.h"
+
 #include "Buffers\VertexArray.h"
 #include "Buffers\IndexBuffer.h"
 
-class Renderable : public Component {
+class RawModel : public Object {
 	friend class Renderer;
 
-protected:
+private:
 	VertexArray* vertexArray;
 	IndexBuffer* indexBuffer;
 	Shader* shader;
-	Texture* texture;
 
-private:
-	void Draw();
+protected:
+	virtual void Draw();
 
 public:
-	Renderable();
-	virtual ~Renderable();
+	RawModel();
+	~RawModel();
 };
+

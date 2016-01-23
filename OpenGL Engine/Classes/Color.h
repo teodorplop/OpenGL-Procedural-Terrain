@@ -1,5 +1,4 @@
-#ifndef __COLOR_H__
-#define __COLOR_H__
+#pragma once
 
 class Color {
 public:
@@ -11,5 +10,3 @@ public:
 
 	bool operator==(const Color& other);
 };
-
-#endif //__COLOR_H__
