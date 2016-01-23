@@ -207,11 +207,6 @@
     <Text Include="polygon.txt" />
     <Text Include="triangle.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="test.jpg" />
-    <Image Include="test2.jpg" />
-    <Image Include="test3.jpg" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

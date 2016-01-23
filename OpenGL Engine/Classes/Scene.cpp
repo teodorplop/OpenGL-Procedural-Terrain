@@ -36,13 +36,13 @@ Scene::Scene() {
 	vertexArray->AddBuffer(textureBuffer, 1);
 
 	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-	texture = new Texture("Textures/test.jpg");
+	texture = new Texture("Textures/stall.jpg");
 	model = new RawModel(vertexArray, indexBuffer);
 	texturedModel = new TexturedModel(model, texture);
 
-	objModel = RawModel::LoadFromObj("Obj/suzanne.obj");
+	objModel = RawModel::LoadFromObj("Obj/stall.obj");
 	texturedObjModel = new TexturedModel(objModel, texture);
-	objModel->GetTransform()->TranslateTo(Vector3(0.0f, 0.0f, 50.0f));
+	objModel->GetTransform()->TranslateTo(Vector3(0.0f, -5.0f, 25.0f));
 }
 
 Scene::~Scene() {
@@ -54,11 +54,11 @@ void Scene::Draw() {
 	shader->SetUniformMatrix4fv("gProj", camera->GetProjectionMatrix());
 	shader->SetUniformMatrix4fv("gCamera", cameraController->GetTransform()->GetMatrix());
 
-	shader->SetUniformMatrix4fv("gWorld", texturedModel->GetModel()->GetTransform()->GetMatrix());
-	Renderer::Draw(texturedModel);
+	//shader->SetUniformMatrix4fv("gWorld", texturedModel->GetModel()->GetTransform()->GetMatrix());
+	//Renderer::Draw(texturedModel);
 
-	//shader->SetUniformMatrix4fv("gWorld", objModel->GetTransform()->GetMatrix());
-	//Renderer::Draw(texturedObjModel);
+	shader->SetUniformMatrix4fv("gWorld", objModel->GetTransform()->GetMatrix());
+	Renderer::Draw(texturedObjModel);
 
 	shader->Unbind();
 }

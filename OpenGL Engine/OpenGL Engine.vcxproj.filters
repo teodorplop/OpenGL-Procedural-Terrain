@@ -208,15 +208,4 @@
     <Text Include="polygon.txt" />
     <Text Include="triangle.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="test.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="test2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="test3.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
 </Project>
