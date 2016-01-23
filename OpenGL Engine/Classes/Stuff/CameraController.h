@@ -1,15 +1,13 @@
-/*#pragma once
+#pragma once
 
-#include "../Component.h"
+#include "../Object.h"
 #include "../Utils/Math/Vector3.h"
 
-class CameraController : public Component {
+class CameraController : public Object {
 public:
 	CameraController();
 	~CameraController();
 
 private:
-	Vector3 mousePosition;
 	void Update();
 };
-*/

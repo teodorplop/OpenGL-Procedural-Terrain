@@ -3,8 +3,14 @@
 #include "RawModel.h"
 #include "Texture.h"
 
-class TexturedModel : public RawModel {
+class TexturedModel {
+private:
+	RawModel* model;
+	Texture* texture;
+
 public:
-	TexturedModel();
+	TexturedModel(RawModel* model, Texture* texture);
 	~TexturedModel();
+	RawModel* GetModel();
+	Texture* GetTexture();
 };

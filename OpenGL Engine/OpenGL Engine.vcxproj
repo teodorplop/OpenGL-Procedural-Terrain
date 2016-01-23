@@ -71,8 +71,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\bin\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\bin\$(Configuration)\Intermediate\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\GLEW\lib\x64;$(SolutionDir)Dependencies\FreeImage\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\FreeImage\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLEW\lib\x64;$(SolutionDir)Dependencies\FreeImage\lib;E:\Workspace\Visual Studio\OpenGL-Engine\Dependencies\GLFW\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\FreeImage\include;E:\Workspace\Visual Studio\OpenGL-Engine\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -98,7 +98,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freeglut.lib;glew32.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;FreeImage.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -134,7 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\Homework\CameraController.cpp" />
+    <ClCompile Include="Classes\Stuff\CameraController.cpp" />
     <ClCompile Include="Classes\Camera.cpp" />
     <ClCompile Include="Classes\Buffers\Buffer.cpp" />
     <ClCompile Include="Classes\Core\Engine.cpp" />
@@ -150,7 +150,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
-    <ClCompile Include="Classes\Core\TimeFrame.cpp" />
     <ClCompile Include="Classes\Object.cpp" />
     <ClCompile Include="Classes\Core\ObjectManager.cpp" />
     <ClCompile Include="Classes\Scene.cpp" />
@@ -161,13 +160,13 @@
     <ClCompile Include="Classes\Utils\ObjLoader.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector4.cpp" />
-    <ClCompile Include="Classes\Homework\TestClass.cpp" />
-    <ClCompile Include="Classes\Window.cpp" />
+    <ClCompile Include="Classes\Stuff\TestClass.cpp" />
     <ClCompile Include="Classes\RawModel.cpp" />
     <ClCompile Include="Classes\TexturedModel.cpp" />
+    <ClCompile Include="Classes\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\Homework\CameraController.h" />
+    <ClInclude Include="Classes\Stuff\CameraController.h" />
     <ClInclude Include="Classes\Camera.h" />
     <ClInclude Include="Classes\Buffers\Buffer.h" />
     <ClInclude Include="Classes\Core\Engine.h" />
@@ -178,7 +177,6 @@
     <ClInclude Include="Classes\Utils\Math\math_h.h" />
     <ClInclude Include="Classes\Utils\Math\Matrix4.h" />
     <ClInclude Include="Classes\Utils\Math\Vector3.h" />
-    <ClInclude Include="Classes\Core\TimeFrame.h" />
     <ClInclude Include="Classes\Object.h" />
     <ClInclude Include="Classes\Core\ObjectManager.h" />
     <ClInclude Include="Classes\Scene.h" />
@@ -192,14 +190,16 @@
     <ClInclude Include="Classes\Utils\ObjLoader.h" />
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
     <ClInclude Include="Classes\Utils\Math\Vector4.h" />
-    <ClInclude Include="Classes\Homework\TestClass.h" />
+    <ClInclude Include="Classes\Stuff\TestClass.h" />
     <ClInclude Include="Classes\Lights\DirectionalLight.h" />
     <ClInclude Include="Classes\Lights\Lights.h" />
-    <ClInclude Include="Classes\Window.h" />
     <ClInclude Include="Classes\RawModel.h" />
     <ClInclude Include="Classes\TexturedModel.h" />
+    <ClInclude Include="Classes\Core\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\RawShader.frag" />
+    <None Include="Shaders\RawShader.vert" />
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
   </ItemGroup>

@@ -54,9 +54,6 @@
     <ClCompile Include="Classes\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Homework\CameraController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Utils\ImageUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,16 +69,10 @@
     <ClCompile Include="Classes\Utils\Math\Vector4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Homework\TestClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Lights\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Lights\Lights.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Object.cpp">
@@ -102,10 +93,16 @@
     <ClCompile Include="Classes\Core\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Core\TimeFrame.cpp">
+    <ClCompile Include="Classes\TexturedModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\TexturedModel.cpp">
+    <ClCompile Include="Classes\Core\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Stuff\CameraController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Stuff\TestClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,9 +146,6 @@
     <ClInclude Include="Classes\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Homework\CameraController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Utils\ImageUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -167,16 +161,10 @@
     <ClInclude Include="Classes\Utils\Math\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Homework\TestClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Lights\DirectionalLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Lights\Lights.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Object.h">
@@ -197,16 +185,24 @@
     <ClInclude Include="Classes\Core\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Core\TimeFrame.h">
+    <ClInclude Include="Classes\TexturedModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\TexturedModel.h">
+    <ClInclude Include="Classes\Core\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Stuff\CameraController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Stuff\TestClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
+    <None Include="Shaders\RawShader.vert" />
+    <None Include="Shaders\RawShader.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="polygon.txt" />

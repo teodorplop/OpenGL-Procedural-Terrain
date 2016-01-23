@@ -1,111 +1,32 @@
 #include "Input.h"
-#include <GL\freeglut.h>
 #include<cstdio>
 #include<iostream>
 
 Input* Input::instance = nullptr;
 
-Input::Input() {
-	glutMouseFunc(HandleMouse);
-	glutMouseWheelFunc(HandleMouseWheel);
-
-	glutMotionFunc(HandleMotion);
-	glutPassiveMotionFunc(HandlePassiveMotion);
-
-	glutKeyboardFunc(HandleKeyboard);
-	glutKeyboardUpFunc(HandleKeyboardUp);
+Input::Input(Window* window) {
+	this->window = window->GetGLFWWindow();
 }
 
 Input::~Input() {
 }
 
-void Input::Start() {
-	if (instance == nullptr) {
-		instance = new Input();
+void Input::HandleInput(Window* window) {
+	if (instance != NULL) {
+		delete instance;
 	}
+	instance = new Input(window);
 }
 
-void Input::Update() {
-	instance->UpdateHandler();
-}
-
-void Input::UpdateHandler() {
-	mouseButtonIsDown.clear();
-	mouseButtonIsUp.clear();
-	keyIsDown.clear();
-	keyIsUp.clear();
-
-	mouseWheelDirection = 0;
-}
-
-void Input::HandleMotion(int x, int y) {
-	instance->MotionHandler(x, y);
-}
-void Input::HandlePassiveMotion(int x, int y) {
-	instance->PassiveMotionHandler(x, y);
-}
-void Input::HandleMouse(int button, int state, int x, int y) {
-	instance->MouseHandler(button, state, x, y);
-}
-void Input::HandleMouseWheel(int wheel, int direction, int x, int y) {
-	instance->MouseWheelHandler(wheel, direction, x, y);
-}
-void Input::HandleKeyboard(unsigned char key, int x, int y) {
-	instance->KeyboardHandler(key, x, y);
-}
-void Input::HandleKeyboardUp(unsigned char key, int x, int y) {
-	instance->KeyboardUpHandler(key, x, y);
-}
-
-void Input::MotionHandler(int x, int y) {
-	mousePosition = Vector3((float)x, (float)y);
-}
-void Input::PassiveMotionHandler(int x, int y) {
-	mousePosition = Vector3((float)x, (float)y);
-}
-void Input::MouseHandler(int button, int state, int x, int y) {
-	if (state == 0) {
-		mouseButtonIs[button] = mouseButtonIsDown[button] = true;
-	} else {
-		mouseButtonIs[button] = false;
-		mouseButtonIsUp[button] = true;
-	}
-}
-void Input::MouseWheelHandler(int wheel, int direction, int x, int y) {
-	mouseWheelDirection = direction;
-}
-void Input::KeyboardHandler(unsigned char key, int x, int y) {
-	if (!keyIs[key]) {
-		keyIsDown[key] = true;
-		keyIs[key] = true;
-	}
-}
-void Input::KeyboardUpHandler(unsigned char key, int x, int y) {
-	keyIsUp[key] = true;
-	keyIs[key] = false;
-}
-
-bool Input::GetKey(unsigned char key) {
-	return instance->keyIs[key];
-}
-bool Input::GetKeyDown(unsigned char key) {
-	return instance->keyIsDown[key];
-}
-bool Input::GetKeyUp(unsigned char key) {
-	return instance->keyIsUp[key];
+bool Input::GetKey(int key) {
+	return glfwGetKey(instance->window, key) != 0;
 }
 bool Input::GetMouseButton(int button) {
-	return instance->mouseButtonIs[button];
-}
-bool Input::GetMouseButtonDown(int button) {
-	return instance->mouseButtonIsDown[button];
-}
-bool Input::GetMouseButtonUp(int button) {
-	return instance->mouseButtonIsUp[button];
-}
-int Input::GetMouseWheel() {
-	return instance->mouseWheelDirection;
+	return glfwGetMouseButton(instance->window, button) != 0;
 }
 Vector3 Input::GetMousePosition() {
-	return instance->mousePosition;
+	double xPos, yPos;
+	glfwGetCursorPos(instance->window, &xPos, &yPos);
+
+	return Vector3((float)xPos, (float)yPos);
 }

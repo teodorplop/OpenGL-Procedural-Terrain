@@ -4,23 +4,23 @@
 
 in DATA {
 	vec2 textureCoord;
-	vec3 normal;
+	//vec3 normal;
 } In;
 
-struct DirectionalLight {
+/*struct DirectionalLight {
 	vec3 color;
 	float ambientIntensity;
 	vec3 direction;
 	float diffuseIntensity;
 };
 
-uniform DirectionalLight directionalLight;
+uniform DirectionalLight directionalLight;*/
 uniform sampler2D textureSampler;
 
 out vec4 outColor;
 
 void main() {
-	vec4 ambientColor = vec4(directionalLight.color, 1.0f) 
+	/*vec4 ambientColor = vec4(directionalLight.color, 1.0f) 
 										* directionalLight.ambientIntensity;
 
 	float diffuseFactor = dot(normalize(In.normal), -directionalLight.direction);
@@ -32,8 +32,8 @@ void main() {
                  * diffuseFactor;
 	} else {
 		diffuseColor = vec4(0.0f, 0.0f, 0.0f, 0.0f);
-	}
+	}*/
 
-	outColor = texture(textureSampler, In.textureCoord)
-					 * (ambientColor + diffuseColor);
+	outColor = texture(textureSampler, In.textureCoord);
+					 //* (ambientColor + diffuseColor);
 }

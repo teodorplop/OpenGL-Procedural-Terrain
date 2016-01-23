@@ -1,18 +1,10 @@
 #pragma once
 
 #include "../RawModel.h"
-#include <unordered_set>
+#include "../TexturedModel.h"
 
 class Renderer {
-private:
-	static Renderer* instance;
-
-	std::unordered_set<RawModel*> objects;
-
 public:
-	static Renderer* GetInstance();
-
-	void RegisterObject(RawModel* object);
-	void UnregisterObject(RawModel* object);
-	void Draw();
+	static void Draw(RawModel* model);
+	static void Draw(TexturedModel* texturedModel);
 };
