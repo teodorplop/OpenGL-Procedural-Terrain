@@ -3,8 +3,7 @@
 #include "../Color.h"
 #include "../Utils/Math/Vector3.h"
 
-class DirectionalLight {
-public:
+struct DirectionalLight {
 	Color color;
 	float ambientIntensity;
 	Vector3 direction;
@@ -12,5 +11,4 @@ public:
 
 	DirectionalLight();
 	DirectionalLight(Color color, float intensity, Vector3 direction, float diffuseIntensity);
-	~DirectionalLight();
 };

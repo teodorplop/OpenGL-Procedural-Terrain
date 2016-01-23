@@ -43,6 +43,9 @@ Scene::Scene() {
 	objModel = RawModel::LoadFromObj("Obj/stall.obj");
 	texturedObjModel = new TexturedModel(objModel, texture);
 	objModel->GetTransform()->TranslateTo(Vector3(0.0f, -5.0f, 25.0f));
+
+	directionalLight = new DirectionalLight(Color::white, 0.75f, Vector3(-1.0f, -1.0f), 0.75f);
+	material = new Material(10.0f, 1.0f);
 }
 
 Scene::~Scene() {
@@ -53,6 +56,9 @@ void Scene::Draw() {
 
 	shader->SetUniformMatrix4fv("gProj", camera->GetProjectionMatrix());
 	shader->SetUniformMatrix4fv("gCamera", cameraController->GetTransform()->GetMatrix());
+	shader->SetUniformDirectionalLight("directionalLight", *directionalLight);
+	shader->SetUniform1f("specularLight.shineDamper", material->shineDamper);
+	shader->SetUniform1f("specularLight.reflectivity", material->reflectivity);
 
 	//shader->SetUniformMatrix4fv("gWorld", texturedModel->GetModel()->GetTransform()->GetMatrix());
 	//Renderer::Draw(texturedModel);

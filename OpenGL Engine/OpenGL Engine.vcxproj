@@ -146,7 +146,6 @@
     <ClCompile Include="Classes\Utils\Math\math_h.cpp" />
     <ClCompile Include="Classes\Utils\ImageUtils.cpp" />
     <ClCompile Include="Classes\Lights\DirectionalLight.cpp" />
-    <ClCompile Include="Classes\Lights\Lights.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -164,6 +163,7 @@
     <ClCompile Include="Classes\RawModel.cpp" />
     <ClCompile Include="Classes\TexturedModel.cpp" />
     <ClCompile Include="Classes\Core\Window.cpp" />
+    <ClCompile Include="Classes\Materials\Material.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Stuff\CameraController.h" />
@@ -192,10 +192,10 @@
     <ClInclude Include="Classes\Utils\Math\Vector4.h" />
     <ClInclude Include="Classes\Stuff\TestClass.h" />
     <ClInclude Include="Classes\Lights\DirectionalLight.h" />
-    <ClInclude Include="Classes\Lights\Lights.h" />
     <ClInclude Include="Classes\RawModel.h" />
     <ClInclude Include="Classes\TexturedModel.h" />
     <ClInclude Include="Classes\Core\Window.h" />
+    <ClInclude Include="Classes\Materials\Material.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\RawShader.frag" />

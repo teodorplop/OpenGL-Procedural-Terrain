@@ -6,6 +6,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "TexturedModel.h"
+#include "Materials\Material.h"
 
 class Scene {
 private:
@@ -19,6 +20,9 @@ private:
 
 	RawModel* objModel;
 	TexturedModel* texturedObjModel;
+
+	DirectionalLight* directionalLight;
+	Material* material;
 
 public:
 	Scene();

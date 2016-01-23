@@ -2,6 +2,7 @@
 
 #include "RawModel.h"
 #include "Texture.h"
+#include "Materials\Material.h"
 
 class TexturedModel {
 private:

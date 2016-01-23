@@ -14,6 +14,13 @@ Color::Color(float r, float g, float b, float a = 1.0f) {
 	this->r = r, this->g = g, this->b = b, this->a = a;
 }
 
+Vector3 Color::ToVector3() const {
+	return Vector3(this->r, this->g, this->b);
+}
+Vector4 Color::ToVector4() const {
+	return Vector4(this->r, this->g, this->b, this->a);
+}
+
 bool Color::operator==(const Color& other) {
 	return r == other.r && g == other.g && b == other.b && a == other.a;
 }

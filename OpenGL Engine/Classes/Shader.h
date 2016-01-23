@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Utils/Math/Matrix4.h"
-#include <windows.h>
+#include "Utils/Math/Vector3.h"
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include "Lights\DirectionalLight.h"
@@ -18,6 +18,9 @@ public:
 
 	void Bind();
 	void Unbind();
-	void SetUniformMatrix4fv(const char* name, Matrix4 matrix);
+	void SetUniformMatrix4fv(const char* name, const Matrix4& matrix);
+	void SetUniform1f(const char* name, const float& value);
+	void SetUniform3f(const char* name, const Vector3& vector);
+
 	void SetUniformDirectionalLight(const char* name, const DirectionalLight& light);
 };

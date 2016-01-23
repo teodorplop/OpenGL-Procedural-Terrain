@@ -61,20 +61,23 @@ void Shader::Unbind() {
 	glUseProgram(0);
 }
 
-void Shader::SetUniformMatrix4fv(const char* name, Matrix4 matrix) {
+void Shader::SetUniformMatrix4fv(const char* name, const Matrix4& matrix) {
 	GLint matrixID = glGetUniformLocation(shaderProgram, name);
 	glUniformMatrix4fv(matrixID, 1, GL_TRUE, &matrix.elements[0][0]);
+}
+void Shader::SetUniform3f(const char* name, const Vector3& vector) {
+	GLint vectorID = glGetUniformLocation(shaderProgram, name);
+	glUniform3f(vectorID, vector.x, vector.y, vector.z);
+}
+void Shader::SetUniform1f(const char* name, const float& value) {
+	GLint floatID = glGetUniformLocation(shaderProgram, name);
+	glUniform1f(floatID, value);
 }
 
 void Shader::SetUniformDirectionalLight(const char* name, const DirectionalLight& light) {
 	string baseName = name;
-	GLint colorID = glGetUniformLocation(shaderProgram, (baseName + ".color").c_str());
-	GLint ambientIntensityID = glGetUniformLocation(shaderProgram, (baseName + ".ambientIntensity").c_str());
-	GLint directionID = glGetUniformLocation(shaderProgram, (baseName + ".direction").c_str());
-	GLint diffuseIntensityID = glGetUniformLocation(shaderProgram, (baseName + ".diffuseIntensity").c_str());
-
-	glUniform3f(colorID, light.color.r, light.color.g, light.color.b);
-	glUniform1f(ambientIntensityID, light.ambientIntensity);
-	glUniform3f(directionID, light.direction.x, light.direction.y, light.direction.z);
-	glUniform1f(diffuseIntensityID, light.diffuseIntensity);
+	SetUniform3f((baseName + ".color").c_str(), light.color.ToVector3());
+	SetUniform1f((baseName + ".ambientIntensity").c_str(), light.ambientIntensity);
+	SetUniform3f((baseName + ".direction").c_str(), light.direction);
+	SetUniform1f((baseName + ".diffuseIntensity").c_str(), light.diffuseIntensity);
 }

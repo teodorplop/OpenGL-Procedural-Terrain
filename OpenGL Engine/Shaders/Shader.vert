@@ -13,6 +13,7 @@ layout (location = 2) in vec3 inNormal;
 out DATA {
 	vec2 textureCoord;
 	vec3 normal;
+	vec3 toCamera;
 } Out;
 
 void main() {
@@ -20,4 +21,5 @@ void main() {
 
 	Out.textureCoord = inTextureCoord;
 	Out.normal = (gWorld * vec4(inNormal, 0.0f)).xyz;
+	Out.toCamera = (gCamera * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xyz - (gWorld * inPosition).xyz;
 }
