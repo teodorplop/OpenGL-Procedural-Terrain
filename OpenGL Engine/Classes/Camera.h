@@ -5,7 +5,7 @@
 
 enum Projection {Orthographic, Perspective};
 
-class Camera : public Object {
+class Camera {
 private:
 	static Camera* mainCamera;
 

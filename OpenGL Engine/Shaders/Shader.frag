@@ -4,7 +4,7 @@
 
 in DATA {
 	vec2 textureCoord;
-	//vec3 normal;
+	vec3 normal;
 } In;
 
 /*struct DirectionalLight {

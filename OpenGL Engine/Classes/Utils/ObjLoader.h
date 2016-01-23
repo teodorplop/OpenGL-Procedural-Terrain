@@ -2,6 +2,7 @@
 
 #include "Math/math_3d.h"
 #include <GL/freeglut.h>
+#include <string>
 #include <vector>
 
 class ObjLoader {
@@ -18,6 +19,13 @@ private:
 		}
 	};
 
+private:
+	static std::vector<std::string> Split(const std::string& text, const char& delim);
+	static void ProcessVertex(const std::vector<std::string>& vertexData, std::vector<unsigned int>& indices,
+		std::vector<Vector2>& tempUVs, std::vector<Vector3>& tempNormals,
+		std::vector<Vector2>& uvs, std::vector<Vector3>& normals);
+
 public:
 	static bool LoadObj(const char* filename, std::vector<Vector4>& vertices, std::vector<Vector2>& uvs, std::vector<Vector3>& normals, std::vector<unsigned int>& indices);
+	static bool LoadObj2(const char* filename, std::vector<Vector4>& vertices, std::vector<Vector2>& uvs, std::vector<Vector3>& normals, std::vector<unsigned int>& indices);
 };

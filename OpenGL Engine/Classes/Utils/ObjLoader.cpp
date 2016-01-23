@@ -1,5 +1,8 @@
 #include "ObjLoader.h"
 #include <cstdio>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <map>
 
 bool ObjLoader::LoadObj(const char* filename, std::vector<Vector4>& vertices, std::vector<Vector2>& uvs, std::vector<Vector3>& normals, std::vector<unsigned int>& indices) {
@@ -14,7 +17,7 @@ bool ObjLoader::LoadObj(const char* filename, std::vector<Vector4>& vertices, st
 	std::vector<Vector3> tempNormals;
 	std::vector<Vector2> tempUVs;
 
-	char lineHeader[128];
+	char lineHeader[128], emptyLine[1024];
 	while (fscanf(file, "%s", lineHeader) != EOF) {
 		if (strcmp(lineHeader, "v") == 0) {
 			Vector4 vertex;
@@ -49,7 +52,7 @@ bool ObjLoader::LoadObj(const char* filename, std::vector<Vector4>& vertices, st
 				normalIndices.push_back(normalIndex[i]);
 			}
 		} else {
-			fgets(lineHeader, 128, file);
+			fgets(emptyLine, 1024, file);
 		}
 	}
 
@@ -75,4 +78,85 @@ bool ObjLoader::LoadObj(const char* filename, std::vector<Vector4>& vertices, st
 	}
 
 	return true;
+}
+
+bool ObjLoader::LoadObj2(const char* filename, std::vector<Vector4>& vertices, std::vector<Vector2>& uvs, std::vector<Vector3>& normals, std::vector<unsigned int>& indices) {
+	std::vector<Vector2> tempUVs;
+	std::vector<Vector3> tempNormals;
+
+	std::ifstream file(filename);
+	std::string line;
+	while (std::getline(file, line)) {
+		std::vector<std::string> currentLine = Split(line, ' ');
+
+		if (line.substr(0, 2) == "v ") {
+			Vector4 vertex;
+			vertex.x = std::stof(currentLine[1]);
+			vertex.y = std::stof(currentLine[2]);
+			vertex.z = std::stof(currentLine[3]);
+			vertices.push_back(vertex);
+		} else if (line.substr(0, 2) == "vt") {
+			Vector2 uv;
+			uv.x = std::stof(currentLine[1]);
+			uv.y = std::stof(currentLine[2]);
+			tempUVs.push_back(uv);
+		}	else if (line.substr(0, 2) == "vn") {
+			Vector3 normal;
+			normal.x = std::stof(currentLine[1]);
+			normal.x = std::stof(currentLine[2]);
+			normal.x = std::stof(currentLine[3]);
+			tempNormals.push_back(normal);
+		} else if (line.substr(0, 2) == "f ") {
+			uvs.resize(vertices.size());
+			normals.resize(vertices.size());
+
+			std::vector<std::string> currentLine = Split(line, ' ');
+			std::vector<std::string> vertex0 = Split(currentLine[1], '/');
+			std::vector<std::string> vertex1 = Split(currentLine[2], '/');
+			std::vector<std::string> vertex2 = Split(currentLine[3], '/');
+			ProcessVertex(vertex0, indices, tempUVs, tempNormals, uvs, normals);
+			ProcessVertex(vertex1, indices, tempUVs, tempNormals, uvs, normals);
+			ProcessVertex(vertex2, indices, tempUVs, tempNormals, uvs, normals);
+
+			break;
+		}
+	}
+	while (std::getline(file, line)) {
+		if (line.substr(0, 2) != "f ") {
+			std::getline(file, line);
+			continue;
+		}
+
+		std::vector<std::string> currentLine = Split(line, ' ');
+		std::vector<std::string> vertex0 = Split(currentLine[1], '/');
+		std::vector<std::string> vertex1 = Split(currentLine[2], '/');
+		std::vector<std::string> vertex2 = Split(currentLine[3], '/');
+
+		ProcessVertex(vertex0, indices, tempUVs, tempNormals, uvs, normals);
+		ProcessVertex(vertex1, indices, tempUVs, tempNormals, uvs, normals);
+		ProcessVertex(vertex2, indices, tempUVs, tempNormals, uvs, normals);
+	}
+
+	return true;
+}
+
+void ObjLoader::ProcessVertex(const std::vector<std::string>& vertexData, std::vector<unsigned int>& indices, std::vector<Vector2>& tempUVs, std::vector<Vector3>& tempNormals,
+	std::vector<Vector2>& uvs, std::vector<Vector3>& normals) {
+	int currentVertexPointer = std::stoi(vertexData[0]) - 1;
+	indices.push_back(currentVertexPointer);
+	uvs[currentVertexPointer] = tempUVs[std::stoi(vertexData[1]) - 1];
+	uvs[currentVertexPointer].y = 1 - uvs[currentVertexPointer].y;
+	normals[currentVertexPointer] = tempNormals[std::stoi(vertexData[2]) - 1];
+}
+
+std::vector<std::string> ObjLoader::Split(const std::string& text, const char& delim) {
+	std::vector<std::string> elements;
+
+	std::stringstream textStream(text);
+	std::string word;
+	while (std::getline(textStream, word, delim)) {
+		elements.push_back(word);
+	}
+
+	return elements;
 }

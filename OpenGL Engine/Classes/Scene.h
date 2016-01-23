@@ -17,6 +17,9 @@ private:
 	Texture* texture;
 	Shader* shader;
 
+	RawModel* objModel;
+	TexturedModel* texturedObjModel;
+
 public:
 	Scene();
 	~Scene();
