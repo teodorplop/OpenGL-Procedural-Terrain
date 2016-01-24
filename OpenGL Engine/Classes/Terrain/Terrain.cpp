@@ -7,7 +7,7 @@
 // total square size
 float Terrain::size = 800;
 // number of small squares is cells * cells
-int Terrain::cells = 128;
+int Terrain::cells = 64;
 
 Terrain::Terrain(int gridX, int gridZ, Texture* texture) {
 	this->worldMatrix = Matrix4::Translation(Vector3(size * gridX, 0.0f, size * gridZ));

@@ -6,6 +6,7 @@
 #include "../RawModel.h"
 #include "../TexturedModel.h"
 #include <vector>
+#include <unordered_map>
 
 class Renderer {
 private:

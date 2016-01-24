@@ -44,7 +44,7 @@ vec4 CalculateSpecularColor() {
 	float specularFactor = dot(normalize(In.toCamera), reflectedLight);
 	specularFactor = max(specularFactor, 0.0f);
 	float dampedFactor = pow(specularFactor, specularLight.shineDamper);
-	vec4 specularColor = vec4(dampedFactor * directionalLight.color, 1.0f);
+	vec4 specularColor = vec4(specularLight.reflectivity * dampedFactor * directionalLight.color, 1.0f);
 
 	return specularColor;
 }
@@ -56,7 +56,10 @@ void main() {
 	vec4 diffuseColor = CalculateDiffuseColor();
 	vec4 specularColor = CalculateSpecularColor();
 
-	outColor = texture(textureSampler, In.textureCoord)
-					 * (ambientColor + diffuseColor)
-					 + specularColor;
+	vec4 textureColor = texture(textureSampler, In.textureCoord);
+	if (textureColor.a < 0.5f) {
+		discard;
+	}
+
+	outColor = textureColor * (ambientColor + diffuseColor) + specularColor;
 }

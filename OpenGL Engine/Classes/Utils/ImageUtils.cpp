@@ -1,24 +1,46 @@
 #include "ImageUtils.h"
 #include <FreeImage.h>
+#include <cstdio>
 
 BYTE* ImageUtils::Load_Image(const char* filename, GLsizei* width, GLsizei* height) {
-	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-	FIBITMAP *dib = NULL;
+	FREE_IMAGE_FORMAT format = FIF_UNKNOWN;
 
-	fif = FreeImage_GetFileType(filename, 0);
-	if (fif == FIF_UNKNOWN)
-		fif = FreeImage_GetFIFFromFilename(filename);
-	if (fif == FIF_UNKNOWN)
+	format = FreeImage_GetFileType(filename, 0);
+	if (format == -1) {
+		fprintf(stderr, "Could not find image: %s\n", filename);
 		return NULL;
+	}
 
-	if (FreeImage_FIFSupportsReading(fif))
-		dib = FreeImage_Load(fif, filename);
-	if (!dib)
+	if (format == FIF_UNKNOWN) {
+		fprintf(stderr, "Couldn't determine file format - attempting to get from file extension...\n");
+		format = FreeImage_GetFIFFromFilename(filename);
+		if (format == FIF_UNKNOWN) {
+			fprintf(stderr, "Couldn't determine file format.\n");
+			return NULL;
+		}
+	}
+	if (!FreeImage_FIFSupportsReading(format)) {
+		fprintf(stderr, "Detected image format cannot be read!\n");
 		return NULL;
+	}
 
-	BYTE* result = FreeImage_GetBits(dib);
-	*width = FreeImage_GetWidth(dib);
-	*height = FreeImage_GetHeight(dib);
+	FIBITMAP *bitmap = FreeImage_Load(format, filename);
+	if (!bitmap) {
+		fprintf(stderr, "Could not get image bitmap.\n");
+		return NULL;
+	}
+
+	int bitsPerPixel = FreeImage_GetBPP(bitmap);
+	FIBITMAP* bitmap32;
+	if (bitsPerPixel == 32) {
+		bitmap32 = bitmap;
+	} else {
+		bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+	}
+
+	BYTE* result = FreeImage_GetBits(bitmap32);
+	*width = FreeImage_GetWidth(bitmap32);
+	*height = FreeImage_GetHeight(bitmap32);
 
 	if ((result == 0) || (width == 0) || (height == 0))
 		return NULL;

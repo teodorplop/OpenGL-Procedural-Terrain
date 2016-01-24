@@ -20,10 +20,14 @@ private:
 	Camera* camera;
 	CameraController* cameraController;
 
-	RawModel* objModel;
-	TexturedModel* texturedObjModel;
+	Texture* treeTexture;
+	RawModel* treeModel;
+	TexturedModel* treeTexturedModel;
 
-	Texture* texture;
+	Texture* grassTexture;
+	RawModel* grassModel;
+	TexturedModel* grassTexturedModel;
+
 	Texture* terrainTexture;
 	DirectionalLight* directionalLight;
 	Material* material;
