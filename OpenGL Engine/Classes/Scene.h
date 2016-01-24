@@ -41,7 +41,6 @@ private:
 	RawModel* fernModel;
 	TexturedModel* fernTexturedModel;
 
-	Texture* terrainTexture;
 	DirectionalLight* directionalLight;
 	Material* material;
 	Material* fakeMaterial;

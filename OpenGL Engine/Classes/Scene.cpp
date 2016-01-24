@@ -62,10 +62,17 @@ Scene::Scene() {
 		objects.push_back(fern);
 	}
 
-	terrainTexture = new Texture("Textures/Terrain/grass.png");
+	Texture* backgroundTexture = new Texture("Textures/Terrain/grass.png");
+	Texture* rTexture = new Texture("Textures/Terrain/mud.png");
+	Texture* gTexture = new Texture("Textures/Terrain/grassFlowers.png");
+	Texture* bTexture = new Texture("Textures/Terrain/path.png");
+	TerrainTexturePack* terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+
+	Texture* blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
+
 	for (int i = -1; i < 2; ++i) {
 		for (int j = -1; j < 2; ++j) {
-			Terrain* terrain = new Terrain(i, j, terrainTexture);
+			Terrain* terrain = new Terrain(i, j, terrainTexturePack, blendMapTexture);
 			terrains.push_back(terrain);
 		}
 	}

@@ -120,6 +120,9 @@
     <ClCompile Include="Classes\Effects\Fog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Terrain\TerrainTexturePack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Shader.h">
@@ -225,6 +228,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Effects\Fog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Terrain\TerrainTexturePack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,6 +4,11 @@ TerrainRenderer::TerrainRenderer(Shader* shader, Camera* camera) {
 	this->shader = shader, this->camera = camera;
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gProj", camera->GetProjectionMatrix());
+	shader->SetUniform1i("backgroundSampler", 0);
+	shader->SetUniform1i("rSampler", 1);
+	shader->SetUniform1i("gSampler", 2);
+	shader->SetUniform1i("bSampler", 3);
+	shader->SetUniform1i("blendMapSampler", 4);
 	shader->Unbind();
 }
 
@@ -17,9 +22,12 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
 		shader->SetUniformMatrix4fv("gWorld", terrains[i]->GetWorldMatrix());
 
 		RawModel* model = terrains[i]->GetModel();
-		Texture* texture = terrains[i]->GetTexture();
-
-		texture->Bind();
+		TerrainTexturePack* texturePack = terrains[i]->GetTexturePack();
+		texturePack->GetBackgroundTexture()->Bind(0);
+		texturePack->GetRTexture()->Bind(1);
+		texturePack->GetGTexture()->Bind(2);
+		texturePack->GetBTexture()->Bind(3);
+		terrains[i]->GetBlendMap()->Bind(4);
 
 		model->GetVertexArray()->Bind();
 		model->GetIndexBuffer()->Bind();
@@ -29,7 +37,11 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
 		model->GetIndexBuffer()->Unbind();
 		model->GetVertexArray()->Unbind();
 
-		texture->Unbind();
+		texturePack->GetBackgroundTexture()->Unbind();
+		texturePack->GetRTexture()->Unbind();
+		texturePack->GetGTexture()->Unbind();
+		texturePack->GetBTexture()->Unbind();
+		terrains[i]->GetBlendMap()->Unbind();
 	}
 
 	shader->Unbind();

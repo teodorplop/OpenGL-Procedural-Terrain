@@ -9,9 +9,10 @@ float Terrain::size = 800;
 // number of small squares is cells * cells
 int Terrain::cells = 64;
 
-Terrain::Terrain(int gridX, int gridZ, Texture* texture) {
+Terrain::Terrain(int gridX, int gridZ, TerrainTexturePack* texturePack, Texture* blendMap) {
 	this->worldMatrix = Matrix4::Translation(Vector3(size * gridX, 0.0f, size * gridZ));
-	this->texture = texture;
+	this->texturePack = texturePack;
+	this->blendMap = blendMap;
 
 	GenerateModel();
 }
@@ -75,9 +76,12 @@ void Terrain::GenerateModel() {
 RawModel* Terrain::GetModel() {
 	return model;
 }
-Texture* Terrain::GetTexture() {
-	return texture;
+TerrainTexturePack* Terrain::GetTexturePack() {
+	return texturePack;
 }
 const Matrix4& Terrain::GetWorldMatrix() const {
 	return worldMatrix;
+}
+Texture* Terrain::GetBlendMap() {
+	return blendMap;
 }

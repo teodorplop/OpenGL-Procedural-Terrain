@@ -21,8 +21,8 @@ bool Texture::HasTransparency() {
 	return hasTransparency;
 }
 
-void Texture::Bind() {
-	glActiveTexture(GL_TEXTURE_2D);
+void Texture::Bind(int index) {
+	glActiveTexture(GL_TEXTURE0 + index);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 }
 

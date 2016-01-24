@@ -17,6 +17,6 @@ public:
 
 	bool HasTransparency();
 
-	void Bind();
+	void Bind(int index = 0);
 	void Unbind();
 };

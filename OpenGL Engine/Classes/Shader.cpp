@@ -73,6 +73,10 @@ void Shader::SetUniform1f(const char* name, const float& value) {
 	GLint floatID = glGetUniformLocation(shaderProgram, name);
 	glUniform1f(floatID, value);
 }
+void Shader::SetUniform1i(const char* name, const int& value) {
+	GLint intID = glGetUniformLocation(shaderProgram, name);
+	glUniform1i(intID, value);
+}
 
 void Shader::SetUniformDirectionalLight(const char* name, const DirectionalLight& light) {
 	string baseName = name;

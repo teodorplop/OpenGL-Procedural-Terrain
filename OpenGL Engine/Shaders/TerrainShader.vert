@@ -32,7 +32,7 @@ void main() {
 
 	gl_Position = gProj * positionRelativeToCamera;
 
-	Out.textureCoord = inTextureCoord * 40.0f;
+	Out.textureCoord = inTextureCoord;
 	Out.normal = (gWorld * vec4(inNormal, 0.0f)).xyz;
 	Out.toCamera = (gCamera * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xyz - (gWorld * inPosition).xyz;
 	Out.visibility = clamp(exp(-pow(distance * fog.density, fog.gradient)), 0.0f, 1.0f);
