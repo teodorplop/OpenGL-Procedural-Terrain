@@ -4,7 +4,7 @@
 #include "Utils/Math/Vector3.h"
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-#include "Lights\DirectionalLight.h"
+#include "Effects\DirectionalLight.h"
 
 class Shader {
 private:

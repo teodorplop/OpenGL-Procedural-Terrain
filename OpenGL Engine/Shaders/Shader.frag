@@ -6,6 +6,7 @@ in DATA {
 	vec2 textureCoord;
 	vec3 normal;
 	vec3 toCamera;
+	float visibility;
 } In;
 
 struct DirectionalLight {
@@ -20,9 +21,12 @@ struct SpecularLight {
 	float reflectivity;
 };
 
+uniform vec3 skyColor;
 uniform DirectionalLight directionalLight;
 uniform SpecularLight specularLight;
 uniform sampler2D textureSampler;
+
+out vec4 outColor;
 
 vec4 CalculateAmbientColor() {
 	vec4 ambientColor = vec4(directionalLight.color, 1.0f) 
@@ -49,8 +53,6 @@ vec4 CalculateSpecularColor() {
 	return specularColor;
 }
 
-out vec4 outColor;
-
 void main() {
   vec4 ambientColor = CalculateAmbientColor();
 	vec4 diffuseColor = CalculateDiffuseColor();
@@ -62,4 +64,5 @@ void main() {
 	}
 
 	outColor = textureColor * (ambientColor + diffuseColor) + specularColor;
+	outColor = mix(vec4(skyColor, 1.0f), outColor, In.visibility);
 }

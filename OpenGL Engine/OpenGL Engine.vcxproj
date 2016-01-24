@@ -145,8 +145,9 @@
     <ClCompile Include="Classes\Color.cpp" />
     <ClCompile Include="Classes\Utils\Math\math_h.cpp" />
     <ClCompile Include="Classes\Utils\ImageUtils.cpp" />
-    <ClCompile Include="Classes\Lights\DirectionalLight.cpp" />
+    <ClCompile Include="Classes\Effects\DirectionalLight.cpp" />
     <ClCompile Include="Classes\GameObject.cpp" />
+    <ClCompile Include="Classes\Effects\Fog.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -194,7 +195,7 @@
     <ClInclude Include="Classes\Utils\ObjLoader.h" />
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
     <ClInclude Include="Classes\Utils\Math\Vector4.h" />
-    <ClInclude Include="Classes\Lights\DirectionalLight.h" />
+    <ClInclude Include="Classes\Effects\DirectionalLight.h" />
     <ClInclude Include="Classes\RawModel.h" />
     <ClInclude Include="Classes\TexturedModel.h" />
     <ClInclude Include="Classes\Core\Window.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Classes\Core\TimeFrame.h" />
     <ClInclude Include="Classes\Terrain\Terrain.h" />
     <ClInclude Include="Classes\Terrain\TerrainRenderer.h" />
+    <ClInclude Include="Classes\Effects\Fog.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

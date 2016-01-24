@@ -11,7 +11,7 @@ public:
 	Vector3 ToVector3() const;
 	Vector4 ToVector4() const;
 
-	const static Color red, blue, green, yellow, white;
+	const static Color red, blue, green, yellow, white, grey;
 
 	bool operator==(const Color& other);
 };

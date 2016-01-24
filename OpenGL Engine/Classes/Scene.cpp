@@ -13,8 +13,13 @@ Scene::Scene() {
 	camera->GetTransform()->TranslateTo(Vector3(0.0f, 5.0f));
 	cameraController = new CameraController(camera);
 
-	directionalLight = new DirectionalLight(Color::white, 0.75f, Vector3(-1.0f, -1.0f), 0.75f);
-	material = new Material(10.0f, 0.1f);
+	skyColor = Color::grey;
+	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
+	fog = Fog();
+
+	directionalLight = new DirectionalLight(Color::white, 0.35f, Vector3(-1.0f, -1.0f), 0.75f);
+	material = new Material(10.0f, 0.0f, false);
+	fakeMaterial = new Material(10.0f, 0.0f, true);
 
 	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
 	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");
@@ -26,14 +31,35 @@ Scene::Scene() {
 		objects.push_back(tree);
 	}
 
-	grassTexture = new Texture("Textures/Terrain/grassTexture.png");
+	tree2Texture = new Texture("Textures/Terrain/tree.png");
+	tree2Model = RawModel::LoadFromObj("Obj/Terrain/tree.obj");
+	tree2TexturedModel = new TexturedModel(tree2Model, tree2Texture);
+
+	for (int i = 0; i < 100; ++i) {
+		GameObject* tree = new GameObject(tree2TexturedModel);
+		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
+		tree->GetTransform()->ScaleTo(Vector3(6.0f, 6.0f, 6.0f));
+		objects.push_back(tree);
+	}
+
+	grassTexture = new Texture("Textures/Terrain/grassTexture.png", true);
 	grassModel = RawModel::LoadFromObj("Obj/Terrain/grassModel.obj");
 	grassTexturedModel = new TexturedModel(grassModel, grassTexture);
 
-	for (int i = 0; i < 100; ++i) {
+	for (int i = 0; i < 1000; ++i) {
 		GameObject* grass = new GameObject(grassTexturedModel);
 		grass->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
 		objects.push_back(grass);
+	}
+
+	fernTexture = new Texture("Textures/Terrain/fern.png", true);
+	fernModel = RawModel::LoadFromObj("Obj/Terrain/fern.obj");
+	fernTexturedModel = new TexturedModel(fernModel, fernTexture);
+
+	for (int i = 0; i < 1000; ++i) {
+		GameObject* fern = new GameObject(fernTexturedModel);
+		fern->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
+		objects.push_back(fern);
 	}
 
 	terrainTexture = new Texture("Textures/Terrain/grass.png");
@@ -58,6 +84,9 @@ void Scene::Draw() {
 	terrainShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
 	terrainShader->SetUniform1f("specularLight.shineDamper", material->shineDamper);
 	terrainShader->SetUniform1f("specularLight.reflectivity", material->reflectivity);
+	terrainShader->SetUniform3f("skyColor", skyColor.ToVector3());
+	terrainShader->SetUniform1f("fog.density", fog.density);
+	terrainShader->SetUniform1f("fog.gradient", fog.gradient);
 	terrainShader->Unbind();
 
 	terrainRenderer->Draw(terrains);
@@ -66,6 +95,9 @@ void Scene::Draw() {
 	shader->SetUniformDirectionalLight("directionalLight", *directionalLight);
 	shader->SetUniform1f("specularLight.shineDamper", material->shineDamper);
 	shader->SetUniform1f("specularLight.reflectivity", material->reflectivity);
+	shader->SetUniform3f("skyColor", skyColor.ToVector3());
+	shader->SetUniform1f("fog.density", fog.density);
+	shader->SetUniform1f("fog.gradient", fog.gradient);
 	shader->Unbind();
 
 	renderer->Draw(objects);

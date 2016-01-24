@@ -8,6 +8,8 @@ TerrainRenderer::TerrainRenderer(Shader* shader, Camera* camera) {
 }
 
 void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
+	EnableCulling(true);
+
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
 
@@ -31,4 +33,13 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
 	}
 
 	shader->Unbind();
+}
+
+void TerrainRenderer::EnableCulling(bool enabled) {
+	if (enabled) {
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
+	} else {
+		glDisable(GL_CULL_FACE);
+	}
 }

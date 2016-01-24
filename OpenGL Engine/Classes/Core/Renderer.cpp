@@ -8,7 +8,8 @@ Renderer::Renderer(Shader* shader, Camera* camera) {
 	shader->Unbind();
 }
 
-void Renderer::Draw(const std::vector<GameObject*>& objects) {
+void Renderer::Draw(const std::vector<GameObject*>&  objects) {
+	EnableCulling(true);
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
 
@@ -18,8 +19,11 @@ void Renderer::Draw(const std::vector<GameObject*>& objects) {
 		RawModel* model = objects[i]->GetModel()->GetRawModel();
 		Texture* texture = objects[i]->GetModel()->GetTexture();
 
-		texture->Bind();
+		if (texture->HasTransparency()) {
+			EnableCulling(false);
+		}
 
+		texture->Bind();
 		model->GetVertexArray()->Bind();
 		model->GetIndexBuffer()->Bind();
 
@@ -27,9 +31,21 @@ void Renderer::Draw(const std::vector<GameObject*>& objects) {
 
 		model->GetIndexBuffer()->Unbind();
 		model->GetVertexArray()->Unbind();
-
 		texture->Unbind();
+
+		if (texture->HasTransparency()) {
+			EnableCulling(true);
+		}
 	}
 
 	shader->Unbind();
+}
+
+void Renderer::EnableCulling(bool enabled) {
+	if (enabled) {
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
+	} else {
+		glDisable(GL_CULL_FACE);
+	}
 }

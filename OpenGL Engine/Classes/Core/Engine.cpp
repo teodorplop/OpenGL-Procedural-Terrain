@@ -17,10 +17,6 @@ Engine::Engine(int argc, char** argv) {
 	}
 
 	glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-
-	glClearColor(0.29f, 0.63f, 0.74f, 0.0f);
 
 	Input::HandleInput(currentWindow);
 	currentScene = new Scene();

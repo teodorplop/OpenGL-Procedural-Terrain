@@ -1,8 +1,9 @@
 #include "Texture.h"
 #include "Utils\ImageUtils.h"
 
-Texture::Texture(const std::string& fileName) : fileName(fileName) {
+Texture::Texture(const std::string& fileName, bool hasTransparency) : fileName(fileName) {
 	BYTE* pixels = ImageUtils::Load_Image(fileName.c_str(), &width, &height);
+	this->hasTransparency = hasTransparency;
 
 	glGenTextures(1, &textureID);
 	Bind();
@@ -14,6 +15,10 @@ Texture::Texture(const std::string& fileName) : fileName(fileName) {
 
 Texture::~Texture() {
 	glDeleteTextures(1, &textureID);
+}
+
+bool Texture::HasTransparency() {
+	return hasTransparency;
 }
 
 void Texture::Bind() {

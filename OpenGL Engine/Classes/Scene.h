@@ -14,23 +14,37 @@
 
 #include "Core/Renderer.h"
 #include "Terrain\TerrainRenderer.h"
+#include "Color.h"
+#include "Effects\Fog.h"
 
 class Scene {
 private:
 	Camera* camera;
 	CameraController* cameraController;
 
+	Color skyColor;
+	Fog fog;
+
 	Texture* treeTexture;
 	RawModel* treeModel;
 	TexturedModel* treeTexturedModel;
+
+	Texture* tree2Texture;
+	RawModel* tree2Model;
+	TexturedModel* tree2TexturedModel;
 
 	Texture* grassTexture;
 	RawModel* grassModel;
 	TexturedModel* grassTexturedModel;
 
+	Texture* fernTexture;
+	RawModel* fernModel;
+	TexturedModel* fernTexturedModel;
+
 	Texture* terrainTexture;
 	DirectionalLight* directionalLight;
 	Material* material;
+	Material* fakeMaterial;
 
 	std::vector<GameObject*> objects;
 	std::vector<Terrain*> terrains;

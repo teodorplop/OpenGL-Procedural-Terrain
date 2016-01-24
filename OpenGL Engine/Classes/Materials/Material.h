@@ -3,8 +3,9 @@
 struct Material {
 	float shineDamper;
 	float reflectivity;
+	bool fakeLightning;
 
 	Material();
-	Material(float shineDamper, float reflectivity);
+	Material(float shineDamper, float reflectivity, bool fakeLightning);
 };
 

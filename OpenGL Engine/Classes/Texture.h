@@ -9,10 +9,13 @@ private:
 	std::string fileName;
 	GLuint textureID;
 	GLsizei width, height;
+	bool hasTransparency;
 
 public:
-	Texture(const std::string& fileName);
+	Texture(const std::string& fileName, bool hasTransparency = false);
 	~Texture();
+
+	bool HasTransparency();
 
 	void Bind();
 	void Unbind();
