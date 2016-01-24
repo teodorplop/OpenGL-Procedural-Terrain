@@ -10,16 +10,16 @@ Scene::Scene() {
 	int width = window->GetWidth(), height = window->GetHeight();
 
 	camera = new Camera(Projection::Perspective, 45.0f, (float)width / height, 1.0f, 500.0f);
-	camera->GetTransform()->TranslateTo(Vector3(0.0f, 5.0f));
-	cameraController = new CameraController(camera);
+	cameraController = new CameraController(camera->GetTransform());
+	camera->GetTransform()->TranslateTo(Vector3(0.0f, 10.0f, -10.0f));
+	camera->GetTransform()->RotateTo(Vector3(90.0f, 0.0f, 0.0f));
 
 	skyColor = Color::grey;
 	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
 	fog = Fog();
 
-	directionalLight = new DirectionalLight(Color::white, 0.35f, Vector3(-1.0f, -1.0f), 0.75f);
-	material = new Material(10.0f, 0.0f, false);
-	fakeMaterial = new Material(10.0f, 0.0f, true);
+	directionalLight = new DirectionalLight(Color::white, 0.75f, Vector3(-1.0f, -1.0f), 0.75f);
+	material = new Material(10.0f, 0.0f);
 
 	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
 	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");

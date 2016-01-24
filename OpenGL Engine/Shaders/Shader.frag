@@ -63,6 +63,6 @@ void main() {
 		discard;
 	}
 
-	outColor = textureColor * (ambientColor + diffuseColor) + specularColor;
+	outColor = textureColor * (ambientColor + diffuseColor);// + specularColor;
 	outColor = mix(vec4(skyColor, 1.0f), outColor, In.visibility);
 }

@@ -26,6 +26,9 @@ Engine::Engine(int argc, char** argv) {
 
 		// calls the update function for all objects
 		ObjectManager::GetInstance()->Update();
+		// clear the input
+		Input::Update();
+
 		// draws the models
 		currentScene->Draw();
 

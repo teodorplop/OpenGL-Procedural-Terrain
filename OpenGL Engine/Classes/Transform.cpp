@@ -30,10 +30,10 @@ void Transform::ScaleTo(const Vector3& scale) {
 	ScaleBy(scale / this->scale);
 }
 
-void Transform::RotateTo(float angle, const Vector3& axis) {
-	RotateBy(angle * axis.x - rotation.x, Vector3(1.0f, 0.0f, 0.0f));
-	RotateBy(angle * axis.y - rotation.y, Vector3(0.0f, 1.0f, 0.0f));
-	RotateBy(angle * axis.z - rotation.z, Vector3(0.0f, 0.0f, 1.0f));
+void Transform::RotateTo(const Vector3& rotation) {
+	RotateBy(rotation.x - this->rotation.x, Vector3(1.0f, 0.0f, 0.0f));
+	RotateBy(rotation.y - this->rotation.y, Vector3(0.0f, 1.0f, 0.0f));
+	RotateBy(rotation.z - this->rotation.z, Vector3(0.0f, 0.0f, 1.0f));
 }
 
 void Transform::TranslateBy(const Vector3& distance) {

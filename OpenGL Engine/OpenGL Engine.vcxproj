@@ -170,6 +170,7 @@
     <ClCompile Include="Classes\Terrain\Terrain.cpp" />
     <ClCompile Include="Classes\Terrain\TerrainRenderer.cpp" />
     <ClCompile Include="Classes\Terrain\TerrainTexturePack.cpp" />
+    <ClCompile Include="Classes\Stuff\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Stuff\CameraController.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Classes\Terrain\TerrainRenderer.h" />
     <ClInclude Include="Classes\Effects\Fog.h" />
     <ClInclude Include="Classes\Terrain\TerrainTexturePack.h" />
+    <ClInclude Include="Classes\Stuff\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

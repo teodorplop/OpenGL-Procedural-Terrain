@@ -16,6 +16,7 @@
 #include "Terrain\TerrainRenderer.h"
 #include "Color.h"
 #include "Effects\Fog.h"
+#include "Stuff\PlayerController.h"
 
 class Scene {
 private:
@@ -43,7 +44,6 @@ private:
 
 	DirectionalLight* directionalLight;
 	Material* material;
-	Material* fakeMaterial;
 
 	std::vector<GameObject*> objects;
 	std::vector<Terrain*> terrains;

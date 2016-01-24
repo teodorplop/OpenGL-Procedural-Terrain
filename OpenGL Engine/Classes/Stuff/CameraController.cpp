@@ -5,11 +5,9 @@
 #include "../Camera.h"
 #include "../Core/Input.h"
 
-CameraController::CameraController(Camera* target) {
-	this->target = target;
-}
-
-CameraController::~CameraController() {
+CameraController::CameraController(Transform* camera) {
+	this->camera = camera;
+	this->distanceFromPlayer = 50.0f, this->angleAroundPlayer = 0.0f, this->pitch = 20.0f, this->yaw = 0.0f;
 }
 
 void CameraController::Update() {
@@ -32,5 +30,5 @@ void CameraController::Update() {
 	if (Input::GetKey(GLFW_KEY_E)) {
 		translation -= Vector3(0.0f, 2.0f, 0.0f);
 	}
-	target->GetTransform()->TranslateBy(translation);
+	camera->TranslateBy(translation);
 }

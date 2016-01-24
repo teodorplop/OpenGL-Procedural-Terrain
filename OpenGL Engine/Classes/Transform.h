@@ -20,7 +20,7 @@ public:
 
 	void TranslateTo(const Vector3& position);
 	void ScaleTo(const Vector3& scale);
-	void RotateTo(float angle, const Vector3& axis);
+	void RotateTo(const Vector3& rotation);
 
 	void TranslateBy(const Vector3& distance);
 	void ScaleBy(const Vector3& scale);

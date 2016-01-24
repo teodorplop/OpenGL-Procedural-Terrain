@@ -65,7 +65,7 @@ Vector3 operator/(Vector3 left, const Vector3& right) {
 	return left.Divide(right);
 }
 Vector3 operator*(Vector3 left, const float& right) {
-	return left.Divide(right);
+	return left.Multiply(right);
 }
 Vector3 operator/(Vector3 left, const float& right) {
 	return left.Divide(right);

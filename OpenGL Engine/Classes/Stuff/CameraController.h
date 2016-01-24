@@ -2,15 +2,19 @@
 
 #include "../Utils/Math/Vector3.h"
 #include "../Object.h"
-#include "../Camera.h"
+#include "../Transform.h"
 
 class CameraController : public Object {
 public:
-	CameraController(Camera* target);
-	~CameraController();
+	CameraController(Transform* camera);
 
 private:
-	Camera* target;
+	float distanceFromPlayer;
+	float angleAroundPlayer;
+	float pitch;
+	float yaw;
+
+	Transform* camera;
 
 protected:
 	void Update();
