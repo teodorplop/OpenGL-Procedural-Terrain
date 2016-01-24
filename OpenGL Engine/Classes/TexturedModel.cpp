@@ -7,7 +7,7 @@ TexturedModel::TexturedModel(RawModel* model, Texture* texture) {
 TexturedModel::~TexturedModel() {
 }
 
-RawModel* TexturedModel::GetModel() {
+RawModel* TexturedModel::GetRawModel() {
 	return model;
 }
 Texture* TexturedModel::GetTexture() {

@@ -1,22 +1,21 @@
-#include "Renderer.h"
+#include "TerrainRenderer.h"
 
-Renderer::Renderer(Shader* shader, Camera* camera) {
+TerrainRenderer::TerrainRenderer(Shader* shader, Camera* camera) {
 	this->shader = shader, this->camera = camera;
-
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gProj", camera->GetProjectionMatrix());
 	shader->Unbind();
 }
 
-void Renderer::Draw(const std::vector<GameObject*>& objects) {
+void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
 
-	for (unsigned int i = 0; i < objects.size(); ++i) {
-		shader->SetUniformMatrix4fv("gWorld", objects[i]->GetTransform()->GetMatrix());
+	for (unsigned int i = 0; i < terrains.size(); ++i) {
+		shader->SetUniformMatrix4fv("gWorld", terrains[i]->GetWorldMatrix());
 
-		RawModel* model = objects[i]->GetModel()->GetRawModel();
-		Texture* texture = objects[i]->GetModel()->GetTexture();
+		RawModel* model = terrains[i]->GetModel();
+		Texture* texture = terrains[i]->GetTexture();
 
 		texture->Bind();
 

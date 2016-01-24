@@ -12,6 +12,6 @@ private:
 public:
 	TexturedModel(RawModel* model, Texture* texture);
 	~TexturedModel();
-	RawModel* GetModel();
+	RawModel* GetRawModel();
 	Texture* GetTexture();
 };

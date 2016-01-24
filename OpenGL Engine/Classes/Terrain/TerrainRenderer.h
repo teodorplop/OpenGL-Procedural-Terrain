@@ -2,17 +2,19 @@
 
 #include "../Shader.h"
 #include "../Camera.h"
-#include "../GameObject.h"
 #include "../RawModel.h"
 #include "../TexturedModel.h"
+#include "Terrain.h"
 #include <vector>
 
-class Renderer {
+#include "../GameObject.h"
+
+class TerrainRenderer {
 private:
 	Shader* shader;
 	Camera* camera;
 
 public:
-	Renderer(Shader* shader, Camera* camera);
-	void Draw(const std::vector<GameObject*>& objects);
+	TerrainRenderer(Shader* shader, Camera* camera);
+	void Draw(const std::vector<Terrain*>& terrains);
 };

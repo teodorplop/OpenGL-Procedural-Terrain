@@ -23,6 +23,10 @@ Vector3& Vector3::Normalize() {
 	return *this;
 }
 
+Vector3 Vector3::CrossProduct(const Vector3& a, const Vector3& b) {
+	return Vector3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.z * b.y - a.y * b.z);
+}
+
 Vector3& Vector3::Add(const Vector3& other) {
 	x += other.x, y += other.y, z += other.z;
 	return *this;

@@ -111,6 +111,12 @@
     <ClCompile Include="Classes\Core\TimeFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Terrain\Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Terrain\TerrainRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Shader.h">
@@ -209,12 +215,18 @@
     <ClInclude Include="Classes\Core\TimeFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Classes\Terrain\Terrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Terrain\TerrainRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
-    <None Include="Shaders\RawShader.vert" />
-    <None Include="Shaders\RawShader.frag" />
+    <None Include="Shaders\TerrainShader.vert" />
+    <None Include="Shaders\TerrainShader.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="polygon.txt" />
