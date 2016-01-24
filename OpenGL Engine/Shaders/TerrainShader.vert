@@ -18,9 +18,9 @@ struct Fog {
 uniform Fog fog = Fog(0.0035f, 5.0f);
 
 out DATA {
+  vec3 worldPosition;
 	vec2 textureCoord;
 	vec3 normal;
-	vec3 toCamera;
 	float visibility;
 } Out;
 
@@ -32,8 +32,8 @@ void main() {
 
 	gl_Position = gProj * positionRelativeToCamera;
 
+	Out.worldPosition = worldPosition.xyz;
 	Out.textureCoord = inTextureCoord;
 	Out.normal = (gWorld * vec4(inNormal, 0.0f)).xyz;
-	Out.toCamera = (gCamera * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xyz - (gWorld * inPosition).xyz;
 	Out.visibility = clamp(exp(-pow(distance * fog.density, fog.gradient)), 0.0f, 1.0f);
 }

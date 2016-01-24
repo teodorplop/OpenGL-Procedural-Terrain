@@ -12,6 +12,7 @@ void Renderer::Draw(const std::vector<GameObject*>&  objects) {
 	EnableCulling(true);
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
+	shader->SetUniform3f("eyeWorldPosition", camera->GetTransform()->GetPosition());
 
 	for (unsigned int i = 0; i < objects.size(); ++i) {
 		shader->SetUniformMatrix4fv("gWorld", objects[i]->GetTransform()->GetMatrix());

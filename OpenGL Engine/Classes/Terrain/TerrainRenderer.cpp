@@ -17,6 +17,7 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
 
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
+	shader->SetUniform3f("eyeWorldPosition", camera->GetTransform()->GetPosition());
 
 	for (unsigned int i = 0; i < terrains.size(); ++i) {
 		shader->SetUniformMatrix4fv("gWorld", terrains[i]->GetWorldMatrix());

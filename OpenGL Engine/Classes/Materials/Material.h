@@ -1,10 +1,10 @@
 #pragma once
 
 struct Material {
-	float shineDamper;
-	float reflectivity;
+	float specularIntensity;
+	float specularPower;
 
 	Material();
-	Material(float shineDamper, float reflectivity);
+	Material(float specularIntensity, float specularPower);
 };
 

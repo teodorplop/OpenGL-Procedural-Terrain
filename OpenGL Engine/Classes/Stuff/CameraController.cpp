@@ -24,11 +24,5 @@ void CameraController::Update() {
 	if (Input::GetKey(GLFW_KEY_D)) {
 		translation += Vector3(2.0f, 0.0f, 0.0f);
 	}
-	if (Input::GetKey(GLFW_KEY_Q)) {
-		translation += Vector3(0.0f, 2.0f, 0.0f);
-	}
-	if (Input::GetKey(GLFW_KEY_E)) {
-		translation -= Vector3(0.0f, 2.0f, 0.0f);
-	}
 	camera->TranslateBy(translation);
 }

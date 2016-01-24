@@ -12,14 +12,13 @@ Scene::Scene() {
 	camera = new Camera(Projection::Perspective, 45.0f, (float)width / height, 1.0f, 500.0f);
 	cameraController = new CameraController(camera->GetTransform());
 	camera->GetTransform()->TranslateTo(Vector3(0.0f, 10.0f, -10.0f));
-	camera->GetTransform()->RotateTo(Vector3(90.0f, 0.0f, 0.0f));
 
 	skyColor = Color::grey;
 	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
 	fog = Fog();
 
 	directionalLight = new DirectionalLight(Color::white, 0.75f, Vector3(-1.0f, -1.0f), 0.75f);
-	material = new Material(10.0f, 0.0f);
+	material = new Material(0.5f, 32.0f);
 
 	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
 	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");
@@ -89,8 +88,8 @@ Scene::~Scene() {
 void Scene::Draw() {
 	terrainShader->Bind();
 	terrainShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
-	terrainShader->SetUniform1f("specularLight.shineDamper", material->shineDamper);
-	terrainShader->SetUniform1f("specularLight.reflectivity", material->reflectivity);
+	terrainShader->SetUniform1f("specularLight.materialIntensity", material->specularIntensity);
+	terrainShader->SetUniform1f("specularLight.power", material->specularPower);
 	terrainShader->SetUniform3f("skyColor", skyColor.ToVector3());
 	terrainShader->SetUniform1f("fog.density", fog.density);
 	terrainShader->SetUniform1f("fog.gradient", fog.gradient);
@@ -100,8 +99,8 @@ void Scene::Draw() {
 
 	shader->Bind();
 	shader->SetUniformDirectionalLight("directionalLight", *directionalLight);
-	shader->SetUniform1f("specularLight.shineDamper", material->shineDamper);
-	shader->SetUniform1f("specularLight.reflectivity", material->reflectivity);
+	shader->SetUniform1f("specularLight.materialIntensity", material->specularIntensity);
+	shader->SetUniform1f("specularLight.power", material->specularPower);
 	shader->SetUniform3f("skyColor", skyColor.ToVector3());
 	shader->SetUniform1f("fog.density", fog.density);
 	shader->SetUniform1f("fog.gradient", fog.gradient);

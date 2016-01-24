@@ -3,9 +3,9 @@
 #version 400
 
 in DATA {
+	vec3 worldPosition;
 	vec2 textureCoord;
 	vec3 normal;
-	vec3 toCamera;
 	float visibility;
 } In;
 
@@ -17,13 +17,16 @@ struct DirectionalLight {
 };
 
 struct SpecularLight {
-  float shineDamper;
-	float reflectivity;
+  float materialIntensity;
+	float power;
 };
 
 uniform vec3 skyColor;
+uniform vec3 eyeWorldPosition;
+
 uniform DirectionalLight directionalLight;
 uniform SpecularLight specularLight;
+
 uniform sampler2D textureSampler;
 
 out vec4 outColor;
@@ -44,11 +47,11 @@ vec4 CalculateDiffuseColor() {
 	return diffuseColor;
 }
 vec4 CalculateSpecularColor() {
-	vec3 reflectedLight = reflect(directionalLight.direction, In.normal);
-	float specularFactor = dot(normalize(In.toCamera), reflectedLight);
-	specularFactor = max(specularFactor, 0.0f);
-	float dampedFactor = pow(specularFactor, specularLight.shineDamper);
-	vec4 specularColor = vec4(specularLight.reflectivity * dampedFactor * directionalLight.color, 1.0f);
+	vec3 vertexToEye = normalize(eyeWorldPosition - In.worldPosition);
+	vec3 lightReflect = normalize(reflect(directionalLight.direction, normalize(In.normal)));
+	float specularFactor = max(0.0f, dot(vertexToEye, lightReflect));
+	specularFactor = pow(specularFactor, specularLight.power);
+	vec4 specularColor = vec4(directionalLight.color * specularLight.materialIntensity * specularFactor, 1.0f);
 
 	return specularColor;
 }
@@ -63,6 +66,6 @@ void main() {
 		discard;
 	}
 
-	outColor = textureColor * (ambientColor + diffuseColor);// + specularColor;
+	outColor = textureColor * (ambientColor + diffuseColor + specularColor);
 	outColor = mix(vec4(skyColor, 1.0f), outColor, In.visibility);
 }
