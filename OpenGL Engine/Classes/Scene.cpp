@@ -17,7 +17,7 @@ Scene::Scene() {
 	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
 	fog = Fog();
 
-	directionalLight = new DirectionalLight(Color::white, 0.75f, Vector3(-1.0f, -1.0f), 0.75f);
+	directionalLight = new DirectionalLight(Color::white, 0.5f, Vector3(-1.0f, -1.0f), 0.75f);
 	material = new Material(0.5f, 32.0f);
 
 	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
@@ -26,7 +26,7 @@ Scene::Scene() {
 
 	for (int i = 0; i < 100; ++i) {
 		GameObject* tree = new GameObject(treeTexturedModel);
-		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
+		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
 		objects.push_back(tree);
 	}
 
@@ -36,7 +36,7 @@ Scene::Scene() {
 
 	for (int i = 0; i < 100; ++i) {
 		GameObject* tree = new GameObject(tree2TexturedModel);
-		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
+		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
 		tree->GetTransform()->ScaleTo(Vector3(6.0f, 6.0f, 6.0f));
 		objects.push_back(tree);
 	}
@@ -47,7 +47,7 @@ Scene::Scene() {
 
 	for (int i = 0; i < 1000; ++i) {
 		GameObject* grass = new GameObject(grassTexturedModel);
-		grass->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
+		grass->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
 		objects.push_back(grass);
 	}
 
@@ -57,7 +57,7 @@ Scene::Scene() {
 
 	for (int i = 0; i < 1000; ++i) {
 		GameObject* fern = new GameObject(fernTexturedModel);
-		fern->GetTransform()->TranslateTo(Vector3(Random::Range(-500.0f, 500.0f), 0.0f, Random::Range(-500.0f, 500.0f)));
+		fern->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
 		objects.push_back(fern);
 	}
 
@@ -71,7 +71,7 @@ Scene::Scene() {
 
 	for (int i = -1; i < 2; ++i) {
 		for (int j = -1; j < 2; ++j) {
-			Terrain* terrain = new Terrain(i, j, terrainTexturePack, blendMapTexture);
+			Terrain* terrain = new Terrain(i, j, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
 			terrains.push_back(terrain);
 		}
 	}

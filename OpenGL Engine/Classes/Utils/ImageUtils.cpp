@@ -1,30 +1,8 @@
 #include "ImageUtils.h"
-#include <FreeImage.h>
 #include <cstdio>
 
 BYTE* ImageUtils::Load_Image(const char* filename, GLsizei* width, GLsizei* height) {
-	FREE_IMAGE_FORMAT format = FIF_UNKNOWN;
-
-	format = FreeImage_GetFileType(filename, 0);
-	if (format == -1) {
-		fprintf(stderr, "Could not find image: %s\n", filename);
-		return NULL;
-	}
-
-	if (format == FIF_UNKNOWN) {
-		fprintf(stderr, "Couldn't determine file format - attempting to get from file extension...\n");
-		format = FreeImage_GetFIFFromFilename(filename);
-		if (format == FIF_UNKNOWN) {
-			fprintf(stderr, "Couldn't determine file format.\n");
-			return NULL;
-		}
-	}
-	if (!FreeImage_FIFSupportsReading(format)) {
-		fprintf(stderr, "Detected image format cannot be read!\n");
-		return NULL;
-	}
-
-	FIBITMAP *bitmap = FreeImage_Load(format, filename);
+	FIBITMAP* bitmap = Load_Image(filename);
 	if (!bitmap) {
 		fprintf(stderr, "Could not get image bitmap.\n");
 		return NULL;
@@ -46,4 +24,29 @@ BYTE* ImageUtils::Load_Image(const char* filename, GLsizei* width, GLsizei* heig
 		return NULL;
 
 	return result;
+}
+
+FIBITMAP* ImageUtils::Load_Image(const char* filename) {
+	FREE_IMAGE_FORMAT format = FIF_UNKNOWN;
+
+	format = FreeImage_GetFileType(filename, 0);
+	if (format == -1) {
+		fprintf(stderr, "Could not find image: %s\n", filename);
+		return NULL;
+	}
+
+	if (format == FIF_UNKNOWN) {
+		fprintf(stderr, "Couldn't determine file format - attempting to get from file extension...\n");
+		format = FreeImage_GetFIFFromFilename(filename);
+		if (format == FIF_UNKNOWN) {
+			fprintf(stderr, "Couldn't determine file format.\n");
+			return NULL;
+		}
+	}
+	if (!FreeImage_FIFSupportsReading(format)) {
+		fprintf(stderr, "Detected image format cannot be read!\n");
+		return NULL;
+	}
+
+	return FreeImage_Load(format, filename);
 }
