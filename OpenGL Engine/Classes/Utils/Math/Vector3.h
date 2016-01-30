@@ -12,6 +12,7 @@ struct Vector3 {
 	float Length();
 	Vector3& Normalize();
 	static Vector3 CrossProduct(const Vector3& a, const Vector3& b);
+	static float DotProduct(const Vector3& a, const Vector3& b);
 
 	Vector3& Add(const Vector3& other);
 	Vector3& Subtract(const Vector3& other);

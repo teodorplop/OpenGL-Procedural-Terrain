@@ -12,19 +12,25 @@ private:
 	static float maxHeight;
 	static float maxPixelColor;
 
+	float x, z;
 	Matrix4 worldMatrix;
 	RawModel* model;
 	TerrainTexturePack* texturePack;
 	Texture* blendMap;
 
+	int cells;
+	float** heights;
+
 	void GenerateModel(const char* heightMap);
-	void CalculateHeights(float** heights, const int& cells, FIBITMAP* data);
-	Vector3 CalculateNormal(const int& x, const int& y, float** heights, const int& cells);
+	void CalculateHeights(FIBITMAP* data);
+	Vector3 CalculateNormal(const int& x, const int& y);
 	float GetHeight(FIBITMAP* data, const int& x, const int& y);
 
 public:
 	Terrain(int gridX, int gridZ, TerrainTexturePack* texture, Texture* blendMap, const char* heightMap);
 	~Terrain();
+
+	float GetTerrainHeight(const float& worldX, const float& worldZ);
 
 	const Matrix4& GetWorldMatrix() const;
 	RawModel* GetModel();

@@ -72,7 +72,7 @@
     <OutDir>$(SolutionDir)$(Platform)\bin\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\bin\$(Configuration)\Intermediate\</IntDir>
     <LibraryPath>$(SolutionDir)Dependencies\GLEW\lib\x64;$(SolutionDir)Dependencies\FreeImage\lib;E:\Workspace\Visual Studio\OpenGL-Engine\Dependencies\GLFW\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\FreeImage\include;E:\Workspace\Visual Studio\OpenGL-Engine\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\FreeImage\include;E:\Workspace\Visual Studio\OpenGL-Engine\Dependencies\GLFW\include;E:\Workspace\Visual Studio\OpenGL-Engine\Dependencies\glm\include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

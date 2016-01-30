@@ -17,26 +17,52 @@ Scene::Scene() {
 	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
 	fog = Fog();
 
-	directionalLight = new DirectionalLight(Color::white, 0.5f, Vector3(-1.0f, -1.0f), 0.75f);
+	directionalLight = new DirectionalLight(Color::white, 0.25f, Vector3(-1.0f, -1.0f), 0.75f);
 	material = new Material(0.5f, 32.0f);
+
+	Texture* backgroundTexture = new Texture("Textures/Terrain/grass.png");
+	Texture* rTexture = new Texture("Textures/Terrain/mud.png");
+	Texture* gTexture = new Texture("Textures/Terrain/grassFlowers.png");
+	Texture* bTexture = new Texture("Textures/Terrain/path.png");
+	TerrainTexturePack* terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+	Texture* blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
+
+	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
+	terrains.push_back(terrain);
+	/*for (int i = -1; i < 2; ++i) {
+		for (int j = -1; j < 2; ++j) {
+			Terrain* terrain = new Terrain(i, j, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
+			terrains.push_back(terrain);
+		}
+	}*/
+
 
 	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
 	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");
 	treeTexturedModel = new TexturedModel(treeModel, treeTexture);
 
-	for (int i = 0; i < 100; ++i) {
+	for (int i = 0; i < 1; ++i) {
 		GameObject* tree = new GameObject(treeTexturedModel);
-		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
+		Vector3 position(52.2145f, 0.0f, 140.418f);
+		//Vector3 position(Random::Range(0.0f, 200.0f), 0.0f, Random::Range(0.0f, 200.0f));
+		position.y = terrain->GetTerrainHeight(position.x, position.z);
+
+		std::cout << position << "\n";
+
+		tree->GetTransform()->TranslateTo(position);
 		objects.push_back(tree);
 	}
 
-	tree2Texture = new Texture("Textures/Terrain/tree.png");
+	/*tree2Texture = new Texture("Textures/Terrain/tree.png");
 	tree2Model = RawModel::LoadFromObj("Obj/Terrain/tree.obj");
 	tree2TexturedModel = new TexturedModel(tree2Model, tree2Texture);
 
 	for (int i = 0; i < 100; ++i) {
 		GameObject* tree = new GameObject(tree2TexturedModel);
-		tree->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
+		Vector3 position(Random::Range(0.0f, 800.0f), 0.0f, Random::Range(0.0f, 800.0f));
+		position.y = terrain->GetTerrainHeight(position.x, position.z);
+
+		tree->GetTransform()->TranslateTo(position);
 		tree->GetTransform()->ScaleTo(Vector3(6.0f, 6.0f, 6.0f));
 		objects.push_back(tree);
 	}
@@ -47,7 +73,10 @@ Scene::Scene() {
 
 	for (int i = 0; i < 1000; ++i) {
 		GameObject* grass = new GameObject(grassTexturedModel);
-		grass->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
+		Vector3 position(Random::Range(0.0f, 800.0f), 0.0f, Random::Range(0.0f, 800.0f));
+		position.y = terrain->GetTerrainHeight(position.x, position.z);
+
+		grass->GetTransform()->TranslateTo(position);
 		objects.push_back(grass);
 	}
 
@@ -57,24 +86,12 @@ Scene::Scene() {
 
 	for (int i = 0; i < 1000; ++i) {
 		GameObject* fern = new GameObject(fernTexturedModel);
-		fern->GetTransform()->TranslateTo(Vector3(Random::Range(-800.0f, 800.0f), 0.0f, Random::Range(-800.0f, 800.0f)));
+		Vector3 position(Random::Range(0.0f, 800.0f), 0.0f, Random::Range(0.0f, 800.0f));
+		position.y = terrain->GetTerrainHeight(position.x, position.z);
+
+		fern->GetTransform()->TranslateTo(position);
 		objects.push_back(fern);
-	}
-
-	Texture* backgroundTexture = new Texture("Textures/Terrain/grass.png");
-	Texture* rTexture = new Texture("Textures/Terrain/mud.png");
-	Texture* gTexture = new Texture("Textures/Terrain/grassFlowers.png");
-	Texture* bTexture = new Texture("Textures/Terrain/path.png");
-	TerrainTexturePack* terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-
-	Texture* blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
-
-	for (int i = -1; i < 2; ++i) {
-		for (int j = -1; j < 2; ++j) {
-			Terrain* terrain = new Terrain(i, j, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
-			terrains.push_back(terrain);
-		}
-	}
+	}*/
 
 	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 	renderer = new Renderer(shader, camera);
