@@ -7,10 +7,11 @@
 #include "../Utils/ImageUtils.h"
 
 class Terrain {
+public:
+	static const float size;
 private:
-	static float size;
-	static float maxHeight;
-	static float maxPixelColor;
+	static const float maxHeight;
+	static const float maxPixelColor;
 
 	float x, z;
 	Matrix4 worldMatrix;

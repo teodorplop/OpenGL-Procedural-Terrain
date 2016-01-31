@@ -29,37 +29,27 @@ Scene::Scene() {
 
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
 	terrains.push_back(terrain);
-	/*for (int i = -1; i < 2; ++i) {
-		for (int j = -1; j < 2; ++j) {
-			Terrain* terrain = new Terrain(i, j, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
-			terrains.push_back(terrain);
-		}
-	}*/
-
 
 	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
 	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");
 	treeTexturedModel = new TexturedModel(treeModel, treeTexture);
 
-	for (int i = 0; i < 1; ++i) {
+	for (int i = 0; i < 200; ++i) {
 		GameObject* tree = new GameObject(treeTexturedModel);
-		Vector3 position(52.2145f, 0.0f, 140.418f);
-		//Vector3 position(Random::Range(0.0f, 200.0f), 0.0f, Random::Range(0.0f, 200.0f));
+		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
 		position.y = terrain->GetTerrainHeight(position.x, position.z);
-
-		std::cout << position << "\n";
 
 		tree->GetTransform()->TranslateTo(position);
 		objects.push_back(tree);
 	}
 
-	/*tree2Texture = new Texture("Textures/Terrain/tree.png");
+	tree2Texture = new Texture("Textures/Terrain/tree.png");
 	tree2Model = RawModel::LoadFromObj("Obj/Terrain/tree.obj");
 	tree2TexturedModel = new TexturedModel(tree2Model, tree2Texture);
 
-	for (int i = 0; i < 100; ++i) {
+	for (int i = 0; i < 200; ++i) {
 		GameObject* tree = new GameObject(tree2TexturedModel);
-		Vector3 position(Random::Range(0.0f, 800.0f), 0.0f, Random::Range(0.0f, 800.0f));
+		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
 		position.y = terrain->GetTerrainHeight(position.x, position.z);
 
 		tree->GetTransform()->TranslateTo(position);
@@ -71,9 +61,9 @@ Scene::Scene() {
 	grassModel = RawModel::LoadFromObj("Obj/Terrain/grassModel.obj");
 	grassTexturedModel = new TexturedModel(grassModel, grassTexture);
 
-	for (int i = 0; i < 1000; ++i) {
+	for (int i = 0; i < 500; ++i) {
 		GameObject* grass = new GameObject(grassTexturedModel);
-		Vector3 position(Random::Range(0.0f, 800.0f), 0.0f, Random::Range(0.0f, 800.0f));
+		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
 		position.y = terrain->GetTerrainHeight(position.x, position.z);
 
 		grass->GetTransform()->TranslateTo(position);
@@ -84,14 +74,14 @@ Scene::Scene() {
 	fernModel = RawModel::LoadFromObj("Obj/Terrain/fern.obj");
 	fernTexturedModel = new TexturedModel(fernModel, fernTexture);
 
-	for (int i = 0; i < 1000; ++i) {
+	for (int i = 0; i < 500; ++i) {
 		GameObject* fern = new GameObject(fernTexturedModel);
-		Vector3 position(Random::Range(0.0f, 800.0f), 0.0f, Random::Range(0.0f, 800.0f));
+		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
 		position.y = terrain->GetTerrainHeight(position.x, position.z);
 
 		fern->GetTransform()->TranslateTo(position);
 		objects.push_back(fern);
-	}*/
+	}
 
 	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 	renderer = new Renderer(shader, camera);

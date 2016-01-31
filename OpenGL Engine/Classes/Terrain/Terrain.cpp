@@ -5,9 +5,9 @@
 #include <vector>
 
 // total square size
-float Terrain::size = 1024.0f;
-float Terrain::maxHeight = 40.0f;
-float Terrain::maxPixelColor = 256.0f * 256.0f * 256.0f;
+const float Terrain::size = 1024.0f;
+const float Terrain::maxHeight = 40.0f;
+const float Terrain::maxPixelColor = 256.0f * 256.0f * 256.0f;
 
 Terrain::Terrain(int gridX, int gridZ, TerrainTexturePack* texturePack, Texture* blendMap, const char* heightMap) {
 	this->x = gridX * size, this->z = gridZ * size;
@@ -71,8 +71,8 @@ void Terrain::GenerateModel(const char* heightMap) {
 		for (int j = 0; j < cells - 1; ++j) {
 			int bottomLeft = i * cells + j;
 			int bottomRight = bottomLeft + 1;
-			int topRight = bottomRight + cells;
 			int topLeft = bottomLeft + cells;
+			int topRight = topLeft + 1;
 
 			indices.push_back(bottomLeft);
 			indices.push_back(bottomRight);
@@ -131,37 +131,28 @@ float Terrain::GetTerrainHeight(const float& worldX, const float& worldZ) {
 	float terrainX = worldX - this->x, terrainZ = worldZ - this->z;
 	float cellSize = size / ((float)cells - 1);
 
-	int gridX = (int)(terrainX / cellSize), gridZ = (int)(terrainZ / cellSize);
-	if (gridX < 0 || gridX >= cells - 1 || gridZ < 0 || gridZ >= cells - 1) {
+	int gridI = (int)(terrainZ / cellSize), gridJ = (int)(terrainX / cellSize);
+	if (gridI < 0 || gridI >= cells - 1 || gridJ < 0 || gridJ >= cells - 1) {
 		return 0.0f;
 	}
 
 	float xCoord = fmod(terrainX, cellSize) / cellSize, zCoord = fmod(terrainZ, cellSize) / cellSize;
 	float answer = 0.0f;
-	if (xCoord <= 1 - zCoord) {
+
+	if (xCoord < zCoord) {
 		answer = GetYCoord(
-			Vector3(0.0f, heights[gridX][gridZ], 0.0f),
-			Vector3(1.0f, heights[gridX + 1][gridZ + 1], 1.0f),
-			Vector3(0.0f, heights[gridX][gridZ + 1], 1.0f),
+			Vector3(0.0f, heights[gridI][gridJ], 0.0f),
+			Vector3(1.0f, heights[gridI + 1][gridJ + 1], 1.0f),
+			Vector3(0.0f, heights[gridI + 1][gridJ], 1.0f),
 			xCoord, zCoord
 			);
-
-		std::cout << Vector3(0.0f, heights[gridX][gridZ], 0.0f) << "\n";
-		std::cout << Vector3(1.0f, heights[gridX + 1][gridZ + 1], 1.0f) << "\n";
-		std::cout << Vector3(0.0f, heights[gridX][gridZ + 1], 1.0f) << "\n";
-		std::cout << answer << "\n";
 	} else {
 		answer = GetYCoord(
-			Vector3(0.0f, heights[gridX][gridZ], 0.0f),
-			Vector3(1.0f, heights[gridX + 1][gridZ], 0.0f),
-			Vector3(1.0f, heights[gridX + 1][gridZ + 1], 1.0f),
+			Vector3(0.0f, heights[gridI][gridJ], 0.0f),
+			Vector3(1.0f, heights[gridI][gridJ + 1], 0.0f),
+			Vector3(1.0f, heights[gridI + 1][gridJ + 1], 1.0f),
 			xCoord,	zCoord
 			);
-
-		std::cout << Vector3(0.0f, heights[gridX][gridZ], 0.0f) << "\n";
-		std::cout << Vector3(1.0f, heights[gridX + 1][gridZ], 0.0f) << "\n";
-		std::cout << Vector3(1.0f, heights[gridX + 1][gridZ + 1], 1.0f) << "\n";
-		std::cout << answer << "\n";
 	}
 
 	return answer;
