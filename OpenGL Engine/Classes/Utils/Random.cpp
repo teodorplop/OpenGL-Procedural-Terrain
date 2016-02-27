@@ -4,6 +4,11 @@
 
 bool Random::init = false;
 
+void Random::SetSeed(int seed) {
+	init = true;
+	srand(seed);
+}
+
 int Random::Range(int left, int right) {
 	Init();
 	return left + rand() % (right - left + 1);

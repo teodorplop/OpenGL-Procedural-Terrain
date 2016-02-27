@@ -148,6 +148,8 @@
     <ClCompile Include="Classes\Effects\DirectionalLight.cpp" />
     <ClCompile Include="Classes\GameObject.cpp" />
     <ClCompile Include="Classes\Effects\Fog.cpp" />
+    <ClCompile Include="Classes\Terrain\HeightMapGenerator.cpp" />
+    <ClCompile Include="Classes\Terrain\HeightsGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -210,16 +212,14 @@
     <ClInclude Include="Classes\Effects\Fog.h" />
     <ClInclude Include="Classes\Terrain\TerrainTexturePack.h" />
     <ClInclude Include="Classes\Stuff\PlayerController.h" />
+    <ClInclude Include="Classes\Terrain\HeightMapGenerator.h" />
+    <ClInclude Include="Classes\Terrain\HeightsGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
     <None Include="Shaders\Shader.vert" />
     <None Include="Shaders\TerrainShader.frag" />
     <None Include="Shaders\TerrainShader.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="polygon.txt" />
-    <Text Include="triangle.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

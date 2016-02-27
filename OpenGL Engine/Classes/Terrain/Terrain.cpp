@@ -6,7 +6,7 @@
 
 // total square size
 const float Terrain::size = 1024.0f;
-const float Terrain::maxHeight = 40.0f;
+const float Terrain::maxHeight = 100.0f;
 const float Terrain::maxPixelColor = 256.0f * 256.0f * 256.0f;
 
 Terrain::Terrain(int gridX, int gridZ, TerrainTexturePack* texturePack, Texture* blendMap, const char* heightMap) {
@@ -81,6 +81,20 @@ void Terrain::GenerateModel(const char* heightMap) {
 			indices.push_back(bottomLeft);
 			indices.push_back(topRight);
 			indices.push_back(topLeft);
+
+			normals[bottomLeft] += normals[bottomRight] + normals[topRight];
+			normals[bottomRight] += normals[bottomLeft] + normals[topRight];
+			normals[topRight] += normals[bottomRight] + normals[bottomLeft];
+			normals[bottomLeft].Normalize();
+			normals[bottomRight].Normalize();
+			normals[topRight].Normalize();
+
+			normals[bottomLeft] += normals[topRight] + normals[topLeft];
+			normals[topRight] += normals[bottomLeft] + normals[topLeft];
+			normals[topLeft] += normals[bottomLeft] + normals[topRight];
+			normals[bottomLeft].Normalize();
+			normals[topRight].Normalize();
+			normals[topLeft].Normalize();
 		}
 	}
 
@@ -100,6 +114,30 @@ void Terrain::CalculateHeights(FIBITMAP* data) {
 	for (int i = 0; i < cells; ++i) {
 		for (int j = 0; j < cells; ++j) {
 			heights[i][j] = data ? GetHeight(data, i, j) : 0.0f;
+		}
+	}
+
+	SmoothHeights(0.75f);
+}
+void Terrain::SmoothHeights(float alpha) {
+	for (int i = 1; i < cells; ++i) {
+		for (int j = 0; j < cells; ++j) {
+			heights[i][j] = heights[i - 1][j] * (1.0f - alpha) + heights[i][j] * alpha;
+		}
+	}
+	for (int i = cells - 2; i >= 0; --i) {
+		for (int j = 0; j < cells; ++j) {
+			heights[i][j] = heights[i + 1][j] * (1.0f - alpha) + heights[i][j] * alpha;
+		}
+	}
+	for (int i = 0; i < cells; ++i) {
+		for (int j = 1; j < cells; ++j) {
+			heights[i][j] = heights[i][j - 1] * (1.0f - alpha) + heights[i][j] * alpha;
+		}
+	}
+	for (int i = 0; i < cells; ++i) {
+		for (int j = cells - 2; j >= 0; --j) {
+			heights[i][j] = heights[i][j + 1] * (1.0f - alpha) + heights[i][j] * alpha;
 		}
 	}
 }

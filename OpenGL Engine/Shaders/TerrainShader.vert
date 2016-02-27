@@ -15,7 +15,7 @@ struct Fog {
 	float gradient;
 };
 
-uniform Fog fog = Fog(0.0035f, 5.0f);
+uniform Fog fog;
 
 out DATA {
   vec3 worldPosition;

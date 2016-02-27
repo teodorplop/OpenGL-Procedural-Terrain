@@ -6,6 +6,7 @@ const Color Color::green = Color(0.0f, 1.0f, 0.0f, 1.0f);
 const Color Color::yellow = Color(1.0f, 1.0f, 0.0f, 1.0f);
 const Color Color::white = Color(1.0f, 1.0f, 1.0f, 1.0f);
 const Color Color::grey = Color(0.5f, 0.5f, 0.5f, 1.0f);
+const Color Color::sky = Color(0.815f, 0.925f, 0.992f, 1.0f);
 
 Color::Color() {
 	this->r = this->g = this->b = this->a = 1.0f;

@@ -43,7 +43,7 @@ private:
 	TexturedModel* fernTexturedModel;
 
 	DirectionalLight* directionalLight;
-	Material* material;
+	Material* terrainMaterial;
 
 	std::vector<GameObject*> objects;
 	std::vector<Terrain*> terrains;

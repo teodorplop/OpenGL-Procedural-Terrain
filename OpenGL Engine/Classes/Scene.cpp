@@ -13,12 +13,12 @@ Scene::Scene() {
 	cameraController = new CameraController(camera->GetTransform());
 	camera->GetTransform()->TranslateTo(Vector3(0.0f, 10.0f, -10.0f));
 
-	skyColor = Color::grey;
+	skyColor = Color::sky;
 	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
-	fog = Fog(0.0035f, 10.0f);
+	fog = Fog();
 
 	directionalLight = new DirectionalLight(Color::white, 0.25f, Vector3(-1.0f, -1.0f), 0.75f);
-	material = new Material(0.5f, 32.0f);
+	terrainMaterial = new Material(0.25f, 32.0f);
 
 	Texture* backgroundTexture = new Texture("Textures/Terrain/grass.png");
 	Texture* rTexture = new Texture("Textures/Terrain/mud.png");
@@ -30,7 +30,7 @@ Scene::Scene() {
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
 	terrains.push_back(terrain);
 
-	treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
+	/*treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
 	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");
 	treeTexturedModel = new TexturedModel(treeModel, treeTexture);
 
@@ -81,10 +81,10 @@ Scene::Scene() {
 
 		fern->GetTransform()->TranslateTo(position);
 		objects.push_back(fern);
-	}
+	}*/
 
-	shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-	renderer = new Renderer(shader, camera);
+	//shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
+	//renderer = new Renderer(shader, camera);
 	terrainShader = new Shader("Shaders/TerrainShader.vert", "Shaders/TerrainShader.frag");
 	terrainRenderer = new TerrainRenderer(terrainShader, camera);
 }
@@ -95,8 +95,8 @@ Scene::~Scene() {
 void Scene::Draw() {
 	terrainShader->Bind();
 	terrainShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
-	terrainShader->SetUniform1f("specularLight.materialIntensity", material->specularIntensity);
-	terrainShader->SetUniform1f("specularLight.power", material->specularPower);
+	terrainShader->SetUniform1f("specularLight.materialIntensity", terrainMaterial->specularIntensity);
+	terrainShader->SetUniform1f("specularLight.power", terrainMaterial->specularPower);
 	terrainShader->SetUniform3f("skyColor", skyColor.ToVector3());
 	terrainShader->SetUniform1f("fog.density", fog.density);
 	terrainShader->SetUniform1f("fog.gradient", fog.gradient);
@@ -104,7 +104,7 @@ void Scene::Draw() {
 
 	terrainRenderer->Draw(terrains);
 
-	shader->Bind();
+	/*shader->Bind();
 	shader->SetUniformDirectionalLight("directionalLight", *directionalLight);
 	shader->SetUniform1f("specularLight.materialIntensity", material->specularIntensity);
 	shader->SetUniform1f("specularLight.power", material->specularPower);
@@ -113,5 +113,5 @@ void Scene::Draw() {
 	shader->SetUniform1f("fog.gradient", fog.gradient);
 	shader->Unbind();
 
-	renderer->Draw(objects);
+	renderer->Draw(objects);*/
 }

@@ -24,6 +24,7 @@ private:
 
 	void GenerateModel(const char* heightMap);
 	void CalculateHeights(FIBITMAP* data);
+	void SmoothHeights(float alpha);
 	Vector3 CalculateNormal(const int& x, const int& y);
 	float GetHeight(FIBITMAP* data, const int& x, const int& y);
 
