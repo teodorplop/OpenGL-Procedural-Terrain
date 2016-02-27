@@ -15,7 +15,7 @@ Scene::Scene() {
 
 	skyColor = Color::grey;
 	glClearColor(skyColor.r, skyColor.g, skyColor.b, skyColor.a);
-	fog = Fog();
+	fog = Fog(0.0035f, 10.0f);
 
 	directionalLight = new DirectionalLight(Color::white, 0.25f, Vector3(-1.0f, -1.0f), 0.75f);
 	material = new Material(0.5f, 32.0f);
