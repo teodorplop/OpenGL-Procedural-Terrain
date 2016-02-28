@@ -129,9 +129,6 @@
     <ClCompile Include="Classes\Terrain\HeightMapGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Terrain\HeightsGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Shader.h">
@@ -246,9 +243,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Terrain\HeightMapGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Terrain\HeightsGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

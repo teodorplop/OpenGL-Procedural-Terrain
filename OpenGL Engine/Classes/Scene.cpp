@@ -27,7 +27,7 @@ Scene::Scene() {
 	TerrainTexturePack* terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 	Texture* blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
 
-	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/heightMap.png");
+	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/test.png");
 	terrains.push_back(terrain);
 
 	/*treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");

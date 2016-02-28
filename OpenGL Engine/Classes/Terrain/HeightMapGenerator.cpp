@@ -3,10 +3,10 @@
 #include "../Utils/ImageUtils.h"
 #include "../Utils/Math/math_3d.h"
 
-#include <string>
+const std::string HeightMapGenerator::heightMapPath = "Textures/Terrain/HeightMaps/";
 
 void HeightMapGenerator::Generate(const char* filename, int width, int height) {
-	int octaves = 7;
+	int octaves = 8;
 	float **whiteNoise = GenerateWhiteNoise(width, height);
 	float ***smoothNoises = new float**[octaves];
 
@@ -41,24 +41,15 @@ void HeightMapGenerator::Generate(const char* filename, int width, int height) {
 		}
 	}
 
+	SaveHeightMap(perlinNoise, width, height, std::string(filename) + ".png");
+
 	for (int ii = 0; ii < octaves; ++ii) {
 		perlinNoise = smoothNoises[ii];
-
-		FIBITMAP* bitmap = FreeImage_Allocate(width, height, 32);
-		RGBQUAD color;
-
-		for (int i = 0; i < width; ++i) {
-			for (int j = 0; j < height; ++j) {
-				color.rgbRed = color.rgbGreen = color.rgbBlue = perlinNoise[i][j] * 255.0f;
-				FreeImage_SetPixelColor(bitmap, i, j, &color);
-			}
-		}
 
 		std::string temp = filename;
 		temp += std::to_string(ii);
 		temp += ".png";
-		std::cout << temp << "\n";
-		FreeImage_Save(FIF_PNG, bitmap, temp.c_str(), 0);
+		SaveHeightMap(perlinNoise, width, height, temp);
 	}
 }
 
@@ -106,5 +97,20 @@ float** HeightMapGenerator::GenerateSmoothNoise(float** whiteNoise, int width, i
 float HeightMapGenerator::Interpolate(float a, float b, float factor) {
 	float alpha = factor * M_PI;
 	factor = (1.0f - cos(alpha)) / 2.0f;
-	return a * factor + b * (1.0f - factor);
+	return a * (1.0f - factor) + b * factor;
+}
+
+void HeightMapGenerator::SaveHeightMap(float** perlinNoise, int width, int height, std::string filename) {
+	FIBITMAP* bitmap = FreeImage_Allocate(width, height, 32);
+	RGBQUAD color;
+
+	for (int i = 0; i < width; ++i) {
+		for (int j = 0; j < height; ++j) {
+			color.rgbRed = color.rgbGreen = color.rgbBlue = perlinNoise[i][j] * 255.0f;
+			FreeImage_SetPixelColor(bitmap, i, j, &color);
+		}
+	}
+
+	filename = heightMapPath + filename;
+	FreeImage_Save(FIF_PNG, bitmap, filename.c_str(), 0);
 }

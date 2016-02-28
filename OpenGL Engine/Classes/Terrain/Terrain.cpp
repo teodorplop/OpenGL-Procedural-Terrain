@@ -81,20 +81,26 @@ void Terrain::GenerateModel(const char* heightMap) {
 			indices.push_back(bottomLeft);
 			indices.push_back(topRight);
 			indices.push_back(topLeft);
+		}
+	}
 
-			normals[bottomLeft] += normals[bottomRight] + normals[topRight];
-			normals[bottomRight] += normals[bottomLeft] + normals[topRight];
-			normals[topRight] += normals[bottomRight] + normals[bottomLeft];
-			normals[bottomLeft].Normalize();
-			normals[bottomRight].Normalize();
-			normals[topRight].Normalize();
+	// Smoothing normals out
+	for (int i = 1; i < cells - 1; ++i) {
+		for (int j = 1; j < cells - 1; ++j) {
+			int cell = i * cells + j;
+			int bottom = cell - cells;
+			int top = cell + cells;
+			int left = cell - 1;
+			int right = cell + 1;
 
-			normals[bottomLeft] += normals[topRight] + normals[topLeft];
-			normals[topRight] += normals[bottomLeft] + normals[topLeft];
-			normals[topLeft] += normals[bottomLeft] + normals[topRight];
-			normals[bottomLeft].Normalize();
-			normals[topRight].Normalize();
-			normals[topLeft].Normalize();
+			int bottomLeft = bottom - 1;
+			int bottomRight = bottom + 1;
+			int topLeft = top - 1;
+			int topRight = top + 1;
+
+			normals[cell] = 
+				(normals[bottom] + normals[top] + normals[left] + normals[right]
+				+ normals[bottomLeft] + normals[bottomRight] + normals[topLeft] + normals[topRight]).Normalize();
 		}
 	}
 
@@ -110,6 +116,7 @@ void Terrain::GenerateModel(const char* heightMap) {
 	model = new RawModel(vertexArray, indexBuffer);
 }
 
+#include<fstream>
 void Terrain::CalculateHeights(FIBITMAP* data) {
 	for (int i = 0; i < cells; ++i) {
 		for (int j = 0; j < cells; ++j) {
@@ -117,7 +124,16 @@ void Terrain::CalculateHeights(FIBITMAP* data) {
 		}
 	}
 
+	// Smooth interpolation between heights so it does not look too edgy
 	SmoothHeights(0.75f);
+
+	std::ofstream out("heights.txt");
+	for (int i = 0; i < cells; ++i) {
+		for (int j = 0; j < cells; ++j) {
+			out << heights[i][j] << " ";
+		}
+		out << "\n";
+	}
 }
 void Terrain::SmoothHeights(float alpha) {
 	for (int i = 1; i < cells; ++i) {

@@ -149,7 +149,6 @@
     <ClCompile Include="Classes\GameObject.cpp" />
     <ClCompile Include="Classes\Effects\Fog.cpp" />
     <ClCompile Include="Classes\Terrain\HeightMapGenerator.cpp" />
-    <ClCompile Include="Classes\Terrain\HeightsGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -213,7 +212,6 @@
     <ClInclude Include="Classes\Terrain\TerrainTexturePack.h" />
     <ClInclude Include="Classes\Stuff\PlayerController.h" />
     <ClInclude Include="Classes\Terrain\HeightMapGenerator.h" />
-    <ClInclude Include="Classes\Terrain\HeightsGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
