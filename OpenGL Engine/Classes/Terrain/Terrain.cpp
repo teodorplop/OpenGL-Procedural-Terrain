@@ -116,7 +116,6 @@ void Terrain::GenerateModel(const char* heightMap) {
 	model = new RawModel(vertexArray, indexBuffer);
 }
 
-#include<fstream>
 void Terrain::CalculateHeights(FIBITMAP* data) {
 	for (int i = 0; i < cells; ++i) {
 		for (int j = 0; j < cells; ++j) {
@@ -126,14 +125,6 @@ void Terrain::CalculateHeights(FIBITMAP* data) {
 
 	// Smooth interpolation between heights so it does not look too edgy
 	SmoothHeights(0.75f);
-
-	std::ofstream out("heights.txt");
-	for (int i = 0; i < cells; ++i) {
-		for (int j = 0; j < cells; ++j) {
-			out << heights[i][j] << " ";
-		}
-		out << "\n";
-	}
 }
 void Terrain::SmoothHeights(float alpha) {
 	for (int i = 1; i < cells; ++i) {
@@ -174,7 +165,7 @@ float Terrain::GetHeight(FIBITMAP* data, const int& x, const int& y) {
 		return 0.0f;
 	}
 
-	float pixelColor = (float)rgbQuad.rgbRed * (float)rgbQuad.rgbGreen * (float)rgbQuad.rgbBlue;
+	float pixelColor = (float)rgbQuad.rgbRed * (1 << 16) + rgbQuad.rgbGreen * (1 << 8) + rgbQuad.rgbBlue;
 	pixelColor -= maxPixelColor / 2.0f;
 	pixelColor /= maxPixelColor / 2.0f;
 

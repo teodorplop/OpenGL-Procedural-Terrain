@@ -6,7 +6,7 @@
 const std::string HeightMapGenerator::heightMapPath = "Textures/Terrain/HeightMaps/";
 
 void HeightMapGenerator::Generate(const char* filename, int width, int height) {
-	int octaves = 8;
+	int octaves = 7;
 	float **whiteNoise = GenerateWhiteNoise(width, height);
 	float ***smoothNoises = new float**[octaves];
 
@@ -104,9 +104,16 @@ void HeightMapGenerator::SaveHeightMap(float** perlinNoise, int width, int heigh
 	FIBITMAP* bitmap = FreeImage_Allocate(width, height, 32);
 	RGBQUAD color;
 
+	int maxValue = 1 << 24;
 	for (int i = 0; i < width; ++i) {
 		for (int j = 0; j < height; ++j) {
-			color.rgbRed = color.rgbGreen = color.rgbBlue = perlinNoise[i][j] * 255.0f;
+			int value = (int)(perlinNoise[i][j] * maxValue);
+			color.rgbBlue = value % (1 << 8);
+			value /= (1 << 8);
+			color.rgbGreen = value % (1 << 8);
+			value /= (1 << 8);
+			color.rgbRed = value % (1 << 8);
+
 			FreeImage_SetPixelColor(bitmap, i, j, &color);
 		}
 	}
