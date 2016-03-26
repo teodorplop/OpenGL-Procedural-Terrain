@@ -15,6 +15,7 @@ public:
 	VertexArray* GetVertexArray();
 	IndexBuffer* GetIndexBuffer();
 
+	static RawModel* LoadQuad();
 	static RawModel* LoadFromObj(const char* filename);
 };
 

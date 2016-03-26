@@ -27,7 +27,7 @@ Terrain::~Terrain() {
 }
 
 void Terrain::GenerateModel(const char* heightMap) {
-	cells = 64;
+	cells = 256;
 
 	FIBITMAP* data = ImageUtils::Load_Image(heightMap);
 	if (data == NULL) {

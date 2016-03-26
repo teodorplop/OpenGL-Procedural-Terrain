@@ -2,18 +2,19 @@
 
 #include "../Shader.h"
 #include "../Camera.h"
-#include "../GameObject.h"
 #include "../RawModel.h"
 #include "../TexturedModel.h"
+#include "Water.h"
 #include <vector>
 
-class Renderer {
+class WaterRenderer {
 private:
 	Shader* shader;
 	Camera* camera;
 
 	void EnableCulling(bool enabled);
+
 public:
-	Renderer(Shader* shader, Camera* camera);
-	void Draw(const std::vector<GameObject*>& objects);
+	WaterRenderer(Shader* shader, Camera* camera);
+	void Draw(const std::vector<Water*>& waters);
 };

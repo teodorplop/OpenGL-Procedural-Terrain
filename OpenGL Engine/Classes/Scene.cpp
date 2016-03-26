@@ -4,6 +4,7 @@
 #include "Core/Window.h"
 #include "Core/Renderer.h"
 #include "Utils\Random.h"
+#include "Terrain/HeightMapGenerator.h"
 
 Scene::Scene() {
 	Window* window = Window::GetWindow();
@@ -18,8 +19,8 @@ Scene::Scene() {
 	fog = Fog();
 
 	directionalLight = new DirectionalLight(Color::white, 0.25f, Vector3(-1.0f, -1.0f), 0.75f);
-	terrainMaterial = new Material(0.25f, 32.0f);
 
+	// TERRAIN
 	Texture* backgroundTexture = new Texture("Textures/Terrain/grass.png");
 	Texture* rTexture = new Texture("Textures/Terrain/mud.png");
 	Texture* gTexture = new Texture("Textures/Terrain/grassFlowers.png");
@@ -27,66 +28,30 @@ Scene::Scene() {
 	TerrainTexturePack* terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 	Texture* blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
 
+	HeightMapGenerator::Generate("heightMap", 256, 256);
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
 
-	/*treeTexture = new Texture("Textures/Terrain/lowPolyTree.png");
-	treeModel = RawModel::LoadFromObj("Obj/Terrain/lowPolyTree.obj");
-	treeTexturedModel = new TexturedModel(treeModel, treeTexture);
-
-	for (int i = 0; i < 200; ++i) {
-		GameObject* tree = new GameObject(treeTexturedModel);
-		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
-		position.y = terrain->GetTerrainHeight(position.x, position.z);
-
-		tree->GetTransform()->TranslateTo(position);
-		objects.push_back(tree);
-	}
-
-	tree2Texture = new Texture("Textures/Terrain/tree.png");
-	tree2Model = RawModel::LoadFromObj("Obj/Terrain/tree.obj");
-	tree2TexturedModel = new TexturedModel(tree2Model, tree2Texture);
-
-	for (int i = 0; i < 200; ++i) {
-		GameObject* tree = new GameObject(tree2TexturedModel);
-		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
-		position.y = terrain->GetTerrainHeight(position.x, position.z);
-
-		tree->GetTransform()->TranslateTo(position);
-		tree->GetTransform()->ScaleTo(Vector3(6.0f, 6.0f, 6.0f));
-		objects.push_back(tree);
-	}
-
-	grassTexture = new Texture("Textures/Terrain/grassTexture.png", true);
-	grassModel = RawModel::LoadFromObj("Obj/Terrain/grassModel.obj");
-	grassTexturedModel = new TexturedModel(grassModel, grassTexture);
-
-	for (int i = 0; i < 500; ++i) {
-		GameObject* grass = new GameObject(grassTexturedModel);
-		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
-		position.y = terrain->GetTerrainHeight(position.x, position.z);
-
-		grass->GetTransform()->TranslateTo(position);
-		objects.push_back(grass);
-	}
-
-	fernTexture = new Texture("Textures/Terrain/fern.png", true);
-	fernModel = RawModel::LoadFromObj("Obj/Terrain/fern.obj");
-	fernTexturedModel = new TexturedModel(fernModel, fernTexture);
-
-	for (int i = 0; i < 500; ++i) {
-		GameObject* fern = new GameObject(fernTexturedModel);
-		Vector3 position(Random::Range(0.0f, Terrain::size), 0.0f, Random::Range(0.0f, Terrain::size));
-		position.y = terrain->GetTerrainHeight(position.x, position.z);
-
-		fern->GetTransform()->TranslateTo(position);
-		objects.push_back(fern);
-	}*/
-
-	//shader = new Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-	//renderer = new Renderer(shader, camera);
+	terrainMaterial = new Material(0.25f, 32.0f);
 	terrainShader = new Shader("Shaders/TerrainShader.vert", "Shaders/TerrainShader.frag");
 	terrainRenderer = new TerrainRenderer(terrainShader, camera);
+
+	// WATER
+	Water* water = new Water(0, 0);
+	waters.push_back(water);
+
+	waterMaterial = new Material(0.25f, 32.0f);
+	waterShader = new Shader("Shaders/WaterShader.vert", "Shaders/WaterShader.frag");
+	waterRenderer = new WaterRenderer(waterShader, camera);
+
+	// UI
+	UITexture* uiTexture = new UITexture(blendMapTexture);
+	uiTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
+	uiTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(-1.0f, 1.0f));
+	uiTextures.push_back(uiTexture);
+
+	uiShader = new Shader("Shaders/UIShader.vert", "Shaders/UIShader.frag");
+	uiRenderer = new UIRenderer(uiShader);
 }
 
 Scene::~Scene() {
@@ -104,14 +69,16 @@ void Scene::Draw() {
 
 	terrainRenderer->Draw(terrains);
 
-	/*shader->Bind();
-	shader->SetUniformDirectionalLight("directionalLight", *directionalLight);
-	shader->SetUniform1f("specularLight.materialIntensity", material->specularIntensity);
-	shader->SetUniform1f("specularLight.power", material->specularPower);
-	shader->SetUniform3f("skyColor", skyColor.ToVector3());
-	shader->SetUniform1f("fog.density", fog.density);
-	shader->SetUniform1f("fog.gradient", fog.gradient);
-	shader->Unbind();
+	waterShader->Bind();
+	waterShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
+	waterShader->SetUniform1f("specularLight.materialIntensity", waterMaterial->specularIntensity);
+	waterShader->SetUniform1f("specularLight.power", waterMaterial->specularPower);
+	waterShader->SetUniform3f("skyColor", skyColor.ToVector3());
+	waterShader->SetUniform1f("fog.density", fog.density);
+	waterShader->SetUniform1f("fog.gradient", fog.gradient);
+	waterShader->Unbind();
 
-	renderer->Draw(objects);*/
+	waterRenderer->Draw(waters);
+
+	uiRenderer->Draw(uiTextures);
 }

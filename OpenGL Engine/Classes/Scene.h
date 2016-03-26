@@ -11,9 +11,14 @@
 #include "Texture.h"
 #include "TexturedModel.h"
 #include "Materials\Material.h"
+#include "Water\Water.h"
+#include "Interface\UITexture.h"
 
 #include "Core/Renderer.h"
 #include "Terrain\TerrainRenderer.h"
+#include "Water\WaterRenderer.h"
+#include "Interface\UIRenderer.h"
+
 #include "Color.h"
 #include "Effects\Fog.h"
 #include "Stuff\PlayerController.h"
@@ -25,32 +30,21 @@ private:
 
 	Color skyColor;
 	Fog fog;
-
-	Texture* treeTexture;
-	RawModel* treeModel;
-	TexturedModel* treeTexturedModel;
-
-	Texture* tree2Texture;
-	RawModel* tree2Model;
-	TexturedModel* tree2TexturedModel;
-
-	Texture* grassTexture;
-	RawModel* grassModel;
-	TexturedModel* grassTexturedModel;
-
-	Texture* fernTexture;
-	RawModel* fernModel;
-	TexturedModel* fernTexturedModel;
-
 	DirectionalLight* directionalLight;
-	Material* terrainMaterial;
 
-	std::vector<GameObject*> objects;
 	std::vector<Terrain*> terrains;
-	Shader* shader;
-	Renderer* renderer;
+	Material* terrainMaterial;
 	Shader* terrainShader;
 	TerrainRenderer* terrainRenderer;
+
+	std::vector<Water*> waters;
+	Material* waterMaterial;
+	Shader* waterShader;
+	WaterRenderer* waterRenderer;
+
+	std::vector<UITexture*> uiTextures;
+	Shader* uiShader;
+	UIRenderer* uiRenderer;
 
 public:
 	Scene();
