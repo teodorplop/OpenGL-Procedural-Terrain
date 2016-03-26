@@ -12,6 +12,7 @@ private:
 	bool hasTransparency;
 
 public:
+	Texture();
 	Texture(const std::string& fileName, bool hasTransparency = false);
 	~Texture();
 
@@ -19,4 +20,6 @@ public:
 
 	void Bind(int index = 0);
 	void Unbind();
+
+	static Texture* CreateTextureAttachment(int width, int height);
 };

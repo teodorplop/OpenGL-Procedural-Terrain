@@ -44,20 +44,17 @@ Scene::Scene() {
 	waterShader = new Shader("Shaders/WaterShader.vert", "Shaders/WaterShader.frag");
 	waterRenderer = new WaterRenderer(waterShader, camera);
 
+	waterFrameBuffer = new WaterFrameBuffer();
+
 	// UI
-	UITexture* uiTexture = new UITexture(blendMapTexture);
+	UITexture* uiTexture = new UITexture(waterFrameBuffer->GetReflectionTexture());
 	uiTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
 	uiTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(-1.0f, 1.0f));
 	uiTextures.push_back(uiTexture);
 
 	uiShader = new Shader("Shaders/UIShader.vert", "Shaders/UIShader.frag");
 	uiRenderer = new UIRenderer(uiShader);
-}
 
-Scene::~Scene() {
-}
-
-void Scene::Draw() {
 	terrainShader->Bind();
 	terrainShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
 	terrainShader->SetUniform1f("specularLight.materialIntensity", terrainMaterial->specularIntensity);
@@ -67,8 +64,6 @@ void Scene::Draw() {
 	terrainShader->SetUniform1f("fog.gradient", fog.gradient);
 	terrainShader->Unbind();
 
-	terrainRenderer->Draw(terrains);
-
 	waterShader->Bind();
 	waterShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
 	waterShader->SetUniform1f("specularLight.materialIntensity", waterMaterial->specularIntensity);
@@ -77,8 +72,17 @@ void Scene::Draw() {
 	waterShader->SetUniform1f("fog.density", fog.density);
 	waterShader->SetUniform1f("fog.gradient", fog.gradient);
 	waterShader->Unbind();
+}
+Scene::~Scene() {
+}
 
+void Scene::Draw() {
+	waterFrameBuffer->BindReflectionBuffer();
+	waterFrameBuffer->Clear();
+	terrainRenderer->Draw(terrains);
+	waterFrameBuffer->UnbindBuffer();
+
+	terrainRenderer->Draw(terrains);
 	waterRenderer->Draw(waters);
-
 	uiRenderer->Draw(uiTextures);
 }

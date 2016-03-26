@@ -21,7 +21,8 @@
 
 #include "Color.h"
 #include "Effects\Fog.h"
-#include "Stuff\PlayerController.h"
+
+#include "Water\WaterFrameBuffer.h"
 
 class Scene {
 private:
@@ -45,6 +46,8 @@ private:
 	std::vector<UITexture*> uiTextures;
 	Shader* uiShader;
 	UIRenderer* uiRenderer;
+
+	WaterFrameBuffer* waterFrameBuffer;
 
 public:
 	Scene();

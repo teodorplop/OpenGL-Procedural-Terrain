@@ -149,6 +149,7 @@
     <ClCompile Include="Classes\GameObject.cpp" />
     <ClCompile Include="Classes\Effects\Fog.cpp" />
     <ClCompile Include="Classes\Terrain\HeightMapGenerator.cpp" />
+    <ClCompile Include="Classes\Water\WaterFrameBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Classes\Water\WaterRenderer.h" />
     <ClInclude Include="Classes\Interface\UIRenderer.h" />
     <ClInclude Include="Classes\Interface\UITexture.h" />
+    <ClInclude Include="Classes\Water\WaterFrameBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />
