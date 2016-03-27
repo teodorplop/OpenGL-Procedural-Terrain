@@ -24,6 +24,8 @@ out DATA {
 	float visibility;
 } Out;
 
+uniform vec4 clipPlane;
+
 void main() {
   vec4 worldPosition = gWorld * inPosition;
 	mat4 gViewCamera = inverse(gCamera);
@@ -31,6 +33,7 @@ void main() {
 	float distance = length(positionRelativeToCamera.xyz);
 
 	gl_Position = gProj * positionRelativeToCamera;
+	gl_ClipDistance[0] = dot(worldPosition, clipPlane);
 
 	Out.worldPosition = worldPosition.xyz;
 	Out.textureCoord = inTextureCoord;

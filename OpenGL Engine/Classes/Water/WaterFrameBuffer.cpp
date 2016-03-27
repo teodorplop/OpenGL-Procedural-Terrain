@@ -1,8 +1,8 @@
 #include "WaterFrameBuffer.h"
 #include "../Core/Window.h"
 
-const int WaterFrameBuffer::reflectionWidth = 320;
-const int WaterFrameBuffer::reflectionHeight = 180;
+const int WaterFrameBuffer::reflectionWidth = 1024;
+const int WaterFrameBuffer::reflectionHeight = 768;
 const int WaterFrameBuffer::refractionWidth = 1280;
 const int WaterFrameBuffer::refractionHeight = 720;
 

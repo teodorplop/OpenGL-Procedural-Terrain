@@ -42,15 +42,18 @@ Scene::Scene() {
 
 	waterMaterial = new Material(0.25f, 32.0f);
 	waterShader = new Shader("Shaders/WaterShader.vert", "Shaders/WaterShader.frag");
-	waterRenderer = new WaterRenderer(waterShader, camera);
-
 	waterFrameBuffer = new WaterFrameBuffer();
+	waterRenderer = new WaterRenderer(waterShader, camera, waterFrameBuffer);
 
 	// UI
-	UITexture* uiTexture = new UITexture(waterFrameBuffer->GetReflectionTexture());
-	uiTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
-	uiTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(-1.0f, 1.0f));
-	uiTextures.push_back(uiTexture);
+	UITexture* reflectionTexture = new UITexture(waterFrameBuffer->GetReflectionTexture());
+	reflectionTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
+	reflectionTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(-1.0f, 1.0f));
+	UITexture* refractionTexture = new UITexture(waterFrameBuffer->GetRefractionTexture());
+	refractionTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
+	refractionTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(1.0f, 1.0f));
+	uiTextures.push_back(reflectionTexture);
+	uiTextures.push_back(refractionTexture);
 
 	uiShader = new Shader("Shaders/UIShader.vert", "Shaders/UIShader.frag");
 	uiRenderer = new UIRenderer(uiShader);
@@ -77,12 +80,25 @@ Scene::~Scene() {
 }
 
 void Scene::Draw() {
+	Vector3 cameraPosition = camera->GetTransform()->GetPosition();
+	cameraPosition.y = -cameraPosition.y;
+	camera->GetTransform()->TranslateTo(cameraPosition);
+
+	glEnable(GL_CLIP_DISTANCE0);
 	waterFrameBuffer->BindReflectionBuffer();
 	waterFrameBuffer->Clear();
-	terrainRenderer->Draw(terrains);
+	terrainRenderer->Draw(terrains, Vector4(0, 1, 0, 0));
+	waterFrameBuffer->UnbindBuffer();
+	cameraPosition.y = -cameraPosition.y;
+	camera->GetTransform()->TranslateTo(cameraPosition);
+
+	waterFrameBuffer->BindRefractionBuffer();
+	waterFrameBuffer->Clear();
+	terrainRenderer->Draw(terrains, Vector4(0, -1, 0, 0));
 	waterFrameBuffer->UnbindBuffer();
 
-	terrainRenderer->Draw(terrains);
+	glDisable(GL_CLIP_DISTANCE0);
+	terrainRenderer->Draw(terrains, Vector4(0, -1, 0, 10000));
 	waterRenderer->Draw(waters);
-	uiRenderer->Draw(uiTextures);
+	//uiRenderer->Draw(uiTextures);
 }

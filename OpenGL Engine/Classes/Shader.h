@@ -21,6 +21,7 @@ public:
 	void SetUniformMatrix4fv(const char* name, const Matrix4& matrix);
 	void SetUniform1f(const char* name, const float& value);
 	void SetUniform3f(const char* name, const Vector3& vector);
+	void SetUniform4f(const char* name, const Vector4& vector);
 	void SetUniform1i(const char* name, const int& value);
 
 	void SetUniformDirectionalLight(const char* name, const DirectionalLight& light);

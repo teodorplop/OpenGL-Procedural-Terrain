@@ -8,11 +8,12 @@ Renderer::Renderer(Shader* shader, Camera* camera) {
 	shader->Unbind();
 }
 
-void Renderer::Draw(const std::vector<GameObject*>&  objects) {
+void Renderer::Draw(const std::vector<GameObject*>&  objects, Vector4 clipPlane) {
 	EnableCulling(true);
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
 	shader->SetUniform3f("eyeWorldPosition", camera->GetTransform()->GetPosition());
+	shader->SetUniform4f("clipPlane", clipPlane);
 
 	for (unsigned int i = 0; i < objects.size(); ++i) {
 		shader->SetUniformMatrix4fv("gWorld", objects[i]->GetTransform()->GetMatrix());

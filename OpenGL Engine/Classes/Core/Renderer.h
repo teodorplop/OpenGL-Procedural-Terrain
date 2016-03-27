@@ -15,5 +15,5 @@ private:
 	void EnableCulling(bool enabled);
 public:
 	Renderer(Shader* shader, Camera* camera);
-	void Draw(const std::vector<GameObject*>& objects);
+	void Draw(const std::vector<GameObject*>& objects, Vector4 clipPlane);
 };

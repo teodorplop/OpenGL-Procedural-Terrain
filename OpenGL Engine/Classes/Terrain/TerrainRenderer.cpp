@@ -12,12 +12,13 @@ TerrainRenderer::TerrainRenderer(Shader* shader, Camera* camera) {
 	shader->Unbind();
 }
 
-void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains) {
+void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains, Vector4 clipPlane) {
 	EnableCulling(true);
 
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
 	shader->SetUniform3f("eyeWorldPosition", camera->GetTransform()->GetPosition());
+	shader->SetUniform4f("clipPlane", clipPlane);
 
 	for (unsigned int i = 0; i < terrains.size(); ++i) {
 		shader->SetUniformMatrix4fv("gWorld", terrains[i]->GetWorldMatrix());

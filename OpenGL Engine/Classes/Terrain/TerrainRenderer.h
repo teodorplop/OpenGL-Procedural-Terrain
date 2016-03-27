@@ -18,5 +18,5 @@ private:
 
 public:
 	TerrainRenderer(Shader* shader, Camera* camera);
-	void Draw(const std::vector<Terrain*>& terrains);
+	void Draw(const std::vector<Terrain*>& terrains, Vector4 clipPlane);
 };
