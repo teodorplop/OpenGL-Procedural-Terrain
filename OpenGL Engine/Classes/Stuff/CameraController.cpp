@@ -7,7 +7,6 @@
 
 CameraController::CameraController(Transform* camera) {
 	this->camera = camera;
-	this->distanceFromPlayer = 50.0f, this->angleAroundPlayer = 0.0f, this->pitch = 20.0f, this->yaw = 0.0f;
 }
 
 void CameraController::Update() {
@@ -29,6 +28,12 @@ void CameraController::Update() {
 	}
 	if (Input::GetMouseButton(1)) {
 		translation += Vector3(0.0f, Input::GetMouseMovement().y * 0.05f);
+	}
+	if (Input::GetKey(GLFW_KEY_1)) {
+		camera->RotateBy(1.0f, Vector3(1.0f, 0.0f));
+	}
+	if (Input::GetKey(GLFW_KEY_2)) {
+		camera->RotateBy(-1.0f, Vector3(1.0f, 0.0f));
 	}
 	camera->TranslateBy(translation);
 }

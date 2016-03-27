@@ -24,7 +24,7 @@ void WaterRenderer::Draw(const std::vector<Water*>& waters) {
 
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gCamera", camera->GetTransform()->GetMatrix());
-	shader->SetUniform3f("eyeWorldPosition", camera->GetTransform()->GetPosition());
+	shader->SetUniform3f("cameraPosition", camera->GetTransform()->GetPosition());
 	shader->SetUniform1f("moveFactor", moveFactor);
 
 	waterFrameBuffer->GetReflectionTexture()->Bind(0);
@@ -55,8 +55,7 @@ void WaterRenderer::EnableCulling(bool enabled) {
 	if (enabled) {
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
-	}
-	else {
+	} else {
 		glDisable(GL_CULL_FACE);
 	}
 }

@@ -9,11 +9,6 @@ public:
 	CameraController(Transform* camera);
 
 private:
-	float distanceFromPlayer;
-	float angleAroundPlayer;
-	float pitch;
-	float yaw;
-
 	Transform* camera;
 
 protected:
