@@ -7,7 +7,7 @@ private:
 	static const std::string heightMapPath;
 
 public:
-	static void Generate(const char* filename, int width, int height);
+	static void Generate(const char* filename, int width, int height, int octaves);
 
 private:
 	static float** GenerateWhiteNoise(int width, int height);

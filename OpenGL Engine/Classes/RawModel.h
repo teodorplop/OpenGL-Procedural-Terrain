@@ -12,6 +12,7 @@ private:
 
 public:
 	RawModel(VertexArray* vertexArray, IndexBuffer* indexBuffer);
+	~RawModel();
 	VertexArray* GetVertexArray();
 	IndexBuffer* GetIndexBuffer();
 

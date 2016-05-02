@@ -23,7 +23,9 @@ Terrain::~Terrain() {
 	for (int i = 0; i < cells; ++i) {
 		delete heights[i];
 	}
-	delete heights;
+	delete[] heights;
+
+	delete model;
 }
 
 void Terrain::GenerateModel(const char* heightMap) {
@@ -43,6 +45,7 @@ void Terrain::GenerateModel(const char* heightMap) {
 		heights[i] = new float[cells];
 	}
 	CalculateHeights(data);
+	ImageUtils::Unload_Image(data);
 
 	std::vector<Vector4> vertices;
 	std::vector<Vector2> uvs;

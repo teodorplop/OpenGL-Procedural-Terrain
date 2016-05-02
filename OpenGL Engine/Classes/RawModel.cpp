@@ -7,6 +7,11 @@
 RawModel::RawModel(VertexArray* vertexArray, IndexBuffer* indexBuffer) {
 	this->vertexArray = vertexArray, this->indexBuffer = indexBuffer;
 }
+RawModel::~RawModel() {
+	delete vertexArray;
+	delete indexBuffer;
+}
+
 VertexArray* RawModel::GetVertexArray() {
 	return vertexArray;
 }

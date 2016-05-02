@@ -33,6 +33,13 @@ private:
 	Fog fog;
 	DirectionalLight* directionalLight;
 
+	Texture* backgroundTexture;
+	Texture* rTexture;
+	Texture* gTexture;
+	Texture* bTexture;
+	TerrainTexturePack* terrainTexturePack;
+	Texture* blendMapTexture;
+
 	std::vector<Terrain*> terrains;
 	Material* terrainMaterial;
 	Shader* terrainShader;
@@ -53,4 +60,5 @@ public:
 	Scene();
 	~Scene();
 	void Draw();
+	void Update();
 };

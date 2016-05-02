@@ -5,6 +5,7 @@
 #include "Core/Renderer.h"
 #include "Utils\Random.h"
 #include "Terrain/HeightMapGenerator.h"
+#include "Core\Input.h"
 
 Scene::Scene() {
 	Window* window = Window::GetWindow();
@@ -21,14 +22,14 @@ Scene::Scene() {
 	directionalLight = new DirectionalLight(Color::white, 0.25f, Vector3(-1.0f, -1.0f), 0.75f);
 
 	// TERRAIN
-	Texture* backgroundTexture = new Texture("Textures/Terrain/grass.png");
-	Texture* rTexture = new Texture("Textures/Terrain/mud.png");
-	Texture* gTexture = new Texture("Textures/Terrain/grassFlowers.png");
-	Texture* bTexture = new Texture("Textures/Terrain/path.png");
-	TerrainTexturePack* terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-	Texture* blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
+	backgroundTexture = new Texture("Textures/Terrain/grass.png");
+	rTexture = new Texture("Textures/Terrain/mud.png");
+	gTexture = new Texture("Textures/Terrain/grassFlowers.png");
+	bTexture = new Texture("Textures/Terrain/path.png");
+	terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+	blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
 
-	HeightMapGenerator::Generate("heightMap", 256, 256);
+	HeightMapGenerator::Generate("heightMap", 256, 256, 8);
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
 
@@ -46,14 +47,14 @@ Scene::Scene() {
 	waterRenderer = new WaterRenderer(waterShader, camera, waterFrameBuffer);
 
 	// UI
-	UITexture* reflectionTexture = new UITexture(waterFrameBuffer->GetReflectionTexture());
+	/*UITexture* reflectionTexture = new UITexture(waterFrameBuffer->GetReflectionTexture());
 	reflectionTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
 	reflectionTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(-1.0f, 1.0f));
 	UITexture* refractionTexture = new UITexture(waterFrameBuffer->GetRefractionTexture());
 	refractionTexture->GetGameObject()->GetTransform()->ScaleTo(Vector3(0.5f, 0.5f, 1.0f));
 	refractionTexture->GetGameObject()->GetTransform()->TranslateTo(Vector3(1.0f, 1.0f));
 	uiTextures.push_back(reflectionTexture);
-	uiTextures.push_back(refractionTexture);
+	uiTextures.push_back(refractionTexture);*/
 
 	uiShader = new Shader("Shaders/UIShader.vert", "Shaders/UIShader.frag");
 	uiRenderer = new UIRenderer(uiShader);
@@ -101,4 +102,19 @@ void Scene::Draw() {
 	terrainRenderer->Draw(terrains, Vector4(0, -1, 0, 10000));
 	waterRenderer->Draw(waters);
 	//uiRenderer->Draw(uiTextures);
+}
+
+void Scene::Update() {
+	for (int key = 1; key <= 8; ++key) {
+		if (Input::GetKey((int)'0' + key)) {
+			for (unsigned int i = 0; i < terrains.size(); ++i) {
+				delete terrains[i];
+			}
+			terrains.clear();
+
+			HeightMapGenerator::Generate("heightMap", 256, 256, key);
+			Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
+			terrains.push_back(terrain);
+		}
+	}
 }

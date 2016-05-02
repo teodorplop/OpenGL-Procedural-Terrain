@@ -50,3 +50,7 @@ FIBITMAP* ImageUtils::Load_Image(const char* filename) {
 
 	return FreeImage_Load(format, filename);
 }
+
+void ImageUtils::Unload_Image(FIBITMAP* image) {
+	FreeImage_Unload(image);
+}
