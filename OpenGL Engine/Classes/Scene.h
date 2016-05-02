@@ -26,6 +26,8 @@
 
 class Scene {
 private:
+	int key;
+
 	Camera* camera;
 	CameraController* cameraController;
 
@@ -55,6 +57,9 @@ private:
 	UIRenderer* uiRenderer;
 
 	WaterFrameBuffer* waterFrameBuffer;
+
+private:
+	void RefreshTerrain(int key, bool newSeed);
 
 public:
 	Scene();

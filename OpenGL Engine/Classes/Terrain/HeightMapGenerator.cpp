@@ -5,8 +5,8 @@
 
 const std::string HeightMapGenerator::heightMapPath = "Textures/Terrain/HeightMaps/";
 
-void HeightMapGenerator::Generate(const char* filename, int width, int height, int octaves) {
-	float **whiteNoise = GenerateWhiteNoise(width, height);
+void HeightMapGenerator::Generate(const char* filename, int width, int height, int octaves, int seed) {
+	float **whiteNoise = GenerateWhiteNoise(width, height, seed);
 	float ***smoothNoises = new float**[octaves];
 
 	for (int octave = 0; octave < octaves; ++octave) {
@@ -52,8 +52,8 @@ void HeightMapGenerator::Generate(const char* filename, int width, int height, i
 	}
 }
 
-float** HeightMapGenerator::GenerateWhiteNoise(int width, int height) {
-	Random::SetSeed(0);
+float** HeightMapGenerator::GenerateWhiteNoise(int width, int height, int seed) {
+	Random::SetSeed(seed);
 
 	float** whiteNoise = new float*[width];
 	for (int i = 0; i < width; ++i) {

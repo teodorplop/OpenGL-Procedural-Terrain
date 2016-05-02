@@ -29,7 +29,8 @@ Scene::Scene() {
 	terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 	blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
 
-	HeightMapGenerator::Generate("heightMap", 256, 256, 8);
+	key = 8;
+	HeightMapGenerator::Generate("heightMap", 256, 256, key);
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
 
@@ -104,17 +105,30 @@ void Scene::Draw() {
 	//uiRenderer->Draw(uiTextures);
 }
 
+void Scene::RefreshTerrain(int key, bool newSeed) {
+	for (unsigned int i = 0; i < terrains.size(); ++i) {
+		delete terrains[i];
+	}
+	terrains.clear();
+
+	this->key = key;
+	HeightMapGenerator::Generate("heightMap", 256, 256, key, (int)1000 * Random::Next());
+	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
+	terrains.push_back(terrain);
+}
+
 void Scene::Update() {
+	bool newSeed = Input::GetKey((int)'R');
+	int newKey = key;
+
 	for (int key = 1; key <= 8; ++key) {
 		if (Input::GetKey((int)'0' + key)) {
-			for (unsigned int i = 0; i < terrains.size(); ++i) {
-				delete terrains[i];
-			}
-			terrains.clear();
-
-			HeightMapGenerator::Generate("heightMap", 256, 256, key);
-			Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
-			terrains.push_back(terrain);
+			newKey = key;
+			break;
 		}
+	}
+
+	if (newSeed || key != newKey) {
+		RefreshTerrain(newKey, newSeed);
 	}
 }
