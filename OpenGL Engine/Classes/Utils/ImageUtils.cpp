@@ -20,8 +20,9 @@ BYTE* ImageUtils::Load_Image(const char* filename, GLsizei* width, GLsizei* heig
 	*width = FreeImage_GetWidth(bitmap32);
 	*height = FreeImage_GetHeight(bitmap32);
 
-	if ((result == 0) || (width == 0) || (height == 0))
+	if ((result == 0) || (width == 0) || (height == 0)) {
 		return NULL;
+	}
 
 	return result;
 }

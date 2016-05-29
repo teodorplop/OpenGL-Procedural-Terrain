@@ -29,7 +29,7 @@ Scene::Scene() {
 	terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 	blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
 
-	key = 8;
+	key = 7;
 	HeightMapGenerator::Generate("heightMap", 256, 256, key);
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);

@@ -8,6 +8,7 @@ VertexArray::~VertexArray() {
 	for (int i = 0; i < buffers.size(); ++i) {
 		delete buffers[i];
 	}
+	buffers.clear();
 	glDeleteVertexArrays(1, &arrayID);
 }
 
