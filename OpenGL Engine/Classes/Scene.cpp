@@ -124,10 +124,17 @@ void Scene::RefreshTerrain() {
 		delete terrains[i];
 	}
 	terrains.clear();
+	for (unsigned int i = 0; i < waters.size(); ++i) {
+		delete waters[i];
+	}
+	waters.clear();
 
 	HeightMapGenerator::Generate("heightMap", heightMapResolution, heightMapResolution, terrainOctaves, terrainSeed);
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
+
+	Water* water = new Water(0, 0);
+	waters.push_back(water);
 }
 
 void Scene::SetSeed(int seed) {
@@ -145,6 +152,18 @@ void Scene::SetHeightMapRes(int res) {
 void Scene::SetOctaves(int octaves) {
 	if (this->terrainOctaves != octaves) {
 		this->terrainOctaves = octaves;
+		this->dirty = true;
+	}
+}
+void Scene::SetTerrainSize(float size) {
+	if (Terrain::size != size) {
+		Terrain::size = size;
+		this->dirty = true;
+	}
+}
+void Scene::SetTerrainHeight(float height) {
+	if (Terrain::maxHeight != height) {
+		Terrain::maxHeight = height;
 		this->dirty = true;
 	}
 }

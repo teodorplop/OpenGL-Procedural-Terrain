@@ -38,10 +38,10 @@ void Console::ExecuteCommand(char* input) {
 			catch (std::invalid_argument) {
 				printf("Invalid argument.\n");
 			}
-		} else if (split[0] == "set" && split[1] == "heightmapres") {
+		} else if (split[0] == "set" && split[1] == "heightMapRes") {
 			try {
 				int value = std::stoi(split[2]);
-				AddProperty("set_heightmapres", to_string(value));
+				AddProperty("set_heightMapRes", to_string(value));
 			} catch (std::invalid_argument) {
 				printf("Invalid argument.\n");
 			}
@@ -49,6 +49,20 @@ void Console::ExecuteCommand(char* input) {
 			try {
 				int value = std::stoi(split[2]);
 				AddProperty("set_octaves", to_string(value));
+			} catch (std::invalid_argument) {
+				printf("Invalid argument.\n");
+			}
+		} else if (split[0] == "set" && split[1] == "terrainSize") {
+			try {
+				float value = std::stof(split[2]);
+				AddProperty("set_terrainSize", to_string(value));
+			} catch (std::invalid_argument) {
+				printf("Invalid argument.\n");
+			}
+		} else if (split[0] == "set" && split[1] == "terrainHeight") {
+			try {
+				float value = std::stof(split[2]);
+				AddProperty("set_terrainHeight", to_string(value));
 			} catch (std::invalid_argument) {
 				printf("Invalid argument.\n");
 			}

@@ -73,4 +73,6 @@ public:
 	void SetSeed(int seed);
 	void SetHeightMapRes(int res);
 	void SetOctaves(int octaves);
+	void SetTerrainSize(float size);
+	void SetTerrainHeight(float height);
 };

@@ -8,9 +8,9 @@
 
 class Terrain {
 public:
-	static const float size;
+	static float size;
+	static float maxHeight;
 private:
-	static const float maxHeight;
 	static const float maxPixelColor;
 
 	float x, z;

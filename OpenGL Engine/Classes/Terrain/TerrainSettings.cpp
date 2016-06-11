@@ -34,7 +34,7 @@ void TerrainSettings::ProcessContent(const std::string& content) {
 		} catch (std::invalid_argument) {
 			printf("Invalid argument.\n");
 		}
-	} else if (content.size() >= 16 && content.substr(0, 16) == "set_heightmapres") {
+	} else if (content.size() >= 16 && content.substr(0, 16) == "set_heightMapRes") {
 		try {
 			int value = std::stoi(content.substr(17));
 			scene->SetHeightMapRes(value);
@@ -45,6 +45,20 @@ void TerrainSettings::ProcessContent(const std::string& content) {
 		try {
 			int value = std::stoi(content.substr(12));
 			scene->SetOctaves(value);
+		} catch (std::invalid_argument) {
+			printf("Invalid argument.\n");
+		}
+	} else if (content.size() >= 15 && content.substr(0, 15) == "set_terrainSize") {
+		try {
+			float value = std::stof(content.substr(16));
+			scene->SetTerrainSize(value);
+		} catch (std::invalid_argument) {
+			printf("Invalid argument.\n");
+		}
+	} else if (content.size() >= 17 && content.substr(0, 17) == "set_terrainHeight") {
+		try {
+			float value = std::stof(content.substr(18));
+			scene->SetTerrainHeight(value);
 		} catch (std::invalid_argument) {
 			printf("Invalid argument.\n");
 		}

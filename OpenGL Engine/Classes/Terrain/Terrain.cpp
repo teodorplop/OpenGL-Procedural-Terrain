@@ -5,8 +5,8 @@
 #include <vector>
 
 // total square size
-const float Terrain::size = 1024.0f;
-const float Terrain::maxHeight = 100.0f;
+float Terrain::size = 1024.0f;
+float Terrain::maxHeight = 100.0f;
 const float Terrain::maxPixelColor = 256.0f * 256.0f * 256.0f;
 
 Terrain::Terrain(int gridX, int gridZ, TerrainTexturePack* texturePack, Texture* blendMap, const char* heightMap) {

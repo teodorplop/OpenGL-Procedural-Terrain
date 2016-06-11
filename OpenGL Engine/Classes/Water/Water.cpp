@@ -3,11 +3,10 @@
 #include "../Buffers/Buffer.h"
 #include "../Buffers/IndexBuffer.h"
 #include <vector>
-
-const float Water::size = 1024.0f;
+#include "../Terrain/Terrain.h"
 
 Water::Water(int gridX, int gridZ) {
-	this->x = gridX * size, this->z = gridZ * size;
+	this->x = gridX * Terrain::size, this->z = gridZ * Terrain::size;
 	this->worldMatrix = Matrix4::Translation(Vector3(this->x, 0.0f, this->z));
 
 	std::vector<Vector2> vertices;
@@ -15,9 +14,9 @@ Water::Water(int gridX, int gridZ) {
 	std::vector<Vector2> uvs;
 	std::vector<unsigned int> indices;
 	for (int i = 0; i < 2; ++i) {
-		float x = this->x + i * size;
+		float x = this->x + i * Terrain::size;
 		for (int j = 0; j < 2; ++j) {
-			float z = this->z + j * size;
+			float z = this->z + j * Terrain::size;
 			vertices.push_back(Vector2(x, z));
 			normals.push_back(Vector3(0.0f, 1.0f, 0.0f));
 			uvs.push_back(Vector2((float)i, (float)j));
@@ -43,6 +42,7 @@ Water::Water(int gridX, int gridZ) {
 }
 
 Water::~Water() {
+	delete model;
 }
 
 RawModel* Water::GetModel() {

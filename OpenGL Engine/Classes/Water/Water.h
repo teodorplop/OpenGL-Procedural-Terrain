@@ -5,9 +5,6 @@
 #include "../Utils/Math/Matrix4.h"
 
 class Water {
-public:
-	static const float size;
-
 private:
 	float x, z;
 
