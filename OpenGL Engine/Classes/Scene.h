@@ -26,8 +26,6 @@
 
 class Scene {
 private:
-	int key;
-
 	Camera* camera;
 	CameraController* cameraController;
 
@@ -59,11 +57,20 @@ private:
 	WaterFrameBuffer* waterFrameBuffer;
 
 private:
-	void RefreshTerrain(int key, bool newSeed);
+	bool dirty;
+	int terrainSeed;
+	int terrainOctaves;
+	int heightMapResolution;
+	void RefreshTerrain();
 
 public:
 	Scene();
 	~Scene();
 	void Draw();
 	void Update();
+
+	// Console functions
+	void SetSeed(int seed);
+	void SetHeightMapRes(int res);
+	void SetOctaves(int octaves);
 };

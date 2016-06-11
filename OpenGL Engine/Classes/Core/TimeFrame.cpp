@@ -19,6 +19,6 @@ void TimeFrame::Update(float time) {
 		lastFPSPrint = time;
 		frames = 0;
 
-		printf("FPS: %f\n", fps);
+		//printf("FPS: %f\n", fps);
 	}
 }

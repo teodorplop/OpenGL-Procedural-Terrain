@@ -150,6 +150,7 @@
     <ClCompile Include="Classes\Effects\Fog.cpp" />
     <ClCompile Include="Classes\Terrain\HeightMapGenerator.cpp" />
     <ClCompile Include="Classes\Water\WaterFrameBuffer.cpp" />
+    <ClCompile Include="Classes\Console\Console.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\Utils\Math\Matrix4.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector3.cpp" />
@@ -177,6 +178,8 @@
     <ClCompile Include="Classes\Water\WaterRenderer.cpp" />
     <ClCompile Include="Classes\Interface\UIRenderer.cpp" />
     <ClCompile Include="Classes\Interface\UITexture.cpp" />
+    <ClCompile Include="Classes\Utils\StringUtils.cpp" />
+    <ClCompile Include="Classes\Terrain\TerrainSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Stuff\CameraController.h" />
@@ -222,6 +225,10 @@
     <ClInclude Include="Classes\Interface\UIRenderer.h" />
     <ClInclude Include="Classes\Interface\UITexture.h" />
     <ClInclude Include="Classes\Water\WaterFrameBuffer.h" />
+    <ClInclude Include="Classes\Console\Console.h" />
+    <ClInclude Include="Classes\Utils\StringUtils.h" />
+    <ClInclude Include="Classes\Utils\MyMutex.h" />
+    <ClInclude Include="Classes\Terrain\TerrainSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Shader.frag" />

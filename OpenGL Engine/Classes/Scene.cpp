@@ -7,6 +7,12 @@
 #include "Terrain/HeightMapGenerator.h"
 #include "Core\Input.h"
 
+#include "Utils/FileUtils.h"
+#include "Utils/StringUtils.h"
+#include "Utils\MyMutex.h"
+
+//std::mutex myMutex;
+
 Scene::Scene() {
 	Window* window = Window::GetWindow();
 	int width = window->GetWidth(), height = window->GetHeight();
@@ -29,10 +35,11 @@ Scene::Scene() {
 	terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 	blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
 
-	key = 7;
-	HeightMapGenerator::Generate("heightMap", 256, 256, key);
-	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
-	terrains.push_back(terrain);
+	this->terrainSeed = 0;
+	this->terrainOctaves = 7;
+	this->heightMapResolution = 256;
+	this->dirty = false;
+	RefreshTerrain();
 
 	terrainMaterial = new Material(0.25f, 32.0f);
 	terrainShader = new Shader("Shaders/TerrainShader.vert", "Shaders/TerrainShader.frag");
@@ -105,30 +112,39 @@ void Scene::Draw() {
 	//uiRenderer->Draw(uiTextures);
 }
 
-void Scene::RefreshTerrain(int key, bool newSeed) {
+void Scene::Update() {
+	if (dirty) {
+		dirty = false;
+		RefreshTerrain();
+	}
+}
+
+void Scene::RefreshTerrain() {
 	for (unsigned int i = 0; i < terrains.size(); ++i) {
 		delete terrains[i];
 	}
 	terrains.clear();
 
-	this->key = key;
-	HeightMapGenerator::Generate("heightMap", 256, 256, key, (int)1000 * Random::Next());
+	HeightMapGenerator::Generate("heightMap", heightMapResolution, heightMapResolution, terrainOctaves, terrainSeed);
 	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
 }
 
-void Scene::Update() {
-	bool newSeed = Input::GetKey((int)'R');
-	int newKey = key;
-
-	for (int key = 1; key <= 8; ++key) {
-		if (Input::GetKey((int)'0' + key)) {
-			newKey = key;
-			break;
-		}
+void Scene::SetSeed(int seed) {
+	if (this->terrainSeed != seed) {
+		this->terrainSeed = seed;
+		this->dirty = true;
 	}
-
-	if (newSeed || key != newKey) {
-		RefreshTerrain(newKey, newSeed);
+}
+void Scene::SetHeightMapRes(int res) {
+	if (this->heightMapResolution != res) {
+		this->heightMapResolution = res;
+		this->dirty = true;
+	}
+}
+void Scene::SetOctaves(int octaves) {
+	if (this->terrainOctaves != octaves) {
+		this->terrainOctaves = octaves;
+		this->dirty = true;
 	}
 }

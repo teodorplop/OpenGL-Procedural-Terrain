@@ -5,6 +5,7 @@
 
 #include "../Scene.h"
 #include "Window.h"
+#include "../Terrain/TerrainSettings.h"
 
 class Engine {
 private:
@@ -12,7 +13,9 @@ private:
 	Engine(int argc, char** argv);
 	Scene* currentScene;
 	Window* currentWindow;
+	TerrainSettings* terrainSettings;
 
 public:
 	static void Start(int argc, char** argv);
+	static Scene* CurrentScene();
 };

@@ -20,12 +20,14 @@ Engine::Engine(int argc, char** argv) {
 
 	Input::HandleInput(currentWindow);
 	currentScene = new Scene();
+	terrainSettings = new TerrainSettings(currentScene);
 
 	while (!currentWindow->Closed()) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// calls the update function for all objects
 		ObjectManager::GetInstance()->Update();
+		terrainSettings->Update();
 		currentScene->Update();
 		// clear the input
 		Input::Update();
@@ -43,4 +45,8 @@ void Engine::Start(int argc, char** argv) {
 	if (instance == NULL) {
 		instance = new Engine(argc, argv);
 	}
+}
+
+Scene* Engine::CurrentScene() {
+	return instance->currentScene;
 }
