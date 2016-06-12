@@ -29,7 +29,11 @@ void Console::Execute() {
 
 void Console::ExecuteCommand(char* input) {
 	std::vector<std::string> split = StringUtils::Split(input, "_");
-	if (split.size() == 3) {
+	if (split.size() == 1) {
+		if (split[0] == "help") {
+			PrintHelp();
+		}
+	} else if (split.size() == 3) {
 		if (split[0] == "set" && split[1] == "seed") {
 			try {
 				int value = std::stoi(split[2]);
@@ -80,4 +84,15 @@ void Console::AddProperty(const std::string& prop, const std::string& value) {
 	myMutex.lock();
 	FileUtils::WriteContent("terrainSettings.txt", fileContent);
 	myMutex.unlock();
+}
+
+void Console::PrintHelp() {
+	printf("\n-----------------------------\nList of available commands:\n-----------------------------\n");
+	printf("help -> Prints a list of avaiable commands.\n");
+	printf("set_seed_x -> Sets the seed used to generate Perlin Noise to x.\n");
+	printf("set_heightMapRes_x -> Sets the height map texture resolution to x * x.\n");
+	printf("set_octaves_x -> Sets the number of octaves from Perlin Noise to x.\n");
+	printf("set_terrainSize_x -> Sets the length and width of the terrain to x.\n");
+	printf("set_terrainHeight_x -> Sets the maximum terrain height to x.\n");
+	printf("-----------------------------\n");
 }

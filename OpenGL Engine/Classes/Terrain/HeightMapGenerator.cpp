@@ -43,12 +43,10 @@ void HeightMapGenerator::Generate(const char* filename, int width, int height, i
 	SaveHeightMap(perlinNoise, width, height, std::string(filename) + ".png");
 
 	for (int ii = 0; ii < octaves; ++ii) {
-		perlinNoise = smoothNoises[ii];
-
 		std::string temp = filename;
 		temp += std::to_string(ii);
 		temp += ".png";
-		SaveHeightMap(perlinNoise, width, height, temp);
+		SaveHeightMap(smoothNoises[ii], width, height, temp);
 	}
 }
 

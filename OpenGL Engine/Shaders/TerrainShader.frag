@@ -70,6 +70,7 @@ vec4 CalculateTerrainColor() {
 	vec4 gTextureColor = texture(gSampler, tiledCoordinates) * blendMapColor.g;
 	vec4 bTextureColor = texture(bSampler, tiledCoordinates) * blendMapColor.b;
 	
+	return texture(backgroundSampler, tiledCoordinates);
 	return backgroundTextureColor + rTextureColor + gTextureColor + bTextureColor;
 }
 

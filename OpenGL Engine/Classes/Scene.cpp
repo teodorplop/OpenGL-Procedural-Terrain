@@ -9,9 +9,6 @@
 
 #include "Utils/FileUtils.h"
 #include "Utils/StringUtils.h"
-#include "Utils\MyMutex.h"
-
-//std::mutex myMutex;
 
 Scene::Scene() {
 	Window* window = Window::GetWindow();
