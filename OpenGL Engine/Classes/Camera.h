@@ -24,11 +24,7 @@ public:
 	Matrix4 GetProjectionMatrix();
 	Transform* GetTransform();
 
+private:
 	void SetOrthographic(float size, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
 	void SetPerspective(float fieldOfView, float aspectRatio, float nearClip = 1.0f, float farClip = 100.0f);
-	
-	void SetOrthographicSize(float size);
-	void SetFieldOfView(float fieldOfView);
-	float GetOrthographicSize();
-	float GetFieldOfView();
 };

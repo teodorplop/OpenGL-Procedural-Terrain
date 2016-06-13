@@ -29,11 +29,5 @@ void CameraController::Update() {
 	if (Input::GetMouseButton(1)) {
 		translation += Vector3(0.0f, Input::GetMouseMovement().y * 0.05f);
 	}
-	if (Input::GetKey(GLFW_KEY_1)) {
-		camera->RotateBy(1.0f, Vector3(1.0f, 0.0f));
-	}
-	if (Input::GetKey(GLFW_KEY_2)) {
-		camera->RotateBy(-1.0f, Vector3(1.0f, 0.0f));
-	}
 	camera->TranslateBy(translation);
 }
