@@ -24,12 +24,7 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains, Vector4 clipPl
 		shader->SetUniformMatrix4fv("gWorld", terrains[i]->GetWorldMatrix());
 
 		RawModel* model = terrains[i]->GetModel();
-		TerrainTexturePack* texturePack = terrains[i]->GetTexturePack();
-		texturePack->GetBackgroundTexture()->Bind(0);
-		texturePack->GetRTexture()->Bind(1);
-		texturePack->GetGTexture()->Bind(2);
-		texturePack->GetBTexture()->Bind(3);
-		terrains[i]->GetBlendMap()->Bind(4);
+		terrains[i]->GetTexture()->Bind();
 
 		model->GetVertexArray()->Bind();
 		model->GetIndexBuffer()->Bind();
@@ -39,11 +34,7 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains, Vector4 clipPl
 		model->GetIndexBuffer()->Unbind();
 		model->GetVertexArray()->Unbind();
 
-		texturePack->GetBackgroundTexture()->Unbind();
-		texturePack->GetRTexture()->Unbind();
-		texturePack->GetGTexture()->Unbind();
-		texturePack->GetBTexture()->Unbind();
-		terrains[i]->GetBlendMap()->Unbind();
+		terrains[i]->GetTexture()->Unbind();
 	}
 
 	shader->Unbind();

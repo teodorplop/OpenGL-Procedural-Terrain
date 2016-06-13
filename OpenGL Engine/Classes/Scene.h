@@ -33,12 +33,7 @@ private:
 	Fog fog;
 	DirectionalLight* directionalLight;
 
-	Texture* backgroundTexture;
-	Texture* rTexture;
-	Texture* gTexture;
-	Texture* bTexture;
-	TerrainTexturePack* terrainTexturePack;
-	Texture* blendMapTexture;
+	Texture* terrainTexture;
 
 	std::vector<Terrain*> terrains;
 	Material* terrainMaterial;

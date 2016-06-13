@@ -9,12 +9,11 @@ float Terrain::size = 1024.0f;
 float Terrain::maxHeight = 100.0f;
 const float Terrain::maxPixelColor = 256.0f * 256.0f * 256.0f;
 
-Terrain::Terrain(int gridX, int gridZ, TerrainTexturePack* texturePack, Texture* blendMap, const char* heightMap) {
+Terrain::Terrain(int gridX, int gridZ, Texture* texture, const char* heightMap) {
 	this->x = gridX * size, this->z = gridZ * size;
 
 	this->worldMatrix = Matrix4::Translation(Vector3(this->x, 0.0f, this->z));
-	this->texturePack = texturePack;
-	this->blendMap = blendMap;
+	this->texture = texture;
 
 	GenerateModel(heightMap);
 }
@@ -209,12 +208,9 @@ float Terrain::GetTerrainHeight(const float& worldX, const float& worldZ) {
 RawModel* Terrain::GetModel() {
 	return model;
 }
-TerrainTexturePack* Terrain::GetTexturePack() {
-	return texturePack;
-}
 const Matrix4& Terrain::GetWorldMatrix() const {
 	return worldMatrix;
 }
-Texture* Terrain::GetBlendMap() {
-	return blendMap;
+Texture* Terrain::GetTexture() {
+	return texture;
 }

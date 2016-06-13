@@ -28,10 +28,6 @@ uniform vec3 eyeWorldPosition;
 uniform SpecularLight specularLight;
 
 uniform sampler2D backgroundSampler;
-uniform sampler2D rSampler;
-uniform sampler2D gSampler;
-uniform sampler2D bSampler;
-uniform sampler2D blendMapSampler;
 
 out vec4 outColor;
 
@@ -61,17 +57,8 @@ vec4 CalculateSpecularColor() {
 }
 
 vec4 CalculateTerrainColor() {
-	vec4 blendMapColor = texture(blendMapSampler, In.textureCoord);
-	float backTextureAmount = 1 - (blendMapColor.r + blendMapColor.g + blendMapColor.b);
 	vec2 tiledCoordinates = In.textureCoord * 40.0f;
-
-	vec4 backgroundTextureColor = texture(backgroundSampler, tiledCoordinates) * backTextureAmount;
-	vec4 rTextureColor = texture(rSampler, tiledCoordinates) * blendMapColor.r;
-	vec4 gTextureColor = texture(gSampler, tiledCoordinates) * blendMapColor.g;
-	vec4 bTextureColor = texture(bSampler, tiledCoordinates) * blendMapColor.b;
-	
 	return texture(backgroundSampler, tiledCoordinates);
-	return backgroundTextureColor + rTextureColor + gTextureColor + bTextureColor;
 }
 
 void main() {

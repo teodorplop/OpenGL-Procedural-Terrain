@@ -25,12 +25,7 @@ Scene::Scene() {
 	directionalLight = new DirectionalLight(Color::white, 0.25f, Vector3(-1.0f, -1.0f), 0.75f);
 
 	// TERRAIN
-	backgroundTexture = new Texture("Textures/Terrain/grass.png");
-	rTexture = new Texture("Textures/Terrain/mud.png");
-	gTexture = new Texture("Textures/Terrain/grassFlowers.png");
-	bTexture = new Texture("Textures/Terrain/path.png");
-	terrainTexturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-	blendMapTexture = new Texture("Textures/Terrain/blendMap.png");
+	terrainTexture = new Texture("Textures/Terrain/grass.png");
 
 	this->terrainSeed = 0;
 	this->terrainOctaves = 7;
@@ -127,7 +122,7 @@ void Scene::RefreshTerrain() {
 	waters.clear();
 
 	HeightMapGenerator::Generate("heightMap", heightMapResolution, heightMapResolution, terrainOctaves, terrainSeed);
-	Terrain* terrain = new Terrain(0, 0, terrainTexturePack, blendMapTexture, "Textures/Terrain/HeightMaps/heightMap.png");
+	Terrain* terrain = new Terrain(0, 0, terrainTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
 
 	Water* water = new Water(0, 0);

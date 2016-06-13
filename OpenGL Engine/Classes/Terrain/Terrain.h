@@ -16,8 +16,7 @@ private:
 	float x, z;
 	Matrix4 worldMatrix;
 	RawModel* model;
-	TerrainTexturePack* texturePack;
-	Texture* blendMap;
+	Texture* texture;
 
 	int cells;
 	float** heights;
@@ -29,13 +28,12 @@ private:
 	float GetHeight(FIBITMAP* data, const int& x, const int& y);
 
 public:
-	Terrain(int gridX, int gridZ, TerrainTexturePack* texture, Texture* blendMap, const char* heightMap);
+	Terrain(int gridX, int gridZ, Texture* texture, const char* heightMap);
 	~Terrain();
 
 	float GetTerrainHeight(const float& worldX, const float& worldZ);
 
 	const Matrix4& GetWorldMatrix() const;
 	RawModel* GetModel();
-	TerrainTexturePack* GetTexturePack();
-	Texture* GetBlendMap();
+	Texture* GetTexture();
 };
