@@ -307,4 +307,7 @@
     <None Include="Shaders\UIShader.frag" />
     <None Include="Shaders\UIShader.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="terrainSettings.txt" />
+  </ItemGroup>
 </Project>

@@ -22,7 +22,6 @@ void ObjectManager::Update() {
 	}
 }
 void ObjectManager::CleanUp() {
-	// TODO: This one is ugly.
 	std::unordered_set<Object*> aux = objects;
 	for (auto obj : aux) {
 		delete obj;
