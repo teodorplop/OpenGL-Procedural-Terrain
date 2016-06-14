@@ -1,8 +1,6 @@
 #pragma once
 
-#include "../RawModel.h"
-#include "../Texture.h"
-#include "TerrainTexturePack.h"
+#include "../TexturedModel.h"
 #include "../Utils/Math/Matrix4.h"
 #include "../Utils/ImageUtils.h"
 
@@ -15,13 +13,12 @@ private:
 
 	float x, z;
 	Matrix4 worldMatrix;
-	RawModel* model;
-	Texture* texture;
+	TexturedModel* texturedModel;
 
 	int cells;
 	float** heights;
 
-	void GenerateModel(const char* heightMap);
+	RawModel* GenerateModel(const char* heightMap);
 	void CalculateHeights(FIBITMAP* data);
 	void SmoothHeights(float alpha);
 	Vector3 CalculateNormal(const int& x, const int& y);
@@ -34,6 +31,5 @@ public:
 	float GetTerrainHeight(const float& worldX, const float& worldZ);
 
 	const Matrix4& GetWorldMatrix() const;
-	RawModel* GetModel();
-	Texture* GetTexture();
+	TexturedModel* GetTexturedModel();
 };

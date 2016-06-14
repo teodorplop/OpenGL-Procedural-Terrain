@@ -78,6 +78,8 @@ Scene::Scene() {
 	waterShader->Unbind();
 }
 Scene::~Scene() {
+	delete camera;
+	delete cameraController;
 }
 
 void Scene::Draw() {

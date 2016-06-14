@@ -13,9 +13,8 @@ Terrain::Terrain(int gridX, int gridZ, Texture* texture, const char* heightMap) 
 	this->x = gridX * size, this->z = gridZ * size;
 
 	this->worldMatrix = Matrix4::Translation(Vector3(this->x, 0.0f, this->z));
-	this->texture = texture;
 
-	GenerateModel(heightMap);
+	this->texturedModel = new TexturedModel(GenerateModel(heightMap), texture);
 }
 
 Terrain::~Terrain() {
@@ -24,10 +23,10 @@ Terrain::~Terrain() {
 	}
 	delete[] heights;
 
-	delete model;
+	delete texturedModel;
 }
 
-void Terrain::GenerateModel(const char* heightMap) {
+RawModel* Terrain::GenerateModel(const char* heightMap) {
 	cells = 256;
 
 	FIBITMAP* data = ImageUtils::Load_Image(heightMap);
@@ -115,7 +114,7 @@ void Terrain::GenerateModel(const char* heightMap) {
 	vertexArray->AddBuffer(uvsBuffer, 1);
 	vertexArray->AddBuffer(normalsBuffer, 2);
 
-	model = new RawModel(vertexArray, indexBuffer);
+	return new RawModel(vertexArray, indexBuffer);
 }
 
 void Terrain::CalculateHeights(FIBITMAP* data) {
@@ -205,12 +204,9 @@ float Terrain::GetTerrainHeight(const float& worldX, const float& worldZ) {
 	return answer;
 }
 
-RawModel* Terrain::GetModel() {
-	return model;
+TexturedModel* Terrain::GetTexturedModel() {
+	return texturedModel;
 }
 const Matrix4& Terrain::GetWorldMatrix() const {
 	return worldMatrix;
-}
-Texture* Terrain::GetTexture() {
-	return texture;
 }

@@ -19,6 +19,13 @@ WaterFrameBuffer::WaterFrameBuffer() {
 }
 
 WaterFrameBuffer::~WaterFrameBuffer() {
+	glDeleteFramebuffers(1, &reflectionFrameBuffer);
+	glDeleteFramebuffers(1, &refractionFrameBuffer);
+	glDeleteRenderbuffers(1, &reflectionDepthBuffer);
+	glDeleteTextures(1, &refractionDepthTexture);
+
+	delete reflectionTexture;
+	delete refractionTexture;
 }
 
 Texture* WaterFrameBuffer::GetReflectionTexture() {

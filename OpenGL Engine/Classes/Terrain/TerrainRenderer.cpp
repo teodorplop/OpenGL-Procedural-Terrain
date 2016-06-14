@@ -5,10 +5,6 @@ TerrainRenderer::TerrainRenderer(Shader* shader, Camera* camera) {
 	shader->Bind();
 	shader->SetUniformMatrix4fv("gProj", camera->GetProjectionMatrix());
 	shader->SetUniform1i("backgroundSampler", 0);
-	shader->SetUniform1i("rSampler", 1);
-	shader->SetUniform1i("gSampler", 2);
-	shader->SetUniform1i("bSampler", 3);
-	shader->SetUniform1i("blendMapSampler", 4);
 	shader->Unbind();
 }
 
@@ -23,8 +19,9 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains, Vector4 clipPl
 	for (unsigned int i = 0; i < terrains.size(); ++i) {
 		shader->SetUniformMatrix4fv("gWorld", terrains[i]->GetWorldMatrix());
 
-		RawModel* model = terrains[i]->GetModel();
-		terrains[i]->GetTexture()->Bind();
+		RawModel* model = terrains[i]->GetTexturedModel()->GetRawModel();
+		Texture* texture = terrains[i]->GetTexturedModel()->GetTexture();
+		texture->Bind();
 
 		model->GetVertexArray()->Bind();
 		model->GetIndexBuffer()->Bind();
@@ -34,7 +31,7 @@ void TerrainRenderer::Draw(const std::vector<Terrain*>& terrains, Vector4 clipPl
 		model->GetIndexBuffer()->Unbind();
 		model->GetVertexArray()->Unbind();
 
-		terrains[i]->GetTexture()->Unbind();
+		texture->Unbind();
 	}
 
 	shader->Unbind();

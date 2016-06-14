@@ -13,7 +13,6 @@ private:
 	void ProcessContent(const std::string& content);
 
 	Scene* scene;
-	int updateCount;
-	int seed;
+	float timer;
 };
 

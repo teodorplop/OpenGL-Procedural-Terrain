@@ -8,7 +8,9 @@ std::mutex myMutex;
 Console* Console::instance = NULL;
 
 void Console::Start() {
-	instance = new Console();
+	if (instance == NULL) {
+		instance = new Console();
+	}
 }
 
 Console::Console() {
@@ -32,6 +34,8 @@ void Console::ExecuteCommand(char* input) {
 	if (split.size() == 1) {
 		if (split[0] == "help") {
 			PrintHelp();
+		} else {
+			printf("Unknown command.\n");
 		}
 	} else if (split.size() == 3) {
 		if (split[0] == "set" && split[1] == "seed") {
@@ -70,7 +74,11 @@ void Console::ExecuteCommand(char* input) {
 			} catch (std::invalid_argument) {
 				printf("Invalid argument.\n");
 			}
+		} else {
+			printf("Unknown command.\n");
 		}
+	} else {
+		printf("Unknown command.\n");
 	}
 }
 

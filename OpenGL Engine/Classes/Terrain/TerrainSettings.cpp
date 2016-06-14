@@ -2,6 +2,7 @@
 #include "..\Utils\FileUtils.h"
 #include "..\Utils\StringUtils.h"
 #include "..\Utils\MyMutex.h"
+#include "../Core/TimeFrame.h"
 
 char* TerrainSettings::filePath = "terrainSettings.txt";
 
@@ -11,13 +12,14 @@ TerrainSettings::TerrainSettings(Scene* scene) {
 	myMutex.unlock();
 
 	this->scene = scene;
-	updateCount = 0;
-	seed = 0;
+	this->timer = 0.0f;
 }
 
 void TerrainSettings::Update() {
-	updateCount = (updateCount + 1) % 60;
-	if (updateCount == 0) {
+	timer += TimeFrame::deltaTime;
+	if (timer >= 1.0f) {
+		timer = 0.0f;
+
 		myMutex.lock();
 		std::string fileContent = FileUtils::GetFileContents(filePath);
 		myMutex.unlock();
