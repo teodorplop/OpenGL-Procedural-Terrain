@@ -16,6 +16,8 @@ BYTE* ImageUtils::Load_Image(const char* filename, GLsizei* width, GLsizei* heig
 		bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
 	}
 
+	FreeImage_Unload(bitmap);
+
 	BYTE* result = FreeImage_GetBits(bitmap32);
 	*width = FreeImage_GetWidth(bitmap32);
 	*height = FreeImage_GetHeight(bitmap32);

@@ -167,6 +167,7 @@ float Terrain::GetHeight(FIBITMAP* data, const int& x, const int& y) {
 	}
 
 	float pixelColor = (float)rgbQuad.rgbRed * (1 << 16) + rgbQuad.rgbGreen * (1 << 8) + rgbQuad.rgbBlue;
+
 	pixelColor -= maxPixelColor / 2.0f;
 	pixelColor /= maxPixelColor / 2.0f;
 
