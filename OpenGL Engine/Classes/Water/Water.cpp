@@ -5,9 +5,9 @@
 #include <vector>
 #include "../Terrain/Terrain.h"
 
-Water::Water(int gridX, int gridZ) {
+Water::Water(int gridX, int gridZ, float height) {
 	this->x = gridX * Terrain::size, this->z = gridZ * Terrain::size;
-	this->worldMatrix = Matrix4::Translation(Vector3(this->x, 0.0f, this->z));
+	this->worldMatrix = Matrix4::Translation(Vector3(this->x, height, this->z));
 
 	std::vector<Vector2> vertices;
 	std::vector<Vector3> normals;
@@ -43,6 +43,10 @@ Water::Water(int gridX, int gridZ) {
 
 Water::~Water() {
 	delete model;
+}
+
+void Water::SetHeight(float height) {
+	this->worldMatrix = Matrix4::Translation(Vector3(this->x, height, this->z));
 }
 
 RawModel* Water::GetModel() {

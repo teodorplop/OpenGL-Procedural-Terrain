@@ -30,6 +30,7 @@ Scene::Scene() {
 	this->terrainSeed = 0;
 	this->terrainOctaves = 7;
 	this->heightMapResolution = 256;
+	this->waterEnabled = true;
 	this->dirty = false;
 	RefreshTerrain();
 
@@ -113,22 +114,32 @@ void Scene::Update() {
 	}
 }
 
-void Scene::RefreshTerrain() {
+void Scene::ClearTerrain() {
 	for (unsigned int i = 0; i < terrains.size(); ++i) {
 		delete terrains[i];
 	}
 	terrains.clear();
+}
+
+void Scene::ClearWater() {
 	for (unsigned int i = 0; i < waters.size(); ++i) {
 		delete waters[i];
 	}
 	waters.clear();
+}
+
+void Scene::RefreshTerrain() {
+	ClearTerrain();
+	ClearWater();
 
 	HeightMapGenerator::Generate("heightMap", heightMapResolution, heightMapResolution, terrainOctaves, terrainSeed);
 	Terrain* terrain = new Terrain(0, 0, terrainTexture, "Textures/Terrain/HeightMaps/heightMap.png");
 	terrains.push_back(terrain);
-
-	Water* water = new Water(0, 0);
-	waters.push_back(water);
+	
+	if (waterEnabled) {
+		Water* water = new Water(0, 0);
+		waters.push_back(water);
+	}
 }
 
 void Scene::SetSeed(int seed) {
@@ -158,6 +169,30 @@ void Scene::SetTerrainSize(float size) {
 void Scene::SetTerrainHeight(float height) {
 	if (Terrain::maxHeight != height) {
 		Terrain::maxHeight = height;
+		this->dirty = true;
+	}
+}
+void Scene::SetWater(bool enabled) {
+	if (this->waterEnabled != enabled) {
+		this->waterEnabled = enabled;
+
+		if (this->waterEnabled) {
+			Water* water = new Water(0, 0);
+			waters.push_back(water);
+		} else {
+			ClearWater();
+		}
+	}
+}
+void Scene::SetSmooth(float smooth) {
+	if (HeightMapGenerator::smooth != smooth) {
+		HeightMapGenerator::smooth = smooth;
+		this->dirty = true;
+	}
+}
+void Scene::SetPersistence(int persistence) {
+	if (HeightMapGenerator::persistence != persistence) {
+		HeightMapGenerator::persistence = persistence;
 		this->dirty = true;
 	}
 }

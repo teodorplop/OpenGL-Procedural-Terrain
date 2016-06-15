@@ -11,8 +11,10 @@ private:
 	Matrix4 worldMatrix;
 	RawModel* model;
 public:
-	Water(int gridX, int gridZ);
+	Water(int gridX, int gridZ, float height = 0.0f);
 	~Water();
+
+	void SetHeight(float height);
 
 	RawModel* GetModel();
 	const Matrix4& GetWorldMatrix() const;

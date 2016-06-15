@@ -57,10 +57,32 @@ void TerrainSettings::ProcessContent(const std::string& content) {
 		} catch (std::invalid_argument) {
 			printf("Invalid argument.\n");
 		}
-	} else if (content.size() >= 17 && content.substr(0, 17) == "set_terrainHeight") {
+	} else if (content.size() >= 13 && content.substr(0, 13) == "set_amplitude") {
 		try {
-			float value = std::stof(content.substr(18));
+			float value = std::stof(content.substr(14));
 			scene->SetTerrainHeight(value);
+		} catch (std::invalid_argument) {
+			printf("Invalid argument.\n");
+		}
+	} else if (content.size() >= 9 && content.substr(0, 9) == "set_water") {
+		if (content.substr(10) == "on\n") {
+			scene->SetWater(true);
+		} else if (content.substr(10) == "off\n") {
+			scene->SetWater(false);
+		} else {
+			printf("Invalid argument.\n");
+		}
+	} else if (content.size() >= 10 && content.substr(0, 10) == "set_smooth") {
+		try {
+			float value = std::stof(content.substr(11));
+			scene->SetSmooth(value);
+		} catch (std::invalid_argument) {
+			printf("Invalid argument.\n");
+		}
+	} else if (content.size() >= 15 && content.substr(0, 15) == "set_persistence") {
+		try {
+			int value = std::stoi(content.substr(16));
+			scene->SetPersistence(value);
 		} catch (std::invalid_argument) {
 			printf("Invalid argument.\n");
 		}

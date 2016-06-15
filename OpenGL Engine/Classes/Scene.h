@@ -56,6 +56,9 @@ private:
 	int terrainSeed;
 	int terrainOctaves;
 	int heightMapResolution;
+	bool waterEnabled;
+	void ClearWater();
+	void ClearTerrain();
 	void RefreshTerrain();
 
 public:
@@ -70,4 +73,7 @@ public:
 	void SetOctaves(int octaves);
 	void SetTerrainSize(float size);
 	void SetTerrainHeight(float height);
+	void SetWater(bool enabled);
+	void SetSmooth(float smooth);
+	void SetPersistence(int persistence);
 };

@@ -67,10 +67,26 @@ void Console::ExecuteCommand(char* input) {
 			} catch (std::invalid_argument) {
 				printf("Invalid argument.\n");
 			}
-		} else if (split[0] == "set" && split[1] == "terrainHeight") {
+		} else if (split[0] == "set" && split[1] == "amplitude") {
 			try {
 				float value = std::stof(split[2]);
-				AddProperty("set_terrainHeight", to_string(value));
+				AddProperty("set_amplitude", to_string(value));
+			} catch (std::invalid_argument) {
+				printf("Invalid argument.\n");
+			}
+		} else if (split[0] == "set" && split[1] == "water" && (split[2] == "on" || split[2] == "off")) {
+			AddProperty("set_water", split[2]);
+		} else if (split[0] == "set" && split[1] == "smooth") {
+			try {
+				float value = std::stof(split[2]);
+				AddProperty("set_smooth", to_string(value));
+			} catch (std::invalid_argument) {
+				printf("Invalid argument.\n");
+			}
+		} else if (split[0] == "set" && split[1] == "persistence") {
+			try {
+				int value = std::stoi(split[2]);
+				AddProperty("set_persistence", to_string(value));
 			} catch (std::invalid_argument) {
 				printf("Invalid argument.\n");
 			}
@@ -100,7 +116,11 @@ void Console::PrintHelp() {
 	printf("set_seed_x -> Sets the seed used to generate Perlin Noise to x.\n");
 	printf("set_heightMapRes_x -> Sets the height map texture resolution to x * x.\n");
 	printf("set_octaves_x -> Sets the number of octaves from Perlin Noise to x.\n");
+	printf("set_amplitude_x -> Sets the amplitudine from Perlin Noise to x.\n");
+	printf("set_persistence_x -> Sets the persistence from Perlin Noise to x.\n");
+	printf("set_smooth_x -> Sets the smoothness from Perlin Noise to x.\n");
 	printf("set_terrainSize_x -> Sets the length and width of the terrain to x.\n");
-	printf("set_terrainHeight_x -> Sets the maximum terrain height to x.\n");
+	printf("set_water_on -> Enables water.\n");
+	printf("set_water_off -> Disables water.\n");
 	printf("-----------------------------\n");
 }

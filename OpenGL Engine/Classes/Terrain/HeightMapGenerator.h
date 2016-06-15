@@ -7,6 +7,8 @@ private:
 	static const std::string heightMapPath;
 
 public:
+	static float smooth;
+	static int persistence;
 	static void Generate(const char* filename, int width, int height, int octaves, int seed = 0);
 
 private:

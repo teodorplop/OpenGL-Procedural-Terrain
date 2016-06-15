@@ -4,6 +4,8 @@
 #include "../Utils/Math/math_3d.h"
 
 const std::string HeightMapGenerator::heightMapPath = "Textures/Terrain/HeightMaps/";
+float HeightMapGenerator::smooth = 2.0f;
+int HeightMapGenerator::persistence = 2;
 
 void HeightMapGenerator::Generate(const char* filename, int width, int height, int octaves, int seed) {
 	float **whiteNoise = GenerateWhiteNoise(width, height, seed);
@@ -24,7 +26,7 @@ void HeightMapGenerator::Generate(const char* filename, int width, int height, i
 	float totalAmplitude = 0.0f;
 
 	for (int octave = octaves - 1; octave >= 0; --octave) {
-		amplitude /= 2.0f;
+		amplitude /= HeightMapGenerator::smooth;
 		totalAmplitude += amplitude;
 
 		for (int i = 0; i < width; ++i) {
@@ -65,7 +67,10 @@ float** HeightMapGenerator::GenerateWhiteNoise(int width, int height, int seed) 
 }
 
 float** HeightMapGenerator::GenerateSmoothNoise(float** whiteNoise, int width, int height, int octave) {
-	int delta = 1 << octave;
+	int delta = 1;
+	for (int i = 0; i < octave; ++i) {
+		delta *= HeightMapGenerator::persistence;
+	}
 	float frequency = 1.0f / delta;
 
 	float** smoothNoise = new float*[width];
