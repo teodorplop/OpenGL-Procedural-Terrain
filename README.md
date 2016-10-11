@@ -1,4 +1,4 @@
-# OpenGL-Engine
+# OpenGL 3D Procedural Terrain Generation
 
 OpenGL procedural terrain generation engine, using Perlin Noise to generate Height Maps, which are then processed in order to generate the terrain mesh. A simple water shader with a DUDV texture, which renders on a quad at height zero to make it look pretty.
 
