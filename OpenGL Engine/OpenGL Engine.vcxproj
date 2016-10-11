@@ -161,7 +161,6 @@
     <ClCompile Include="Classes\Transform.cpp" />
     <ClCompile Include="Classes\Core\Renderer.cpp" />
     <ClCompile Include="Classes\Texture.cpp" />
-    <ClCompile Include="Classes\Utils\ObjLoader.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp" />
     <ClCompile Include="Classes\Utils\Math\Vector4.cpp" />
     <ClCompile Include="Classes\RawModel.cpp" />
@@ -172,12 +171,8 @@
     <ClCompile Include="Classes\Core\TimeFrame.cpp" />
     <ClCompile Include="Classes\Terrain\Terrain.cpp" />
     <ClCompile Include="Classes\Terrain\TerrainRenderer.cpp" />
-    <ClCompile Include="Classes\Terrain\TerrainTexturePack.cpp" />
-    <ClCompile Include="Classes\Stuff\PlayerController.cpp" />
     <ClCompile Include="Classes\Water\Water.cpp" />
     <ClCompile Include="Classes\Water\WaterRenderer.cpp" />
-    <ClCompile Include="Classes\Interface\UIRenderer.cpp" />
-    <ClCompile Include="Classes\Interface\UITexture.cpp" />
     <ClCompile Include="Classes\Utils\StringUtils.cpp" />
     <ClCompile Include="Classes\Terrain\TerrainSettings.cpp" />
   </ItemGroup>
@@ -203,7 +198,6 @@
     <ClInclude Include="Classes\Core\Renderer.h" />
     <ClInclude Include="Classes\Utils\ImageUtils.h" />
     <ClInclude Include="Classes\Texture.h" />
-    <ClInclude Include="Classes\Utils\ObjLoader.h" />
     <ClInclude Include="Classes\Utils\Math\Vector2.h" />
     <ClInclude Include="Classes\Utils\Math\Vector4.h" />
     <ClInclude Include="Classes\Effects\DirectionalLight.h" />
@@ -217,13 +211,9 @@
     <ClInclude Include="Classes\Terrain\Terrain.h" />
     <ClInclude Include="Classes\Terrain\TerrainRenderer.h" />
     <ClInclude Include="Classes\Effects\Fog.h" />
-    <ClInclude Include="Classes\Terrain\TerrainTexturePack.h" />
-    <ClInclude Include="Classes\Stuff\PlayerController.h" />
     <ClInclude Include="Classes\Terrain\HeightMapGenerator.h" />
     <ClInclude Include="Classes\Water\Water.h" />
     <ClInclude Include="Classes\Water\WaterRenderer.h" />
-    <ClInclude Include="Classes\Interface\UIRenderer.h" />
-    <ClInclude Include="Classes\Interface\UITexture.h" />
     <ClInclude Include="Classes\Water\WaterFrameBuffer.h" />
     <ClInclude Include="Classes\Console\Console.h" />
     <ClInclude Include="Classes\Utils\StringUtils.h" />
@@ -235,8 +225,6 @@
     <None Include="Shaders\Shader.vert" />
     <None Include="Shaders\TerrainShader.frag" />
     <None Include="Shaders\TerrainShader.vert" />
-    <None Include="Shaders\UIShader.frag" />
-    <None Include="Shaders\UIShader.vert" />
     <None Include="Shaders\WaterShader.frag" />
     <None Include="Shaders\WaterShader.vert" />
   </ItemGroup>

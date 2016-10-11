@@ -12,12 +12,10 @@
 #include "TexturedModel.h"
 #include "Materials\Material.h"
 #include "Water\Water.h"
-#include "Interface\UITexture.h"
 
 #include "Core/Renderer.h"
 #include "Terrain\TerrainRenderer.h"
 #include "Water\WaterRenderer.h"
-#include "Interface\UIRenderer.h"
 
 #include "Color.h"
 #include "Effects\Fog.h"
@@ -44,10 +42,6 @@ private:
 	Material* waterMaterial;
 	Shader* waterShader;
 	WaterRenderer* waterRenderer;
-
-	std::vector<UITexture*> uiTextures;
-	Shader* uiShader;
-	UIRenderer* uiRenderer;
 
 	WaterFrameBuffer* waterFrameBuffer;
 

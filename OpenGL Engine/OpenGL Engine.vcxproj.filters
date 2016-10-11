@@ -60,9 +60,6 @@
     <ClCompile Include="Classes\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Utils\ObjLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Utils\Math\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,12 +117,6 @@
     <ClCompile Include="Classes\Effects\Fog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Terrain\TerrainTexturePack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\Stuff\PlayerController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Terrain\HeightMapGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -133,12 +124,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Water\WaterRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\Interface\UIRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\Interface\UITexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Water\WaterFrameBuffer.cpp">
@@ -200,9 +185,6 @@
     <ClInclude Include="Classes\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Utils\ObjLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Utils\Math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -260,12 +242,6 @@
     <ClInclude Include="Classes\Effects\Fog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Terrain\TerrainTexturePack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Stuff\PlayerController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Terrain\HeightMapGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -273,12 +249,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Water\WaterRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Interface\UIRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Interface\UITexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Water\WaterFrameBuffer.h">
@@ -304,8 +274,6 @@
     <None Include="Shaders\TerrainShader.frag" />
     <None Include="Shaders\WaterShader.frag" />
     <None Include="Shaders\WaterShader.vert" />
-    <None Include="Shaders\UIShader.frag" />
-    <None Include="Shaders\UIShader.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="terrainSettings.txt" />
