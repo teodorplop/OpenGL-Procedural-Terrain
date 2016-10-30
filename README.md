@@ -4,7 +4,7 @@ OpenGL procedural terrain generation engine, using Perlin Noise to generate Heig
 
 It includes a console where you can type a few commands that change the terrain in real time.
 
-Available commands:
+### Available commands
 
 * help -> Prints a list of avaiable commands.
 * set_seed_x -> Sets the seed used to generate Perlin Noise to x.
@@ -16,3 +16,12 @@ Available commands:
 * set_terrainSize_x -> Sets the length and width of the terrain to x.
 * set_water_on -> Enables water.
 * set_water_off -> Disables water.
+
+The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here.
+
+### References
+
+[freeglut](http://freeglut.sourceforge.net/)
+[glew](http://glew.sourceforge.net/)
+[GLFW](http://www.glfw.org/)
+[FreeImage](http://freeimage.sourceforge.net/)
