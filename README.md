@@ -17,9 +17,13 @@ It includes a console where you can type a few commands that change the terrain 
 * set_water_on -> Enables water.
 * set_water_off -> Disables water.
 
-The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here.
+### Importing
+
+The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here. The libraries included are for 64-bit. Just copy *freeglut.dll* and *glew32.dll* to system32 folder, and you're good to go!
 
 ### References
+
+[OpenGL Step by Step](http://ogldev.atspace.co.uk/)
 
 [ThinMatrix Beginners OpenGL 3D Game Tutorials](https://www.youtube.com/watch?v=VS8wlS9hF8E&list=PLRIWtICgwaX0u7Rf9zkZhLoLuZVfUksDP)
 
