@@ -16,4 +16,3 @@ public:
 	Transform* GetTransform();
 	TexturedModel* GetModel();
 };
-

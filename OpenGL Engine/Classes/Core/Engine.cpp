@@ -9,7 +9,7 @@ Engine* Engine::instance = NULL;
 Engine::Engine(int argc, char** argv) {
 	glutInit(&argc, argv);
 
-	currentWindow = new Window("OpenGL Terrain Engine", 1024, 768);
+	currentWindow = new Window("OpenGL Terrain Engine", 1228, 921);
 
 	GLenum error = glewInit();
 	if (error != GLEW_OK) {
