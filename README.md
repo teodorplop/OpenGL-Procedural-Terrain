@@ -21,7 +21,16 @@ The project was developed in Microsoft Visual Studio Community 2015, and it can 
 
 ### References
 
+[ThinMatrix Beginners OpenGL 3D Game Tutorials](https://www.youtube.com/watch?v=VS8wlS9hF8E&list=PLRIWtICgwaX0u7Rf9zkZhLoLuZVfUksDP)
+
+[ThinMatrix OpenGL Water Tutorials](https://www.youtube.com/watch?v=HusvGeEDU_U&list=PLRIWtICgwaX23jiqVByUs0bqhnalNTNZh)
+
+### Dependencies
+
 [freeglut](http://freeglut.sourceforge.net/)
+
 [glew](http://glew.sourceforge.net/)
+
 [GLFW](http://www.glfw.org/)
+
 [FreeImage](http://freeimage.sourceforge.net/)
