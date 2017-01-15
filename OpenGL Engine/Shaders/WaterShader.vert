@@ -24,8 +24,8 @@ void main() {
 	mat4 gViewCamera = inverse(gCamera);
 
 	Out.worldPosition = gProj * gViewCamera * worldPosition;
-	Out.normal = inNormal;
 	Out.textureCoord = uvs * tiling;
+	Out.normal = inNormal;
 	Out.toCamera = cameraPosition - worldPosition.xyz;
 
 	gl_Position = Out.worldPosition;

@@ -11,7 +11,7 @@ layout (location = 1) in vec2 inTextureCoord;
 layout (location = 2) in vec3 inNormal;
 
 struct Fog {
-  float density;
+	float density;
 	float gradient;
 };
 
@@ -27,14 +27,14 @@ out DATA {
 uniform vec4 clipPlane;
 
 void main() {
-  vec4 worldPosition = gWorld * inPosition;
+    vec4 worldPosition = gWorld * inPosition;
 	mat4 gViewCamera = inverse(gCamera);
 	vec4 positionRelativeToCamera =  gViewCamera * worldPosition;
 	float distance = length(positionRelativeToCamera.xyz);
-
+	
 	gl_Position = gProj * positionRelativeToCamera;
 	gl_ClipDistance[0] = dot(worldPosition, clipPlane);
-
+	
 	Out.worldPosition = worldPosition.xyz;
 	Out.textureCoord = inTextureCoord;
 	Out.normal = (gWorld * vec4(inNormal, 0.0f)).xyz;

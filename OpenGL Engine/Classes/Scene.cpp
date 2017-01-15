@@ -55,15 +55,6 @@ Scene::Scene() {
 	terrainShader->SetUniform1f("fog.density", fog.density);
 	terrainShader->SetUniform1f("fog.gradient", fog.gradient);
 	terrainShader->Unbind();
-
-	waterShader->Bind();
-	waterShader->SetUniformDirectionalLight("directionalLight", *directionalLight);
-	waterShader->SetUniform1f("specularLight.materialIntensity", waterMaterial->specularIntensity);
-	waterShader->SetUniform1f("specularLight.power", waterMaterial->specularPower);
-	waterShader->SetUniform3f("skyColor", skyColor.ToVector3());
-	waterShader->SetUniform1f("fog.density", fog.density);
-	waterShader->SetUniform1f("fog.gradient", fog.gradient);
-	waterShader->Unbind();
 }
 Scene::~Scene() {
 	delete camera;
