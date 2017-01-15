@@ -19,7 +19,7 @@ It includes a console where you can type a few commands that change the terrain 
 
 ### Importing
 
-The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here.
+The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here. Libraries added will work for Debug x64.
 
 ### References
 
