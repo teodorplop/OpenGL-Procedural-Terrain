@@ -19,7 +19,7 @@ It includes a console where you can type a few commands that change the terrain 
 
 ### Importing
 
-The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here. The libraries included are for 64-bit. Just copy *freeglut.dll* and *glew32.dll* to system32 folder, and you're good to go!
+The project was developed in Microsoft Visual Studio Community 2015, and it can be easily imported as all dependencies are already added here.
 
 ### References
 
