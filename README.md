@@ -4,6 +4,8 @@ A real-time OpenGL procedural terrain generation engine using **Perlin Noise** t
 
 [YouTube Video](https://www.youtube.com/watch?v=A3Gpo0WOF1s)
 
+<img width="1223" height="939" alt="Screenshot_20260528_202243-1" src="https://github.com/user-attachments/assets/ce4e7328-a65a-4897-be1b-6c81916602eb" />
+
 ## Features
 
 The engine generates realistic terrain meshes procedurally using:
