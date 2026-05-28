@@ -2,6 +2,8 @@
 
 A real-time OpenGL procedural terrain generation engine using **Perlin Noise** to generate height maps. Originally built on Windows using Visual Studio, this project has been ported to Linux using cross-platform **CMake** and **C++17**.
 
+[YouTube Video](https://www.youtube.com/watch?v=A3Gpo0WOF1s)
+
 ## Features
 
 The engine generates realistic terrain meshes procedurally using:
@@ -43,7 +45,7 @@ Most libraries are available via the standard package manager (`pacman`). Note t
 
 ```bash
 # Install core build tools and standard repositories libraries
-sudo pacman -S base-devel cmake glew glfw freeglut glm
+sudo pacman -S base-devel cmake glew glfw freeglut
 
 # Install FreeImage from the AUR (Do NOT run with sudo)
 paru -S freeimage
